@@ -35,16 +35,28 @@ if [ ! -d barcodes ]; then mkdir barcodes; fi
 #muestro cada  linea del documento
 #anyado dos campos  los cuales sean uno para los reads uno y  otro para los reads dos de C.pipiens
 if [ ! -e barcodes/pipiens_barcodes.txt ]; then
-	echo -e 'GGTCGTAAATG \t Fe1_R1.fastq\t Fe1_R2.fastq' > barcodes/pipiens_barcodes.txt
-	echo -e 'CTAGTACCTG \t Fe2_R1.fastq\t Fe2_R2.fastq' >> barcodes/pipiens_barcodes.txt	
-	echo -e 'AACTACGGG \t Fe3_R1.fastq\t Fe3_R2.fasq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'TCGACGTT \t Fe6_R1.fastq\t Fe6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'GTCAGAGTATG \t Ma4_R1.fastq\t Ma4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'ACTGAGACTG \t Fe4_R1.fastq\t Fe4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'CAGCTCTAG \t Ma3_R1.fastq\t Ma3_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'TGATCTCG \t Ma1_R1.fastq\t Ma1_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'AGCCATGAATG \t Ma2_R1.fastq\t Ma2_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'CCAATGCTTG \t Ma5_R1.fastq\t Ma5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'GATTGCAGG \t Ma6_R1.fastq\t Ma6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-	echo -e 'TTGGCATC \t Fe5_R1.fastq\t Fe5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'GGTCGTAAATG\tFe1_R1.fastq\tFe1_R2.fastq' > barcodes/pipiens_barcodes.txt
+	echo -e 'CTAGTACCTG\tFe2_R1.fastq\tFe2_R2.fastq' >> barcodes/pipiens_barcodes.txt	
+	echo -e 'AACTACGGG\tFe3_R1.fastq\tFe3_R2.fasq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'TCGACGTT\tFe6_R1.fastq\tFe6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'GTCAGAGTATG\tMa4_R1.fastq\tMa4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'ACTGAGACTG\tFe4_R1.fastq\tFe4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'CAGCTCTAG\tMa3_R1.fastq\tMa3_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'TGATCTCG\tMa1_R1.fastq\tMa1_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'AGCCATGAATG\tMa2_R1.fastq\tMa2_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'CCAATGCTTG\tMa5_R1.fastq\tMa5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'GATTGCAGG\tMa6_R1.fastq\tMa6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+	echo -e 'TTGGCATC\tFe5_R1.fastq\tFe5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
 fi
+#Ejecutaremos el programa SABRE
+#llamamos a sabre
+#queremos  como MAX 1 mismatch
+#los file tienen barcodes
+sabre pe -m 1 -c \
+	 -f $DATADIR/Cpipiens_S1_L001_R1_001.fastq.gz  \
+         -r $DATADIR/Cpipiens_S1_L001_R2_001.fastq.gz \
+	 -b barcodes/pipiens_barcodes.txt \
+	 -u $DATADIR/unknown_Cpipiens_R1.fastq.gz \
+	 -w $DATADIR/unknown_Cpipiens_R2.fastq.gz 
+
+
