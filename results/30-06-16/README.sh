@@ -45,6 +45,7 @@ LISTA=(Fe1 Fe2 Fe3 Fe6 Ma4 Fe4 Ma3 Ma1 Ma2 Ma5 Ma6 Fe5)
 #Creamos un directorio llamado merged
 #para cada elemento de la lista
 #lo recorremos y ejecutamos PEAR
+#obtendremos un out para casa sample especifico
 if [ ! -d merged ]; then mkdir merged; fi
 	for i in  0 1 2 3 4 5 6 7 8 9 10 11;do
 		pear  -f /home/student/GIT/mosquito/results/29-06-16/${LISTA[$i]}'_R1.fastq' \
