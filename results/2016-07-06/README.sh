@@ -35,7 +35,7 @@ for i in 0 1 2 3; do
    # compressed, while the real dataset is. We need to create symbolic links with
    # appropriate extensions:
    SUFIX='.fq'
-   if echo ${FILENAME[$i]} | grep '.gz'; then SUFIX='.fq.gz'; fi
+   if echo ${FILENAME[$i]} | grep -q '.gz'; then SUFIX='.fq.gz'; fi
    if [ ! -e $DATADIR/${NEWNAME[$i]} ]; then
       ln -s $SOURCEDIR/${FILENAME[$i]} $DATADIR/${NEWNAME[$i]}$SUFIX
    fi
@@ -72,6 +72,8 @@ if [ ! -e molestus_barcode.txt ]; then
 fi
 
 if [ ! -e PipFe1_R1.fastq ]; then
+   # I assume that sabre can take either compressed or uncompressed fastq files
+   # as input.
    sabre pe -m 1 -c \
             -f $DATADIR/pip_R1.$SUFIX \
             -r $DATADIR/pip_R2.$SUFIX  \
@@ -89,20 +91,58 @@ if [ ! -e Mol01_R1.fastq ]; then
             -w mol_unknown_R2.fastq
 fi
 
-LISTA=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
-#Creamos un directorio llamado merged
-#lo recorremos y ejecutamos PEAR
-#obtendremos un out para casa sample especifico
+LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
+
+# If pear is to run locally, it is better not to parallelize 17 processes, but 6
+# at most. We just need to count how many processors there are:
+
+PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 
 if [ ! -d merged ]; then mkdir merged; fi
-for i in `seq 0 16`;do
-   if [ ! -e merged/${LISTA[$i]}'_assembled.fastq ]; then
-      pear  -f ${LISTA[$i]}'_R1.fastq' \
-            -r ${LISTA[$i]}'_R2.fastq' \
-            -o merged/${LISTA[$i]} \
-            -v 10 \
-            -q 15 \
-            -j 1 \
-            --memory 2G
-   fi
-done
+
+# Now, I run on loop or the other, depending on whethere there are more or less
+# than 8 processors available
+
+if [ $PROC -gt 8 ]; then
+   for i in `seq 0 16`;do
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+         pear  -f ${LIST[$i]}'_R1.fastq' \
+               -r ${LIST[$i]}'_R2.fastq' \
+               -o merged/${LIST[$i]} \
+               -v 10 \
+               -q 15 \
+               -j 1 \
+               --memory 2G &
+      fi
+   done
+   wait
+else
+   # With the loops below, no more than 6 processes will be running
+   # at the same time.
+   for j in 0 6; do
+      for i in `seq $i $(( j + 5 ))`; do
+         if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+            pear  -f ${LIST[$i]}'_R1.fastq' \
+                  -r ${LIST[$i]}'_R2.fastq' \
+                  -o merged/${LIST[$i]} \
+                  -v 10 \
+                  -q 15 \
+                  -j 1 \
+                  --memory 2G &
+         fi
+      done
+      wait
+   done
+   for i in 12 13 14 15 16; do
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+         pear  -f ${LIST[$i]}'_R1.fastq' \
+               -r ${LIST[$i]}'_R2.fastq' \
+               -o merged/${LIST[$i]} \
+               -v 10 \
+               -q 15 \
+               -j 1 \
+               --memory 2G &
+      fi
+   done
+   wait
+fi
