@@ -1,6 +1,6 @@
 #/bin/bash
 #
-#                               29/06/16
+#                               06/07/16
 #                               ---------
 #Para cada elemento de la lista
 #si no esta en DATADIR
