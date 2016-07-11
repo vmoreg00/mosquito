@@ -36,6 +36,7 @@ if [ ! -d merged ]; then mkdir merged; fi
      for i in  0 1 2 3 ;do
 	#si no esta presente la muestra en merged
 	#ejecutaremos pear para que aparezca
+	 if [ ! -e merged/${LISTA1[$i]}'.assembled.fastq' ]; then
                 pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R1.fastq' \
                       -r /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R2.fastq' \
                       -o merged/${LISTA1[$i]} \
@@ -48,7 +49,8 @@ if [ ! -d merged ]; then mkdir merged; fi
                 #We use vsearch to do the reverse complementary to get the original one(reverse) 
                 #First of all, we do a list with the both forms 
 		 vsearch --fastx_revcomp merged/${LISTA1[$i]}'.unassembled.reverse.fastq' \
-                         --fastqout merged/${LISTA1[$i]}'.unassembled.reverse.reversed.fastq'
+			 --fastqout merged/${LISTA1[$i]}'.unassembled.reverse.reversed.fastq'
+	 fi
      done
 #mismo proceso para molestus
 if [ ! -e /home/student/Documents/barcodes/molestus_barcodes.txt ]; then
@@ -69,6 +71,7 @@ LISTA2=(Mol01 Mol02 Mol03 Mol04 Mol05)
 #en carpeta merged
 if [ ! -d merged ]; then mkdir merged; fi
      for i in  0 1 ;do
+	 if [ ! -e merged/${LISTA2[$i]}'.assembled.fastq' ]; then
                 pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R1.fastq' \
                       -r /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R2.fastq' \
 		      -o merged/${LISTA2[$i]} \
@@ -82,6 +85,7 @@ if [ ! -d merged ]; then mkdir merged; fi
 		#First of all, we do a list with the both forms	
 		 vsearch --fastx_revcomp merged/${LISTA2[$i]}'.unassembled.reverse.fastq' \
                          --fastqout merged/${LISTA2[$i]}'.unassembled.reverse.reversed.fastq'
-    done
+	fi    
+     done
 
 		
