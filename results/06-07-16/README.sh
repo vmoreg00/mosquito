@@ -33,15 +33,25 @@ LISTA1=(Fe1 Fe2 Fe3 Fe6 Ma4 Fe4 Ma3 Ma1 Ma2 Ma5 Ma6 Fe5)
 #lo recorremos y ejecutamos PEAR
 #obtendremos un out para casa sample especifico
 if [ ! -d merged ]; then mkdir merged; fi
-     for i in  0 1 2 3 4 5 6 7 8 9 10 11;do
+     for i in  0 1 2 3 ;do
+	#si no esta presente la muestra en merged
+	#ejecutaremos pear para que aparezca
+	if [ ! -e merged/${LISTA1[$i]}'_R1.fastq';then 
                 pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R1.fastq' \
                       -r /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R2.fastq' \
-                      -o /home/student/Documents/mosquito/results/06-07-16/merged/${LISTA1[$i]}'__Cpipienstq.gz' \
+                      -o merged/${LISTA1[$i]} \
 		      -v 10 \
                       -q 15 \
                       -j 1 \
-                      --memory 2G &
-        done
+                      --memory 2G 
+		#When we merged the reads, the ones that couldnt be assembled
+                # and also were reverse, changed their orientations
+                #We use vsearch to do the reverse complementary to get the original one(reverse) 
+                #First of all, we do a list with the both forms 
+		 vsearch --fastx_revcomp merged/${LISTA1[$i]}'.unassembled.reverse.fastq' \
+                         --fastqout merged/${LISTA1[$i]}'.unassembled.reverse.reversed.fastq'
+	fi
+     done
 #mismo proceso para molestus
 if [ ! -e /home/student/Documents/barcodes/molestus_barcodes.txt ]; then
         echo -e 'GGTCGTAAATG\tMol01_R1.fastq\tMol01_R2.fastq' > barcodes/molestus_barcod$
@@ -60,14 +70,22 @@ sabre pe -m 1 -c \
 LISTA2=(Mol01 Mol02 Mol03 Mol04 Mol05)
 #en carpeta merged
 if [ ! -d merged ]; then mkdir merged; fi
-     for i in  0 1 2 3 4;do
+     for i in  0 1 ;do
+	 if [ ! -e merged/${LISTA2[$i]}'_R1.fastq';then
                 pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R1.fastq' \
                       -r /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R2.fastq' \
-		      -o /home/student/Documents/merged/mosquito/results/06-07-16/${LISTA2[$i]}'__molestus.gz' \
+		      -o merged/${LISTA2[$i]} \
                       -v 10 \
                       -q 15 \
                       -j 1 \
-                      --memory 2G &
-        done
+                      --memory 2G 
+		#When we merged the reads, the ones that couldnt be assembled
+		# and also were reverse, changed their orientations
+		#We use vsearch to do the reverse complementary to get the original one(reverse) 
+		#First of all, we do a list with the both forms	
+		 vsearch --fastx_revcomp merged/${LISTA2[$i]}'.unassembled.reverse.fastq' \
+                         --fastqout merged/${LISTA2[$i]}'.unassembled.reverse.reversed.fastq'
+	fi    
+    done
 
-			
+		
