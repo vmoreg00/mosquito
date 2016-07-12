@@ -41,6 +41,19 @@ for i in 0 1 2 3 4 5 6 7 8 9 10; do
                                  --rg-id ${LISTA[$i]}
         fi
 done
-
-
+#Una vez obtenidos los archivos en .sam, convertirlos a formato bam (binario de sam)
+#usaremos el programa sam tools
+#como tenemos header el comando usado en samtools es -bS
+#Si no existe directorio BAM lo creamos
+#Para cada elemento de la lista si no existe ya el archivo
+#convertiremos a bam
+if [ ! -d BAM ]; then mkdir BAM; fi
+for i in 0 1 2 3 4 5 6 7 8 9 10; do
+	if [ ! -e BAM/${LISTA[$i]}'r1'.bam ]; then
+		samtools view -bS mappeo/${LISTA[$i]}'r1'.sam > BAM/${LISTA[$i]}'r1'.bam
+	fi
+	if [ ! -e BAM/${LISTA[$i]}'r2'.bam ]; then
+                samtools view -bS mappeo/${LISTA[$i]}'r2'.sam > BAM/${LISTA[$i]}'r2'.bam
+	fi
+done	
 
