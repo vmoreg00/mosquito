@@ -18,20 +18,34 @@ if [ ! -e culex.1.bt2 ]; then
  #Hago referencia indexada y ordenada
                  bowtie2-build reference.fa culex
 fi
-for i in 0 1; do
+for i in 0 1 2 3 4 5 6 7 8 9 10; do
 #Para cada una de las muestras
 #si no existe el archivo final sam de mapeo
 #ejecuto bowtie
-	if [ ! -e mappeo/${LISTA[$i]}.sam ]; then
+	if [ ! -e mappeo/${LISTA[$i]}'r1'.sam ]; then
 		#Ejecuto
 		bowtie2		 --local \
 				 --very-sensitive \
 				 -x culex \
-	 	 	 	 -1 /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R1.fastq' \
-	 	 	 	 -2 /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R2.fastq' \
-		 	 	 -S mappeo/${LISTA[$i]}.sam \
+	 	 	 	 -U /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R1.fastq' \
+		 	 	 -S mappeo/${LISTA[$i]}'r1'.sam \
 				 --rg-id ${LISTA[$i]}
 	fi
+	if [ ! -e mappeo/${LISTA[$i]}'r2'.sam ]; then
+                #Ejecuto
+                bowtie2          --local \
+                                 --very-sensitive \
+                                 -x culex \
+                                 -U /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R2.fastq' \
+                                 -S mappeo/${LISTA[$i]}'r2'.sam \
+                                 --rg-id ${LISTA[$i]}
+        fi
+done
+
+
+
+
+
 done
 
 
