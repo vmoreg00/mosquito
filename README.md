@@ -16,3 +16,5 @@ We did 2 tasks: First of all, we used SABRE for form molestus. Secondly, we used
 We did a unique script with the programs: SABRE and PEAR, to the both forms of the mosquitos 
 #2016-07-06b
 Now we need to cut off the adapts which are present in our reads. We started working with assembled reads and then continued with unassembled, which probably have more adaptors.
+#2016-07-08
+We wanted to check why our mapping wasnt good enough so we used Bowtie2 to map our 'independent'-reads against the reference. Furthermore, we converted sam to bam.
