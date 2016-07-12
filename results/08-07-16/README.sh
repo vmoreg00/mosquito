@@ -24,7 +24,8 @@ for i in 0 1; do
 #ejecuto bowtie
 	if [ ! -e mappeo/${LISTA[$i]}.sam ]; then
 		#Ejecuto
-		bowtie2		 --very-sensitive \
+		bowtie2		 --local \
+				 --very-sensitive \
 				 -x culex \
 	 	 	 	 -1 /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R1.fastq' \
 	 	 	 	 -2 /home/student/Documents/mosquito/results/30-06-16/${LISTA[$i]}'_R2.fastq' \
