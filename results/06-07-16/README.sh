@@ -7,73 +7,97 @@
 #lo anyadimos al directorio
 #A partir  del programa SABRE identificare los individuos segun su barcode
 #Debo crear un directorio con barcode
-if [ ! -e /home/student/Documents/barcodes/pipiens_barcodes.txt ]; then
-        echo -e 'GGTCGTAAATG\tFe1_R1.fastq\tFe1_R2.fastq' > barcodes/pipiens_barcodes.txt
-        echo -e 'CTAGTACCTG\tFe2_R1.fastq\tFe2_R2.fastq' >> barcodes/pipiens_barcodes.txt       
-        echo -e 'AACTACGGG\tFe3_R1.fastq\tFe3_R2.fasq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'TCGACGTT\tFe6_R1.fastq\tFe6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'GTCAGAGTATG\tMa4_R1.fastq\tMa4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'ACTGAGACTG\tFe4_R1.fastq\tFe4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'CAGCTCTAG\tMa3_R1.fastq\tMa3_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'TGATCTCG\tMa1_R1.fastq\tMa1_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'AGCCATGAATG\tMa2_R1.fastq\tMa2_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'CCAATGCTTG\tMa5_R1.fastq\tMa5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'GATTGCAGG\tMa6_R1.fastq\tMa6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
-        echo -e 'TTGGCATC\tFe5_R1.fastq\tFe5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+DATADIR=`pwd | sed 's/results/data/'` 
+if [ ! -d $DATADIR ]; then
+        mkdir $DATADIR
 fi
-sabre pe -m 1 -c \
-         -f /home/student/Documents/data/pipiens_R1.fastq \
-         -r /home/student/Documents/data/pipiens_R2.fastq  \
-         -b barcodes/pipiens_barcodes.txt \
-         -u /home/student/Documents/data/unknown_Cpipiens_R1.fastq.gz \
-         -w /home/student/Documents/data/unknown_Cpipiens_R2.fastq.gz 
+#Para cada elemento de la lista
+#si no esta en DATADIR
+#lo anyadimos al directorio
+for i in Mol1-5_S1_L001_R1_001.fastq.gz \
+         Mol1-5_S1_L001_R2_001.fastq.gz \
+         Cpipiens_S1_L001_R1_001.fastq.gz \
+         Cpipiens_S1_L001_R2_001.fastq.gz; do
+   if [ ! -e $DATADIR/$i ]; then
+      ln -s /data/joiglu/mosquito/$i $DATADIR/$i
+   fi
+done
 
-LISTA1=(Fe1 Fe2 Fe3 Fe6 Ma4 Fe4 Ma3 Ma1 Ma2 Ma5 Ma6 Fe5)
+if [ ! -d barcodes ]; then mkdir barcodes; fi
+#si dentro del  directorio no esta pipiens_barcodes.txt
+#muestro cada  linea del documento
+#anyado dos campos  los cuales sean uno para los reads uno y  otro para los reads dos de C.pipiens
+if [ ! -e barcodes/pipiens_barcodes.txt ]; then
+        echo -e 'GGTCGTAAATG\tPipFe1_R1.fastq\tPipFe1_R2.fastq' > barcodes/pipiens_barcodes.txt
+        echo -e 'CTAGTACCTG\tPipFe2_R1.fastq\tPipFe2_R2.fastq' >> barcodes/pipiens_barcodes.txt       
+        echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'TCGACGTT\tPipFe6_R1.fastq\tPipFe6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'GTCAGAGTATG\tPipMa4_R1.fastq\tPipMa4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'ACTGAGACTG\tPipFe4_R1.fastq\tPipFe4_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'CAGCTCTAG\tPipMa3_R1.fastq\tPipMa3_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'TGATCTCG\tPipMa1_R1.fastq\tPipMa1_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'AGCCATGAATG\tPipMa2_R1.fastq\tPipMa2_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'CCAATGCTTG\tPipMa5_R1.fastq\tPipMa5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'GATTGCAGG\tPipMa6_R1.fastq\tPipMa6_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+        echo -e 'TTGGCATC\tPipFe5_R1.fastq\tPipFe5_R2.fastq'>> barcodes/pipiens_barcodes.txt 
+fi
+#Ejecutaremos el programa SABRE
+#llamamos a sabre
+#queremos  como MAX 1 mismatch
+#los file tienen barcodes
+if [ ! -e PipFe1_R1.fastq ]; then
+	sabre pe -m 1 -c \
+        	 -f $DATADIR/Cpipiens_S1_L001_R1_001.fastq.gz  \
+         	 -r $DATADIR/Cpipiens_S1_L001_R2_001.fastq.gz \
+         	 -b barcodes/pipiens_barcodes.txt \
+        	 -u $DATADIR/unknown_Cpipiens_R1.fastq.gz \
+        	 -w $DATADIR/unknown_Cpipiens_R2.fastq.gz 
+fi
+LISTA1=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5)
 #Creamos un directorio llamado merged
 #lo recorremos y ejecutamos PEAR
 #obtendremos un out para casa sample especifico
 if [ ! -d merged ]; then mkdir merged; fi
-     for i in  0 1 2 3 ;do
-	#si no esta presente la muestra en merged
-	#ejecutaremos pear para que aparezca
-	 if [ ! -e merged/${LISTA1[$i]}'.assembled.fastq' ]; then
-                pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R1.fastq' \
-                      -r /home/student/Documents/mosquito/results/06-07-16/${LISTA1[$i]}'_R2.fastq' \
-                      -o merged/${LISTA1[$i]} \
-		      -v 10 \
-                      -q 15 \
-                      -j 1 \
-                      --memory 2G 
+        for i in  0 1 2 3 4 5 6 7 8 9 10 11;do
+		if [ ! -e merged/${LISTA1[$i]}'_assembled.fastq ]; then
+                	pear  -f ${LISTA1[$i]}'_R1.fastq' \
+                      	      -r ${LISTA1[$i]}'_R2.fastq'  \
+                      	      -o merged/${LISTA1[$i]} \
+                      	      -v 10 \
+                      	      -q 15 \
+                      	      -j 1 \
+                      	      --memory 2G &
 		#When we merged the reads, the ones that couldnt be assembled
                 # and also were reverse, changed their orientations
                 #We use vsearch to do the reverse complementary to get the original one(reverse) 
                 #First of all, we do a list with the both forms 
-		 vsearch --fastx_revcomp merged/${LISTA1[$i]}'.unassembled.reverse.fastq' \
-			 --fastqout merged/${LISTA1[$i]}'.unassembled.reverse.reversed.fastq'
-	 fi
-     done
+			vsearch --fastx_revcomp merged/${LISTA1[$i]}'.unassembled.reverse.fastq' \
+			        --fastqout merged/${LISTA1[$i]}'.unassembled.reverse.reversed.fastq'
+		fi
+        done
 #mismo proceso para molestus
-if [ ! -e /home/student/Documents/barcodes/molestus_barcodes.txt ]; then
-        echo -e 'GGTCGTAAATG\tMol01_R1.fastq\tMol01_R2.fastq' > barcodes/molestus_barcod$
-        echo -e 'GTCAGAGTATG\tMol02_R1.fastq\tMol02_R2.fastq'>> barcodes/molestus_barcod$
-        echo -e 'CTAGTACCTG\tMol03_R1.fastq\tMol03_R2.fastq' >> barcodes/molestus_barcod$
-        echo -e 'AACTACGGG\tMol04_R1.fastq\tMol04_R2.fastq'>> barcodes/molestus_barcodes$
-        echo -e 'TCGACGTT\tMol05_R1.fastq\tMol05_R2.fastq'>> barcodes/molestus_barcodes.$
+if [ ! -e barcodes/molestus_barcodes.txt ]; then
+        echo -e 'GGTCGTAAATG\tmol01_R1.fastq\tmol02_R2.fastq' > barcodes/molestus_barcodes.txt
+        echo -e 'GTCAGAGTATG\tMol02_R1.fastq\tMol02_R2.fastq'>> barcodes/molestus_barcodes.txt 
+        echo -e 'CTAGTACCTG\tMol03_R1.fastq\tMol03_R2.fastq' >> barcodes/molestus_barcodes.txt
+        echo -e 'AACTACGGG\tMol04_R1.fastq\tMol04_R2.fasq'>> barcodes/molestus_barcodes.txt 
+        echo -e 'TCGACGTT\tFe6_R1.fastq\tFe6_R2.fastq'>> barcodes/molestus_barcodes.txt 
 fi
-sabre pe -m 1 -c \
-         -f /home/student/Documents/data/molestus_R1.fastq \
-         -r /home/student/Documents/data/molestus_R2.fastq  \
-         -b /home/student/Documents/barcodes/molestus_barcodes.txt \
-         -u /home/student/Documents/data/unknown_molestus_R1.fastq.gz \
-         -w /home/student/Documents/data/unknown_molestus_R2.fastq.gz
+if [ ! -e Mol01_R1.fastq ]; then
+	sabre pe -m 1 -c \
+        	 -f $DATADIR/Mol1-5_S1_L001_R1_001.fastq.gz  \
+        	 -r $DATADIR/Mol1-5_S1_L001_R2_001.fastq.gz \
+        	 -b barcodes/molestus_barcodes.txt \
+         	 -u $DATADIR/unknown_Molestus_R1.fastq.gz \
+         	 -w $DATADIR/unknown_Molestus_R2.fastq.gz 
 
 LISTA2=(Mol01 Mol02 Mol03 Mol04 Mol05)
 #en carpeta merged
 if [ ! -d merged ]; then mkdir merged; fi
      for i in  0 1 ;do
 	 if [ ! -e merged/${LISTA2[$i]}'.assembled.fastq' ]; then
-                pear  -f /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R1.fastq' \
-                      -r /home/student/Documents/mosquito/results/06-07-16/${LISTA2[$i]}'_R2.fastq' \
+                pear  -f ${LISTA2[$i]}'_R1.fastq' \
+                      -r ${LISTA2[$i]}'_R2.fastq' \
 		      -o merged/${LISTA2[$i]} \
                       -v 10 \
                       -q 15 \
@@ -87,5 +111,3 @@ if [ ! -d merged ]; then mkdir merged; fi
                          --fastqout merged/${LISTA2[$i]}'.unassembled.reverse.reversed.fastq'
 	fi    
      done
-
-		
