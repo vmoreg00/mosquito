@@ -120,7 +120,7 @@ else
    # With the loops below, no more than 6 processes will be running
    # at the same time.
    for j in 0 6; do
-      for i in `seq $i $(( j + 5 ))`; do
+      for i in `seq $j $(( j + 5 ))`; do
          if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
             pear  -f ${LIST[$i]}'_R1.fastq' \
                   -r ${LIST[$i]}'_R2.fastq' \
