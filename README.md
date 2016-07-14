@@ -16,3 +16,10 @@ paired reads that overlap. Both molestus and pipiens samples are processed.
 Now we check for the presence of adapters and trim them with Cutadapt. Read pairs
 that have been successfully merged by PEAR are not expected to contain adapters
 in 3' ends.
+
+#2016-07-08
+We used bowtie2 to map the reads to the reference genome of Culex quinquefasciatus.
+By mistake, we did not use the trimmed reads, but
+
+We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map our
+'independent'-reads against the reference. Furthermore, we converted sam to bam.
