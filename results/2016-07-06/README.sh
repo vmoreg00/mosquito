@@ -36,7 +36,7 @@ for i in 0 1 2 3; do
    # appropriate extensions:
    SUFIX='.fq'
    if echo ${FILENAME[$i]} | grep -q '.gz'; then SUFIX='.fq.gz'; fi
-   if [ ! -e $DATADIR/${NEWNAME[$i]} ]; then
+   if [ ! -e $DATADIR/${NEWNAME[$i]}$SUFIX ]; then
       ln -s $SOURCEDIR/${FILENAME[$i]} $DATADIR/${NEWNAME[$i]}$SUFIX
    fi
 done
@@ -51,7 +51,7 @@ done
 if [ ! -e pipiens_barcode.txt ]; then
    echo -e 'GGTCGTAAATG\tPipFe1_R1.fastq\tPipFe1_R2.fastq'  > pipiens_barcode.txt
    echo -e 'CTAGTACCTG\tPipFe2_R1.fastq\tPipFe2_R2.fastq'  >> pipiens_barcode.txt
-   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fasq'    >> pipiens_barcode.txt
+   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fastq'   >> pipiens_barcode.txt
    echo -e 'TCGACGTT\tPipFe6_R1.fastq\tPipFe6_R2.fastq'    >> pipiens_barcode.txt
    echo -e 'GTCAGAGTATG\tPipMa4_R1.fastq\tPipMa4_R2.fastq' >> pipiens_barcode.txt
    echo -e 'ACTGAGACTG\tPipFe4_R1.fastq\tPipFe4_R2.fastq'  >> pipiens_barcode.txt
@@ -79,7 +79,7 @@ if [ ! -e PipFe1_R1.fastq ]; then
             -r $DATADIR/pip_R2.$SUFIX  \
             -b pipiens_barcode.txt \
             -u pip_unknown_R1.fastq \
-            -w pip_unknown_R2.fastq
+            -w pip_unknown_R2.fastq &> pipiens_sabre.log &
 fi
 
 if [ ! -e Mol01_R1.fastq ]; then
@@ -88,7 +88,7 @@ if [ ! -e Mol01_R1.fastq ]; then
             -r $DATADIR/mol_R2.$SUFIX \
             -b molestus_barcode.txt \
             -u mol_unknown_R1.fastq \
-            -w mol_unknown_R2.fastq
+            -w mol_unknown_R2.fastq &> molestus_sabre.log &
 fi
 
 LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
@@ -112,7 +112,7 @@ if [ $PROC -gt 8 ]; then
                -v 10 \
                -q 15 \
                -j 1 \
-               --memory 2G &
+               --memory 2G >& ${LIST[$i]}'_pear.log' &
       fi
    done
    wait
@@ -128,7 +128,7 @@ else
                   -v 10 \
                   -q 15 \
                   -j 1 \
-                  --memory 2G &
+                  --memory 2G >& ${LIST[$i]}'_pear.log' &
          fi
       done
       wait
@@ -141,7 +141,7 @@ else
                -v 10 \
                -q 15 \
                -j 1 \
-               --memory 2G &
+               --memory 2G >& ${LIST[$i]}'_pear.log' &
       fi
    done
    wait
