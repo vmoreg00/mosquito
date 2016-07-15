@@ -25,7 +25,7 @@ fi
 # Now we run the processes on a loop to map the reads with Bowtie2.
 # The first time we made the mapping wasn't very successful so in this time we decided to make a local alignment.
 # Also we  processed the unassembled reads like if they were pair-ends but the mapping was not good again, so
-# finally we decided to process the reads, assembled and unassembled, such as independent ones.
+# finally we decided to process the reads, assembled and unassembled, such as independent ones
 for i in `seq 0 16`; do
    if [ ! -e mappeo/${LISTA[$i]}'_r1'.sam ]; then
       bowtie2 --local \
