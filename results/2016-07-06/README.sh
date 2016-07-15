@@ -118,7 +118,7 @@ if [ $PROC -gt 8 ]; then
    wait
 else
    # With the loops below, no more than 6 processes will be running
-   # at the same time.
+   # at the same time
    for j in 0 6; do
       for i in `seq $j $(( j + 5 ))`; do
          if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
