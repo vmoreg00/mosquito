@@ -12,14 +12,14 @@
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
-SOURCEDIR='/home/student/Documents/data'
-FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
+#SOURCEDIR='/home/student/Documents/data'
+#FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
 
-#SOURCEDIR='/data/joiglu/mosquito'
-#FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
-#           Cpipiens_S1_L001_R2_001.fastq.gz
-#           Mol1-5_S1_L001_R1_001.fastq.gz
-#           Mol1-5_S1_L001_R2_001.fastq.gz )
+SOURCEDIR='/data/joiglu/mosquito'
+FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
+           Cpipiens_S1_L001_R2_001.fastq.gz
+           Mol1-5_S1_L001_R1_001.fastq.gz
+           Mol1-5_S1_L001_R2_001.fastq.gz )
 
 # ========================================================================
 # Below, there should be no absolute paths, which are computer-dependent.
@@ -51,7 +51,7 @@ done
 if [ ! -e pipiens_barcode.txt ]; then
    echo -e 'GGTCGTAAATG\tPipFe1_R1.fastq\tPipFe1_R2.fastq'  > pipiens_barcode.txt
    echo -e 'CTAGTACCTG\tPipFe2_R1.fastq\tPipFe2_R2.fastq'  >> pipiens_barcode.txt
-   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fasq'    >> pipiens_barcode.txt
+   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fastq'    >> pipiens_barcode.txt
    echo -e 'TCGACGTT\tPipFe6_R1.fastq\tPipFe6_R2.fastq'    >> pipiens_barcode.txt
    echo -e 'GTCAGAGTATG\tPipMa4_R1.fastq\tPipMa4_R2.fastq' >> pipiens_barcode.txt
    echo -e 'ACTGAGACTG\tPipFe4_R1.fastq\tPipFe4_R2.fastq'  >> pipiens_barcode.txt
@@ -73,10 +73,10 @@ fi
 
 if [ ! -e PipFe1_R1.fastq ]; then
    # I assume that sabre can take either compressed or uncompressed fastq files
-   # as input.
+   # as input
    sabre pe -m 1 -c \
-            -f $DATADIR/pip_R1.$SUFIX \
-            -r $DATADIR/pip_R2.$SUFIX  \
+            -f $DATADIR/pip_R1$SUFIX \
+            -r $DATADIR/pip_R2$SUFIX  \
             -b pipiens_barcode.txt \
             -u pip_unknown_R1.fastq \
             -w pip_unknown_R2.fastq
@@ -84,8 +84,8 @@ fi
 
 if [ ! -e Mol01_R1.fastq ]; then
    sabre pe -m 1 -c \
-            -f $DATADIR/mol_R1.$SUFIX \
-            -r $DATADIR/mol_R2.$SUFIX \
+            -f $DATADIR/mol_R1$SUFIX \
+            -r $DATADIR/mol_R2$SUFIX \
             -b molestus_barcode.txt \
             -u mol_unknown_R1.fastq \
             -w mol_unknown_R2.fastq
@@ -104,8 +104,8 @@ if [ ! -d merged ]; then mkdir merged; fi
 # than 8 processors available
 
 if [ $PROC -gt 8 ]; then
-   for i in `seq 0 16`;do
-      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+   for i in `seq 0 16`; do
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
          pear  -f ${LIST[$i]}'_R1.fastq' \
                -r ${LIST[$i]}'_R2.fastq' \
                -o merged/${LIST[$i]} \
@@ -118,10 +118,10 @@ if [ $PROC -gt 8 ]; then
    wait
 else
    # With the loops below, no more than 6 processes will be running
-   # at the same time.
+   # at the same time
    for j in 0 6; do
       for i in `seq $j $(( j + 5 ))`; do
-         if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+         if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
             pear  -f ${LIST[$i]}'_R1.fastq' \
                   -r ${LIST[$i]}'_R2.fastq' \
                   -o merged/${LIST[$i]} \
@@ -134,7 +134,7 @@ else
       wait
    done
    for i in 12 13 14 15 16; do
-      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
          pear  -f ${LIST[$i]}'_R1.fastq' \
                -r ${LIST[$i]}'_R2.fastq' \
                -o merged/${LIST[$i]} \
