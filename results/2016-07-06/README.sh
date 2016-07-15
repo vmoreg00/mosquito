@@ -12,10 +12,10 @@
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
-SOURCEDIR='/data/joiglu/mosquito'
+#SOURCEDIR='/home/student/Documents/data'
 #FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
 
-#SOURCEDIR='/data/joiglu/mosquito'
+SOURCEDIR='/data/joiglu/mosquito'
 FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
            Cpipiens_S1_L001_R2_001.fastq.gz
            Mol1-5_S1_L001_R1_001.fastq.gz
@@ -106,8 +106,8 @@ if [ ! -d merged ]; then mkdir merged; fi
 if [ $PROC -gt 8 ]; then
    for i in `seq 0 16`; do
       if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
-         pear  -f ${LIST[$i]}'_R1'.fastq \
-               -r ${LIST[$i]}'_R2'.fastq \
+         pear  -f ${LIST[$i]}'_R1.fastq' \
+               -r ${LIST[$i]}'_R2.fastq' \
                -o merged/${LIST[$i]} \
                -v 10 \
                -q 15 \
