@@ -17,6 +17,9 @@ fi
 
 LISTA=(PipFe1 PipFe2 PipFe3 PipFe4 PipFe5 PipFe6 PipMa1 PipMa2 \
        PipMa3 PipMa4 PipMa5 PipMa6 Mol01 Mol02 Mol03 Mol04 Mol05)
+SUFIX='_trimmed.fastq' 
+SUFIXR1='_R1_trimmed.fastq'
+SUFIXR2='_R2_trimmed.fastq'
 
 if [ ! -d mappeo ]; then mkdir mappeo; fi
 
@@ -34,8 +37,9 @@ for i in `seq 0 16`; do
               --very-sensitive \
               -x culex \
               -U $FASTQDIR/${LISTA[$i]}'_R1_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_R2_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_tri$
-              -S mappeo/${LISTA[$i]}'_r1'.sam \
+              -S mappeo/${LISTA[$i]}.sam \
               --rg-id ${LISTA[$i]}
+  	#bbrename.sh in=${LISTA[$i]}$SUFIXR2 out=${LISTA[$i]}'r2'.sam 
    fi
 done
 # Conversion of the SAM files obtained previously to BAM
@@ -49,8 +53,5 @@ for i in `seq 0 16`; do
 	if [ ! -e BAM/${LISTA[$i]}'_r2.bam' ]; then
                 samtools view -bS mappeo/${LISTA[$i]}'_r2'.sam > BAM/${LISTA[$i]}'_r2.bam'
 	fi
-        if [ ! -e BAM/${LISTA[$i]}'_merged.bam' ]; then
-                samtools view -bS mappeo/${LISTA[$i]}.sam > BAM/${LISTA[$i]}'_merged.bam'
-        fi
 done
 
