@@ -17,6 +17,9 @@ fi
 LISTA=(PipFe1 PipFe2 PipFe3 PipFe4 PipFe5 PipFe6 PipMa1 PipMa2 \
        PipMa3 PipMa4 PipMa5 PipMa6 Mol01 Mol02 Mol03 Mol04 Mol05)
 
+SUFIX='_trimmed.fastq' 
+SUFIXR1='_R1_trimmed.fastq'
+SUFIXR2='_R2_trimmed.fastq'
 if [ ! -d mappeo ]; then mkdir mappeo; fi
 
 if [ ! -e culex.1.bt2 ]; then
@@ -27,27 +30,25 @@ fi
 # Also we  processed the unassembled reads like if they were pair-ends but the mapping was not good again, so
 # finally we decided to process the reads, assembled and unassembled, such as independent ones
 for i in `seq 0 16`; do
-   if [ ! -e mappeo/${LISTA[$i]}'_r1'.sam ]; then
+   if [ ! -e mappeo/${LISTA[$i]}.sam ]; then
       bowtie2 --local \
               --very-sensitive \
               -x culex \
-              -U $FASTQDIR/${LISTA[$i]}'_R1_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_R2_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_tri$
-              -S mappeo/${LISTA[$i]}'_r1'.sam \
+              -U $FASTQDIR/${LISTA[$i]}$SUFIXR1,$FASTQDIR/${LISTA[$i]}$SUFIXR2,$FASTQDIR/${LISTA[$i]}$SUFIX
+              -S mappeo/${LISTA[$i]}.sam \
               --rg-id ${LISTA[$i]}
    fi
 done
 # Conversion of the SAM files obtained previously to BAM
-
 if [ ! -d BAM ]; then mkdir BAM; fi
-
 for i in `seq 0 16`; do
-	if [ ! -e BAM/${LISTA[$i]}'_r1.bam' ]; then
-		samtools view -bS mappeo/${LISTA[$i]}'_r1'.sam > BAM/${LISTA[$i]}'_r1.bam'
+	if [ ! -e BAM/${LISTA[$i]}.bam ]; then
+		samtools view -bS mappeo/${LISTA[$i]}.sam > BAM/${LISTA[$i]}.bam
 	fi
-	if [ ! -e BAM/${LISTA[$i]}'_r2.bam' ]; then
-                samtools view -bS mappeo/${LISTA[$i]}'_r2'.sam > BAM/${LISTA[$i]}'_r2.bam'
+	if [ ! -e BAM/${LISTA[$i]}.bam ]; then
+                samtools view -bS mappeo/${LISTA[$i]}.sam > BAM/${LISTA[$i]}.bam
 	fi
-        if [ ! -e BAM/${LISTA[$i]}'_merged.bam' ]; then
-                samtools view -bS mappeo/${LISTA[$i]}.sam > BAM/${LISTA[$i]}'_merged.bam'
+        if [ ! -e BAM/${LISTA[$i]}.bam ]; then
+                samtools view -bS mappeo/${LISTA[$i]}.sam > BAM/${LISTA[$i]}.bam
         fi
 done
