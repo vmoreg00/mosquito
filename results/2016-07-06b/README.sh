@@ -55,7 +55,7 @@ if [ $PROC -gt 34 ]; then
    wait
 else
    for j in 0 3 6 9 12; do
-      for i in `seq $j $( j + 2)`; do
+      for i in `seq $j $(( j + 2 ))`; do
       if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
