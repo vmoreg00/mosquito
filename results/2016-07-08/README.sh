@@ -33,7 +33,7 @@ for i in `seq 0 16`; do
       bowtie2 --local \
               --very-sensitive \
               -x culex \
-              -U $FASTQDIR/${LISTA[$i]}'_R1_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_R2_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_tri$
+              -U $FASTQDIR/${LISTA[$i]}'_R1_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_R2_trimmed.fastq',$FASTQDIR/${LISTA[$i]}'_trimmed.fastq' \
               -S mappeo/${LISTA[$i]}'_r1'.sam \
               --rg-id ${LISTA[$i]}
    fi
