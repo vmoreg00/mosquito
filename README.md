@@ -7,14 +7,19 @@ to the reference genome of Culex quinquefasciatus. Chimeric reads are suspected
 to be frequent.
 
 The goal is to compare the two ecotypes.
-#2016-06-29
-We used SABRE to identificate reads from the same sample(but only for pipiens).
-The reads have an adapt which is a barcode, being the one which allows the determination
-#2016-06-30
-We did 2 tasks: First of all, we used SABRE for form molestus. Secondly, we used a program called PEAR, to merge the reads of C.pipiens
+
 #2016-07-06
-We did a unique script with the programs: SABRE and PEAR, to the both forms of the mosquitos 
+We run SABRE to demultiplex the original fastq files, and PEAR, to merge the
+paired reads that overlap. Both molestus and pipiens samples are processed.
+
 #2016-07-06b
-Now we need to cut off the adapts which are present in our reads. We started working with assembled reads and then continued with unassembled, which probably have more adaptors.
+Now we check for the presence of adapters and trim them with Cutadapt. Read pairs
+that have been successfully merged by PEAR are not expected to contain adapters
+in 3' ends.
+
 #2016-07-08
-We wanted to check why our mapping wasnt good enough so we used Bowtie2 to map our 'independent'-reads against the reference. Furthermore, we converted sam to bam.
+We used bowtie2 to map the reads to the reference genome of Culex quinquefasciatus.
+By mistake, we did not use the trimmed reads, but
+
+We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map our
+'independent'-reads against the reference. Furthermore, we converted sam to bam.
