@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #
 #                               2016-07-06
@@ -133,4 +132,16 @@ else
    wait
 fi
 
+# After everything is done, we run the summary:
+if [ ! -e archivos.txt ]; then
+   ls -1 *_pear.log > archivos.txt
+fi
 
+# Conclusions
+# -----------
+#
+# Less than 10% of reads fail to be assinged to any sample. It seems feasible to identify
+# a small fraction of those, but probably not worth. More than 95% of identified pairs of
+# reads merge. It is likely that many or most of those pairs that do not merge fail to merge
+# because of lower quality. It is safe to disregard non-merged reads and work only with the
+# assembled subset.

@@ -6,3 +6,7 @@ data/
 *.fa
 *.fasta
 *.bt2
+*.log
+readme.err
+readme.log
+*.txt
