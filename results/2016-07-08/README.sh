@@ -74,7 +74,7 @@ else
    wait
    for i in 12 13 14 15 16; do
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
-         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &
+         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.log &
 #        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &
       fi
    done
