@@ -1,1 +1,8 @@
 data/
+*.fastq
+*.sam
+*.bam
+*.vcf
+*.fa
+*.fasta
+*.bt2

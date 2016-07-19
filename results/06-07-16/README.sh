@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #
 #                               2016-07-06
@@ -10,20 +9,17 @@
 # In order to run this with a reduced dataset, just to test the scripts, I
 # define an alternative path for the data.
 #
-# For some reason, the first run of pear fails to open some of the files
-# created by sabre. Running this script twice seems to solve the problem.
-#
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
-SOURCEDIR='/home/student/Documents/data'
-FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
+SOURCEDIR='/data/joiglu/mosquito'
+#FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
 
 #SOURCEDIR='/data/joiglu/mosquito'
-#FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
-#           Cpipiens_S1_L001_R2_001.fastq.gz
-#           Mol1-5_S1_L001_R1_001.fastq.gz
-#           Mol1-5_S1_L001_R2_001.fastq.gz )
+FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
+           Cpipiens_S1_L001_R2_001.fastq.gz
+           Mol1-5_S1_L001_R1_001.fastq.gz
+           Mol1-5_S1_L001_R2_001.fastq.gz )
 
 # ========================================================================
 # Below, there should be no absolute paths, which are computer-dependent.
@@ -40,7 +36,7 @@ for i in 0 1 2 3; do
    # appropriate extensions:
    SUFIX='.fq'
    if echo ${FILENAME[$i]} | grep -q '.gz'; then SUFIX='.fq.gz'; fi
-   if [ ! -e $DATADIR/${NEWNAME[$i]}$SUFIX ]; then
+   if [ ! -e $DATADIR/${NEWNAME[$i]} ]; then
       ln -s $SOURCEDIR/${FILENAME[$i]} $DATADIR/${NEWNAME[$i]}$SUFIX
    fi
 done
@@ -55,7 +51,7 @@ done
 if [ ! -e pipiens_barcode.txt ]; then
    echo -e 'GGTCGTAAATG\tPipFe1_R1.fastq\tPipFe1_R2.fastq'  > pipiens_barcode.txt
    echo -e 'CTAGTACCTG\tPipFe2_R1.fastq\tPipFe2_R2.fastq'  >> pipiens_barcode.txt
-   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fastq'   >> pipiens_barcode.txt
+   echo -e 'AACTACGGG\tPipFe3_R1.fastq\tPipFe3_R2.fastq'    >> pipiens_barcode.txt
    echo -e 'TCGACGTT\tPipFe6_R1.fastq\tPipFe6_R2.fastq'    >> pipiens_barcode.txt
    echo -e 'GTCAGAGTATG\tPipMa4_R1.fastq\tPipMa4_R2.fastq' >> pipiens_barcode.txt
    echo -e 'ACTGAGACTG\tPipFe4_R1.fastq\tPipFe4_R2.fastq'  >> pipiens_barcode.txt
@@ -83,7 +79,7 @@ if [ ! -e PipFe1_R1.fastq ]; then
             -r $DATADIR/pip_R2$SUFIX  \
             -b pipiens_barcode.txt \
             -u pip_unknown_R1.fastq \
-            -w pip_unknown_R2.fastq &> pipiens_sabre.log &
+            -w pip_unknown_R2.fastq
 fi
 
 if [ ! -e Mol01_R1.fastq ]; then
@@ -92,7 +88,7 @@ if [ ! -e Mol01_R1.fastq ]; then
             -r $DATADIR/mol_R2$SUFIX \
             -b molestus_barcode.txt \
             -u mol_unknown_R1.fastq \
-            -w mol_unknown_R2.fastq &> molestus_sabre.log &
+            -w mol_unknown_R2.fastq
 fi
 
 LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
@@ -104,14 +100,20 @@ PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 
 if [ ! -d merged ]; then mkdir merged; fi
 
-# Now, we run one loop or the other, depending on whethere there are more or less
-# than 8 processors available. We will run pear from an auxiliary script, because
-# we want to make sure that pear is immediately followed by vsearch to undo pear's
-# reverse-complementation of non-merged second reads.
+# Now, I run on loop or the other, depending on whethere there are more or less
+# than 8 processors available
 
 if [ $PROC -gt 8 ]; then
    for i in `seq 0 16`; do
-      ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
+         pear  -f ${LIST[$i]}'_R1'.fastq \
+               -r ${LIST[$i]}'_R2'.fastq \
+               -o merged/${LIST[$i]} \
+               -v 10 \
+               -q 15 \
+               -j 1 \
+               --memory 2G &
+      fi
    done
    wait
 else
@@ -120,17 +122,27 @@ else
    for j in 0 6; do
       for i in `seq $j $(( j + 5 ))`; do
          if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
-            ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
+            pear  -f ${LIST[$i]}'_R1.fastq' \
+                  -r ${LIST[$i]}'_R2.fastq' \
+                  -o merged/${LIST[$i]} \
+                  -v 10 \
+                  -q 15 \
+                  -j 1 \
+                  --memory 2G &
          fi
       done
       wait
    done
    for i in 12 13 14 15 16; do
       if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
-         ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
+         pear  -f ${LIST[$i]}'_R1.fastq' \
+               -r ${LIST[$i]}'_R2.fastq' \
+               -o merged/${LIST[$i]} \
+               -v 10 \
+               -q 15 \
+               -j 1 \
+               --memory 2G &
       fi
    done
    wait
 fi
-
-

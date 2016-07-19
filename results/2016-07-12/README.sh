@@ -7,6 +7,7 @@
 DIR=../08-07-16/BAM
 #Para poder visualizar Snps y otras variaciones
 #necesito convertir el formato BAM a VCF
+#CAMBIAR LISTA SEGUN SALIDA DE 08 CAMBIADA
 LISTA=(Fe1r1 Fe2r1 Fe3r1 Fe4r1 Fe5r1 Fe6r1 Ma1r1 Ma2r1 Ma3r1 Ma4r1 Ma5r1 Ma6r1 Mol01r1 Mol02r1 Mol03r1 Mol04r1 Mol05r1 \
        Fe1r2 Fe2r2 Fe3r2 Fe4r2 Fe5r2 Fe6r2 Ma1r2 Ma2r2 Ma3r2 Ma4r2 Ma5r2 Ma6r2 Mol01r2 Mol02r2 Mol03r2 Mol04r2 Mol05r2)
 #creo directorio
