@@ -32,7 +32,7 @@
 MERGED='../2016-07-06/merged'
 LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
 PROC=`grep -q -P '^processor' /proc/cpuinfo | wc -l`
-if [ $PROC -gt 8 ]; then
+if [ $PROC -gt 34 ]; then
    for i in `seq 0 16`; do
       if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
          # We need to revise this:
@@ -54,6 +54,46 @@ if [ $PROC -gt 8 ]; then
    done
    wait
 else
-   echo 'Go, run this on the server, please.'
-   exit
+   for j in 0 3 6 9 12; do
+      for i in `seq $j $(( j + 2 ))`; do
+      if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
+         # We need to revise this:
+         cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
+                  -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
+                  -o ${LIST[$i]}_trimmed.fastq \
+                  $MERGED/${LIST[$i]}'.assembled.fastq' > ${LIST[$i]}_assembled.log &
+      fi
+      if [ ! -e ${LIST[$i]}_R1_trimmed.fastq ]; then
+         cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
+                  -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
+                  -A TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
+                  -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA \
+                  -o ${LIST[$i]}_R1_trimmed.fastq \
+                  -p ${LIST[$i]}_R2_trimmed.fastq \
+                  $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
+                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}.log &
+      fi
+      done
+      wait
+   done
+   for i in 15 16; do
+      if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
+         # We need to revise this:
+         cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
+                  -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
+                  -o ${LIST[$i]}_trimmed.fastq \
+                  $MERGED/${LIST[$i]}'.assembled.fastq' > ${LIST[$i]}_assembled.log &
+      fi
+      if [ ! -e ${LIST[$i]}_R1_trimmed.fastq ]; then
+         cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
+                  -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
+                  -A TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
+                  -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA \
+                  -o ${LIST[$i]}_R1_trimmed.fastq \
+                  -p ${LIST[$i]}_R2_trimmed.fastq \
+                  $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
+                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}.log &
+      fi
+   done
+   wait
 fi
