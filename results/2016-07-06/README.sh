@@ -133,9 +133,14 @@ else
 fi
 
 # After everything is done, we run the summary:
-if [ ! -e archivos.txt ]; then
-   ls -1 *_pear.log > archivos.txt
+if [ ! -e summary_pear.txt ]; then
+   if [ ! -e archivos.txt ]; then
+      ls -1 *_pear.log > archivos.txt
+   fi
+   ./summary.py archivos.txt
+   rm archivos.txt
 fi
+
 
 # Conclusions
 # -----------
