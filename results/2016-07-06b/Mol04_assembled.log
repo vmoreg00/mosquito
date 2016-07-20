@@ -1,0 +1,22 @@
+This is cutadapt 1.9.1 with Python 2.7.9
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -o Mol04_trimmed.fastq ../2016-07-06/merged/Mol04.assembled.fastq
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 0.57 s (57 us/read; 1.05 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                  10,030
+Reads with adapters:                         0 (0.0%)
+Reads written (passing filters):        10,030 (100.0%)
+
+Total basepairs processed:     2,705,005 bp
+Total written (filtered):      2,705,005 bp (100.0%)
+
+=== Adapter 1 ===
+
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+
+=== Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+

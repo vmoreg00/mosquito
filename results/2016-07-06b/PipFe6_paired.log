@@ -1,0 +1,59 @@
+This is cutadapt 1.9.1 with Python 2.7.9
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -A TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA -o PipFe6_R1_trimmed.fastq -p PipFe6_R2_trimmed.fastq ../2016-07-06/merged/PipFe6.unassembled.forward.fastq ../2016-07-06/merged/PipFe6.unassembled.reverse.fastq
+Trimming 4 adapters with at most 10.0% errors in paired-end mode ...
+Finished in 0.01 s (588 us/read; 0.10 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                 17
+  Read 1 with adapter:                       0 (0.0%)
+  Read 2 with adapter:                      12 (70.6%)
+Pairs written (passing filters):            17 (100.0%)
+
+Total basepairs processed:         2,924 bp
+  Read 1:            17 bp
+  Read 2:         2,907 bp
+Total written (filtered):          1,045 bp (35.7%)
+  Read 1:            17 bp
+  Read 2:         1,028 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+
+=== First read: Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+
+=== Second read: Adapter 3 ===
+
+Sequence: TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT; Type: regular 3'; Length: 55; Trimmed: 12 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-55 bp: 5
+
+Bases preceding removed adapters:
+  A: 100.0%
+  C: 0.0%
+  G: 0.0%
+  T: 0.0%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+127	2	0.0	5	1 1
+134	1	0.0	5	1
+137	1	0.0	5	1
+147	1	0.0	5	1
+149	1	0.0	5	1
+153	1	0.0	5	1
+159	1	0.0	5	1
+179	1	0.0	5	0 1
+185	1	0.0	5	1
+188	1	0.0	5	1
+194	1	0.0	5	0 0 1
+
+=== Second read: Adapter 4 ===
+
+Sequence: CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA; Type: regular 5'; Length: 61; Trimmed: 0 times.
+

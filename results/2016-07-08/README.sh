@@ -17,9 +17,6 @@ fi
 
 LISTA=(PipFe1 PipFe2 PipFe3 PipFe4 PipFe5 PipFe6 PipMa1 PipMa2 \
        PipMa3 PipMa4 PipMa5 PipMa6 Mol01 Mol02 Mol03 Mol04 Mol05)
-SUFIX='_trimmed.fastq' 
-SUFIXR1='_R1_trimmed.fastq'
-SUFIXR2='_R2_trimmed.fastq'
 
 if [ ! -e culex.1.bt2 ]; then
    bowtie2-build reference.fa culex
@@ -89,7 +86,7 @@ fi
 # After everything is done, we run the summary:
 if [ ! -e summary_map.txt ]; then
    if [ ! -e archivos.txt ]; then
-      ls -1 *_pear.log > archivos.txt
+      ls -1 *.maplog > archivos.txt
    fi
    ./summary.py archivos.txt
    rm archivos.txt

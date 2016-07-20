@@ -1,0 +1,52 @@
+This is cutadapt 1.9.1 with Python 2.7.9
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -A TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA -o Mol03_R1_trimmed.fastq -p Mol03_R2_trimmed.fastq ../2016-07-06/merged/Mol03.unassembled.forward.fastq ../2016-07-06/merged/Mol03.unassembled.reverse.fastq
+Trimming 4 adapters with at most 10.0% errors in paired-end mode ...
+Finished in 0.01 s (123 us/read; 0.49 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                 81
+  Read 1 with adapter:                       0 (0.0%)
+  Read 2 with adapter:                       5 (6.2%)
+Pairs written (passing filters):            81 (100.0%)
+
+Total basepairs processed:        11,166 bp
+  Read 1:            81 bp
+  Read 2:        11,085 bp
+Total written (filtered):         10,780 bp (96.5%)
+  Read 1:            81 bp
+  Read 2:        10,699 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+
+=== First read: Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+
+=== Second read: Adapter 3 ===
+
+Sequence: TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT; Type: regular 3'; Length: 55; Trimmed: 5 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-55 bp: 5
+
+Bases preceding removed adapters:
+  A: 40.0%
+  C: 0.0%
+  G: 60.0%
+  T: 0.0%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	1.3	0	2
+87	1	0.0	5	1
+138	1	0.0	5	1
+155	1	0.0	5	1
+
+=== Second read: Adapter 4 ===
+
+Sequence: CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA; Type: regular 5'; Length: 61; Trimmed: 0 times.
+

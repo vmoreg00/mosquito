@@ -49,7 +49,7 @@ if [ $PROC -gt 34 ]; then
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
-                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}.log &
+                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
    done
    wait
@@ -71,7 +71,7 @@ else
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
-                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}.log &
+                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
       done
       wait
@@ -92,8 +92,24 @@ else
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
-                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}.log &
+                  $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
    done
    wait
+fi
+
+if [ ! -e summary_assembled.txt ]; then
+   if [ ! -e archivos_se.txt ]; then
+      ls -1 *_assembled.log > archivos_se.txt
+   fi
+   python summary.py archivos_se.txt
+   rm archivos_se.txt
+fi
+
+if [ ! -e summary_paired.txt ]; then
+   if [ ! -e archivos_pe.txt ]; then
+      ls -1 *_paired.log > archivos_pe.txt
+   fi
+   python summary2.py archivos_pe.txt
+   rm archivos_pe.txt
 fi
