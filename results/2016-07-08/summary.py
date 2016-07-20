@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# ls -1 *.log > archivos.txt
+# ls -1 *.maplog > archivos.txt
 import sys
 
 if len(sys.argv) < 1:
@@ -10,19 +10,14 @@ names      = []
 one 	   = []
 overall	   = []
 
-out        = open('summary_pear.txt', 'w')
+out        = open('summary_map.txt', 'w')
 input      = open(archivo, 'r')
 
 for file in input:
 	file = file.strip()
-	# If you have a file ended in .log like readme.log
-	# Avoid him not including at the list 
+	names.append(file)
 	log = open(file, 'r')
-	if file[0][0] != 'r':
-		names.append(file)
-	n=0
 	for line in log:
-		n+=1
 		line = line.strip()
 		campo = line.split(' ')
 		if  len(campo) > 4 and campo[4] == '1':
@@ -34,5 +29,4 @@ for file in input:
 out.write('Sample\t\tonetime\t\toverall\n')
 for i in range(len(names)):
 	out.write(names[i] + '\t' + one[i] + '\t' + overall[i] + '\n')
-
 out.close()
