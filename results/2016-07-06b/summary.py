@@ -26,7 +26,8 @@ for file in input:
 			reads.append(line)
 	asslog.close()
 
+input.close()
 out.write('Sample' + '\n' + 'Total reads' +'\n' +'Reads with adapters' + '\n'+ '\n')
 for i in range(len(names)):
-	out.write(names[i] + '\n' + total[i] + '\n' + reads[1] + '\n'+ '\n')
+	out.write(names[i] + '\n' + total[i] + '\n' + reads[i] + '\n'+ '\n')
 out.close()

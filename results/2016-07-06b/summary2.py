@@ -28,6 +28,7 @@ for file in input:
 			filtered.append(line)
         pairlog.close()
 
+input.close()
 out.write('Sample' + '\n' + 'Total read pairs processed' +'\n' +'Total basepairs processed' + '\n'+ 'Total filtered'+ '\n'+'\n')
 for i in range(len(names)):
         out.write(names[i] + '\n' + rpairs[i] + '\n' + bp[i] + '\n'+ filtered[i]+ '\n'+ '\n')
