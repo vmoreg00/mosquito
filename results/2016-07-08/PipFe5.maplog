@@ -1,0 +1,25 @@
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:19535:1070_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:19535:1070_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:19263:2005_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:19263:2005_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:8976:2487_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:8976:2487_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:18653:2984_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:18653:2984_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:18901:3215_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:18901:3215_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:12450:3780_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:12450:3780_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:6730:3830_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:6730:3830_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:23584:3940_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:23584:3940_1:N:0:1' because it was < 2 characters long
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:5718:4122_1:N:0:1' because length (1) <= # seed mismatches (0)
+Warning: skipping read 'M01271:34:000000000-A8574:1:1101:5718:4122_1:N:0:1' because it was < 2 characters long
+80 reads; of these:
+  80 (100.00%) were unpaired; of these:
+    37 (46.25%) aligned 0 times
+    3 (3.75%) aligned exactly 1 time
+    40 (50.00%) aligned >1 times
+53.75% overall alignment rate
+[samopen] SAM header is present: 3172 sequences.
