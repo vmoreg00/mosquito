@@ -26,6 +26,7 @@ for file in input:
 			overall.append(campo[0])
 	log.close()
 
+input.close()
 out.write('Sample\t\tonetime\t\toverall\n')
 for i in range(len(names)):
 	out.write(names[i] + '\t' + one[i] + '\t' + overall[i] + '\n')
