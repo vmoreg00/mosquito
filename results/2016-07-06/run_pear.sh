@@ -4,7 +4,8 @@ pear  -f $1'_R1.fastq' \
       -r $1'_R2.fastq' \
       -o merged/$1 \
       -v 10 \
-      -q 10 \
+      -q 8 \
+      -t 10 \
       -j 1 \
       --memory 2G
 
