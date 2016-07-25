@@ -25,7 +25,7 @@ We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map ou
 'independent'-reads against the reference. Furthermore, we converted sam to bam.
 
 #2016-07-12
-To be able to visualize SNPs and indels we converted BAM files to VCF. First of all, we downloaded and indexed the reference. After that, the samples were sorted and indexed. Once you have it, you will be able to convert to VCF and to analize any genotypic variation.
+To be able to visualize SNPs and indels we converted BAM files to VCF. First of all, we downloaded and indexed the reference. After that, the samples were sorted and indexed. Once you have it, you will be able to convert to VCF and to analyze any genotypic variation.
 
 #2016-07-21
 Run pyrad  with the assembled reads.
