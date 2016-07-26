@@ -28,7 +28,7 @@ We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map ou
 To be able to visualize SNPs and indels we converted BAM files to VCF. First of all, we downloaded and indexed the reference. After that, the samples were sorted and indexed. Once you have it, you will be able to convert to VCF and to analyze any genotypic variation.
 
 #2016-07-21
-Run pyrad  with the assembled reads.
+Run pyrad  with only the assembled reads.
 
 #2016-07-25
 Another way to evaluate mapping is  using a programme called Freebayes. It is a a bayesian genetic variant detector to find SNPs, indels, MNPS and complex events. It has a algorithm better than, for example samtools, because it calls variants based on the literal sequences of reads aligned to a particular target, not their precise alignment.
