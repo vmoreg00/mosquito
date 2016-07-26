@@ -31,6 +31,6 @@ To be able to visualize SNPs and indels we converted BAM files to VCF. First of 
 Run pyrad  with only the assembled reads.
 
 #2016-07-25
-Another way to evaluate mapping is  using a programme called Freebayes. It is a a bayesian genetic variant detector to find SNPs, indels, MNPS and complex events. It has a algorithm better than, for example samtools, because it calls variants based on the literal sequences of reads aligned to a particular target, not their precise alignment.
+Another way to evaluate mapping is  using a programme called Freebayes. It is a a bayesian genetic variant detector to find SNPs, indels, MNPs and complex events. It has a algorithm better than, for example samtools, because it calls variants based on the literal sequences of reads aligned to a particular target, not their precise alignment.
 
 
