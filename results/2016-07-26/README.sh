@@ -22,42 +22,51 @@ if [ ! -e params.txt ]; then
         sed -i '/## 30. /c\*                    ## 30.opt.: Output formats... (s7)' params.txt
         sed -i '/## 36. /c\1                    ## 36.opt.: vsearch max. threads per job (def.=6; see docs) (s3,s6)' params.txt
 fi
-pyrad -p params.txt -s 234567 1> pyrad.log 2> pyrad.err 
-mv stats/s3.clusters.txt stats/s3.70.txt
-sed -i '/## 10. /c\.75                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
 
-if [ -e stats/s3.75.txt ]; then
-	pyrad -p params.txt -s 234567 1> pyrad.log 2> pyrad.err  
-	mv stats/s3.clusters.txt stats/s3.75.txt
+# Calling step2
+if [ ! -d edits ]; then
+        ln -s ../2016-07-21/edits ./
 fi
-sed -i '/## 10. /c\.80                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
- 
+# Pyrad's execution each time with a different Wclust
+# Wclust .70
+pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err 
+mv stats/s3.clusters.txt stats/s3.70.txt
+# Wclust .75
+sed -i '/## 10. /c\.75                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
+if [ -e stats/s3.75.txt ]; then
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
+        mv stats/s3.clusters.txt stats/s3.75.txt
+fi
+# Wclust .80
+sed -i '/## 10. /c\.80                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt 
 if [ -e stats/s3.80.txt ]; then
-        pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err  
-        mv stats/s3.clusters.txt stats/s3.80.txt
-fi 
-sed -i '/## 10. /c\.85                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
 
+fi 
+# Wclust .85
+sed -i '/## 10. /c\.85                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
 if [ -e stats/s3.85.txt ]; then
-        pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err  
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
         mv stats/s3.clusters.txt stats/s3.85.txt
 fi
-sed -i '/## 10. /c\.90                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
- 
+# Wclust .90
+sed -i '/## 10. /c\.90                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt 
 if [ -e stats/s3.90.txt ]; then
-        pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err  
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
         mv stats/s3.clusters.txt stats/s3.90.txt
 fi
-sed -i '/## 10. /c\.95                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
- 
+# Wclust .95
+sed -i '/## 10. /c\.95                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt 
 if [ -e stats/s3.95.txt ]; then
-        pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err  
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
         mv stats/s3.clusters.txt stats/s3.95.txt
 fi 
-sed -i '/## 10. /c\.99                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
- 
+# Wclust .99
+sed -i '/## 10. /c\.99                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt 
 if [ -e stats/s3.99.txt ]; then
-        pyrad -p params.txt -s 3 1> pyrad.log 2> pyrad.err  
+        pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err  
         mv stats/s3.clusters.txt stats/s3.99.txt
 fi 
+
+
 
