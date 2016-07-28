@@ -9,6 +9,9 @@
 # In order to run this with a reduced dataset, just to test the scripts, I
 # define an alternative path for the data.
 #
+# For some reason, the first run of pear fails to open some of the files
+# created by sabre. Running this script twice seems to solve the problem.
+#
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
@@ -73,10 +76,10 @@ fi
 
 if [ ! -e PipFe1_R1.fastq ]; then
    # I assume that sabre can take either compressed or uncompressed fastq files
-   # as input.
+   # as input
    sabre pe -m 1 -c \
-            -f $DATADIR/pip_R1.$SUFIX \
-            -r $DATADIR/pip_R2.$SUFIX  \
+            -f $DATADIR/pip_R1$SUFIX \
+            -r $DATADIR/pip_R2$SUFIX  \
             -b pipiens_barcode.txt \
             -u pip_unknown_R1.fastq \
             -w pip_unknown_R2.fastq &> pipiens_sabre.log &
@@ -84,8 +87,8 @@ fi
 
 if [ ! -e Mol01_R1.fastq ]; then
    sabre pe -m 1 -c \
-            -f $DATADIR/mol_R1.$SUFIX \
-            -r $DATADIR/mol_R2.$SUFIX \
+            -f $DATADIR/mol_R1$SUFIX \
+            -r $DATADIR/mol_R2$SUFIX \
             -b molestus_barcode.txt \
             -u mol_unknown_R1.fastq \
             -w mol_unknown_R2.fastq &> molestus_sabre.log &
@@ -100,49 +103,50 @@ PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 
 if [ ! -d merged ]; then mkdir merged; fi
 
-# Now, I run on loop or the other, depending on whethere there are more or less
-# than 8 processors available
+# Now, we run one loop or the other, depending on whethere there are more or less
+# than 8 processors available. We will run pear from an auxiliary script, because
+# we want to make sure that pear is immediately followed by vsearch to undo pear's
+# reverse-complementation of non-merged second reads.
 
 if [ $PROC -gt 8 ]; then
-   for i in `seq 0 16`;do
-      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
-         pear  -f ${LIST[$i]}'_R1.fastq' \
-               -r ${LIST[$i]}'_R2.fastq' \
-               -o merged/${LIST[$i]} \
-               -v 10 \
-               -q 15 \
-               -j 1 \
-               --memory 2G >& ${LIST[$i]}'_pear.log' &
-      fi
+   for i in `seq 0 16`; do
+      ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
    done
    wait
 else
    # With the loops below, no more than 6 processes will be running
-   # at the same time.
+   # at the same time
    for j in 0 6; do
       for i in `seq $j $(( j + 5 ))`; do
-         if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
-            pear  -f ${LIST[$i]}'_R1.fastq' \
-                  -r ${LIST[$i]}'_R2.fastq' \
-                  -o merged/${LIST[$i]} \
-                  -v 10 \
-                  -q 15 \
-                  -j 1 \
-                  --memory 2G >& ${LIST[$i]}'_pear.log' &
+         if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
+            ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
          fi
       done
       wait
    done
    for i in 12 13 14 15 16; do
-      if [ ! -e merged/${LIST[$i]}'_assembled.fastq ]; then
-         pear  -f ${LIST[$i]}'_R1.fastq' \
-               -r ${LIST[$i]}'_R2.fastq' \
-               -o merged/${LIST[$i]} \
-               -v 10 \
-               -q 15 \
-               -j 1 \
-               --memory 2G >& ${LIST[$i]}'_pear.log' &
+      if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
+         ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
       fi
    done
    wait
 fi
+
+# After everything is done, we run the summary:
+if [ ! -e summary_pear.txt ]; then
+   if [ ! -e archivos.txt ]; then
+      ls -1 *_pear.log > archivos.txt
+   fi
+   ./summary.py archivos.txt
+   rm archivos.txt
+fi
+
+
+# Conclusions
+# -----------
+#
+# Less than 10% of reads fail to be assinged to any sample. It seems feasible to identify
+# a small fraction of those, but probably not worth. More than 95% of identified pairs of
+# reads merge. It is likely that many or most of those pairs that do not merge fail to merge
+# because of lower quality. It is safe to disregard non-merged reads and work only with the
+# assembled subset.

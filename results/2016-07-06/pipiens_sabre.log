@@ -1,0 +1,20 @@
+
+Total FastQ records: 100000 (50000 pairs)
+
+FastQ records for barcode TTGGCATC: 142 (71 pairs)
+FastQ records for barcode GATTGCAGG: 11436 (5718 pairs)
+FastQ records for barcode CCAATGCTTG: 10430 (5215 pairs)
+FastQ records for barcode AGCCATGAATG: 5602 (2801 pairs)
+FastQ records for barcode TGATCTCG: 7810 (3905 pairs)
+FastQ records for barcode CAGCTCTAG: 14790 (7395 pairs)
+FastQ records for barcode ACTGAGACTG: 6534 (3267 pairs)
+FastQ records for barcode GTCAGAGTATG: 10264 (5132 pairs)
+FastQ records for barcode TCGACGTT: 1634 (817 pairs)
+FastQ records for barcode AACTACGGG: 6558 (3279 pairs)
+FastQ records for barcode CTAGTACCTG: 8452 (4226 pairs)
+FastQ records for barcode GGTCGTAAATG: 9298 (4649 pairs)
+
+FastQ records with no barcode match: 7050 (3525 pairs)
+
+Number of mismatches allowed: 1
+

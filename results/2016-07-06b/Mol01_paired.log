@@ -1,0 +1,59 @@
+This is cutadapt 1.9.1 with Python 2.7.9
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -A TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA -o Mol01_R1_trimmed.fastq -p Mol01_R2_trimmed.fastq ../2016-07-06/merged/Mol01.unassembled.forward.fastq ../2016-07-06/merged/Mol01.unassembled.reverse.fastq
+Trimming 4 adapters with at most 10.0% errors in paired-end mode ...
+Finished in 0.01 s (96 us/read; 0.62 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:                104
+  Read 1 with adapter:                       0 (0.0%)
+  Read 2 with adapter:                       9 (8.7%)
+Pairs written (passing filters):           104 (100.0%)
+
+Total basepairs processed:        16,460 bp
+  Read 1:           104 bp
+  Read 2:        16,356 bp
+Total written (filtered):         16,146 bp (98.1%)
+  Read 1:           104 bp
+  Read 2:        16,042 bp
+
+=== First read: Adapter 1 ===
+
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+
+=== First read: Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+
+=== Second read: Adapter 3 ===
+
+Sequence: TCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT; Type: regular 3'; Length: 55; Trimmed: 6 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-55 bp: 5
+
+Bases preceding removed adapters:
+  A: 16.7%
+  C: 66.7%
+  G: 0.0%
+  T: 16.7%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	2	1.6	0	2
+4	2	0.4	0	2
+130	1	0.0	5	0 0 1
+161	1	0.0	5	1
+
+=== Second read: Adapter 4 ===
+
+Sequence: CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA; Type: regular 5'; Length: 61; Trimmed: 3 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-59 bp: 5; 60-61 bp: 6
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	1.6	0	3
+

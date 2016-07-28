@@ -1,0 +1,22 @@
+This is cutadapt 1.9.1 with Python 2.7.9
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -o PipFe6_trimmed.fastq ../2016-07-06/merged/PipFe6.assembled.fastq
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 0.04 s (48 us/read; 1.24 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                     800
+Reads with adapters:                         0 (0.0%)
+Reads written (passing filters):           800 (100.0%)
+
+Total basepairs processed:       237,304 bp
+Total written (filtered):        237,304 bp (100.0%)
+
+=== Adapter 1 ===
+
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+
+=== Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+
