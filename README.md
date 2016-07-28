@@ -33,4 +33,5 @@ Run pyrad  with only the assembled reads.
 #2016-07-25
 Another way to evaluate mapping is  using a programme called Freebayes. It is a a bayesian genetic variant detector to find SNPs, indels, MNPs and complex events. It has a algorithm better than, for example samtools, because it calls variants based on the literal sequences of reads aligned to a particular target, not their precise alignment.
 
-
+#2016-07-26
+We decided to run pyrad with different values of Wclust: 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.99. Also, we made a table to be able to visualize the results.
