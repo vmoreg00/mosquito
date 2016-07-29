@@ -18,11 +18,9 @@ that have been successfully merged by PEAR are not expected to contain adapters
 in 3' ends.
 
 #2016-07-08
-We used bowtie2 to map the reads to the reference genome of Culex quinquefasciatus.
-By mistake, we did not use the trimmed reads, but
+We used bowtie2 to map the reads to the reference genome of Culex quinquefasciatus. By mistake, we did not use the trimmed reads, but
 
-We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map our
-'independent'-reads against the reference. Furthermore, we converted sam to bam.
+We wanted to check why our mapping wasn't good enough. We used Bowtie2 to map our 'independent'-reads against the reference. Furthermore, we converted sam to bam.
 
 #2016-07-12
 To be able to visualize SNPs and indels we converted BAM files to VCF. First of all, we downloaded and indexed the reference. After that, the samples were sorted and indexed. Once you have it, you will be able to convert to VCF and to analyze any genotypic variation.
