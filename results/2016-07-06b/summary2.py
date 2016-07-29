@@ -16,18 +16,18 @@ for file in input:
         file= file.strip()
         names.append(file)
         pairlog = open(file,'r')
-        n=0
+	n=0
         for line in pairlog:
+		n+=1
                 line=line.strip()
-                n+=1
-                if n==8:
-                        rpairs.append(line)
-                if n==13:
-                        bp.append(line)
-		if n==16:
-			filtered.append(line)
-        pairlog.close()
-
+		if n> 7 and n<20:
+                	if n == 8:
+	                        rpairs.append(line)
+        	        if n == 13:
+                	        bp.append(line)
+			if n== 14:
+				filtered.append(line)
+	pairlog.close()
 out.write('Sample' + '\n' + 'Total read pairs processed' +'\n' +'Total basepairs processed' + '\n'+ 'Total filtered'+ '\n'+'\n')
 for i in range(len(names)):
         out.write(names[i] + '\n' + rpairs[i] + '\n' + bp[i] + '\n'+ filtered[i]+ '\n'+ '\n')

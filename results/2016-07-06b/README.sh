@@ -31,7 +31,7 @@
 
 MERGED='../2016-07-06/merged'
 LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
-PROC=`grep -q -P '^processor' /proc/cpuinfo | wc -l`
+PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 if [ $PROC -gt 34 ]; then
    for i in `seq 0 16`; do
       if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
