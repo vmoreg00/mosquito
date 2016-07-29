@@ -16,17 +16,15 @@ for file in input:
 	file= file.strip()
 	names.append(file)
 	asslog = open(file,'r')
-	n=0
 	for line in asslog:
 		line=line.strip()
-		n+=1
-		if n==8:
+		campo= line.split(' ')
+		if campo[0] == 'Total' and campo[1]== 'reads':
 			total.append(line)
-		if n==9:
+		if campo[0] == 'Reads' and campo[1] == 'with':
 			reads.append(line)
 	asslog.close()
-
 out.write('Sample' + '\n' + 'Total reads' +'\n' +'Reads with adapters' + '\n'+ '\n')
 for i in range(len(names)):
-	out.write(names[i] + '\n' + total[i] + '\n' + reads[1] + '\n'+ '\n')
+	out.write(names[i] + '\n' + total[i] + '\n' + reads[i] + '\n'+ '\n')
 out.close()
