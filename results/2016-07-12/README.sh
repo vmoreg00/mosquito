@@ -30,6 +30,6 @@ done
 # Finally, we will be able to convert the BAM files obtained at the last step, to VCF.
 # We will obtain a file with the information we called.
 if [ ! -e mosquito.vcf ]; then
-	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.mpileup
-	bcftools view -Acg mosquito.mpileup > mosquito.vcf
+	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.bcf
+	bcftools view -Acg mosquito.bcf > mosquito.vcf
 fi

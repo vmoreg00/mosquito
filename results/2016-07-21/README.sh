@@ -9,7 +9,7 @@
 if [ ! -e params.txt ]; then
 	pyrad -n
 	sed -i "/## 2. /c\../2016-07-06b/*_trimmed.fastq 	## 2. path to raw data files" params.txt
-	sed -i '/## 5. /c\muscle	    	## 5. path to call muscle' params.txt  	
+	sed -i '/## 5. /c\muscle	    	## 5. path to call muscle' params.txt
 	sed -i '/## 7. /c\6                 	## 7. N processors (parallel) (all)' params.txt
 	sed -i '/## 8. /c\2                 	## 8. Mindepth: min coverage for a cluster (s4,s5)' params.txt
    	sed -i '/## 9. /c\4                 	## 9. maxN: max number of Ns in reads (s2)' params.txt
@@ -24,5 +24,5 @@ if [ ! -e params.txt ]; then
 	cd ..
 fi
 #Now we  execute pyrad
-pyrad -p params.txt -s 234567 1> pyrad.log 2> pyrad.err &
+pyrad -p params.txt -s 234567 1> pyrad.log 2> pyrad.err
 
