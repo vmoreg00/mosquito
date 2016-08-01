@@ -21,14 +21,20 @@ for archivo in files:
 	for line in clust:
 		line=line.strip()
 		n+=1
-		if n>2 and n< 15:
-			campo=line.split('\t')
+		campo=line.split('\t')
+		if n >1 and n<15:
+			if n== 2:
+				if campo[1] != 'total':
+				#LETRA: print campo[0][0]
 			#Dictionaries: key + value
-			total[archivo + '.' + campo[0]] = 	campo[2]
-			lista.append(archivo + '.' + campo[0])
-			dptme[archivo + '.' + campo[0]] = 	campo[3]
-			d1tot[archivo + '.' + campo[0]] =	campo[4]
-			d1me[archivo  + '.' + campo[0]] =	campo[5]
+					total[archivo + '.' + campo[0]] = 	campo[1]
+					lista.append(archivo + '.' + campo[0])
+			else:
+					total[archivo + '.' + campo[0]] =       campo[1]
+					lista.append(archivo + '.' + campo[0])
+					dptme[archivo + '.' + campo[0]] = 	campo[2]
+					d1tot[archivo + '.' + campo[0]] =	campo[3]
+				       	d1me[archivo  + '.' + campo[0]] =	campo[4]
 	clust.close()
 lista.sort()
 out.write('Wclust\tmuestra\ttotal\tdptme\td>1.tot\td>1.me\n')
