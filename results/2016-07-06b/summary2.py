@@ -6,9 +6,9 @@ if len(sys.argv) < 1:
         sys.exit(2)
 archivo    = sys.argv[1]
 names      =[]
-rpairs     =[]
-bp         =[]
-filtered   =[]
+r1     	   =[]
+r2         =[]
+short      =[]
 out        =open('summary_paired.txt','w')
 input      =open(archivo,'r')
 
@@ -18,17 +18,22 @@ for file in input:
         pairlog = open(file,'r')
 	n=0
         for line in pairlog:
+		line=line.strip()
+		campo= line.split(' ')
 		n+=1
                 line=line.strip()
-		if n> 7 and n<20:
-                	if n == 8:
-	                        rpairs.append(line)
-        	        if n == 13:
-                	        bp.append(line)
-			if n== 14:
-				filtered.append(line)
+		if n> 7 and n<12:
+                	if n == 9:
+	                        r1.append(line)
+        	        if n == 10:
+                                r2.append(line)
+			if n== 11:
+				if campo[0] == 'Pairs' and campo[1]== 'that':
+					short.append(line)
+				else:
+					short.append('------')
 	pairlog.close()
-out.write('Sample' + '\n' + 'Total read pairs processed' +'\n' +'Total basepairs processed' + '\n'+ 'Total filtered'+ '\n'+'\n')
+out.write('Sample' + '\n' + 'Read1 with adapter' + '\n'+ 'Read 2 with adapter' + '\n' + '*Pairs that were too short'+ '\n'+'\n')
 for i in range(len(names)):
-        out.write(names[i] + '\n' + rpairs[i] + '\n' + bp[i] + '\n'+ filtered[i]+ '\n'+ '\n')
+        out.write(names[i] + '\n' + r1[i] +'\n' + r2[i] + '\n' + short[i]+ '\n'+ '\n')
 out.close()
