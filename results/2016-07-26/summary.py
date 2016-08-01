@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#ls -1 stats/*.txt >archivos.txt
+#ls -1 stats/s3* >archivos.txt
 import sys
 
 if len(sys.argv) < 1:
