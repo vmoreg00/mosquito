@@ -62,7 +62,6 @@ else
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
          ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.maplog &
 #        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &> ${LISTA[$i]}.maplog &
-
       fi
    done
    wait
@@ -89,7 +88,7 @@ if [ ! -e summary_map.txt ]; then
       ls -1 *.maplog > archivos.txt
    fi
    ./summary.py archivos.txt
-   rm archivos.txt
+    rm archivos.txt 
 fi
-
+rm *.sam
 
