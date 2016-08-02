@@ -89,7 +89,6 @@ if [ ! -e summary_map.txt ]; then
    fi
    ./summary.py archivos.txt
     rm archivos.txt 
-    rm *.bam
 fi
-
+rm *.sam
 
