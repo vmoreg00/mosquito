@@ -51,8 +51,8 @@ PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 if [ $PROC -gt 17 ]; then
    for i in `seq 0 16`; do
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
-         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.maplog &
-#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &> ${LISTA[$i]}.maplog &
+#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &
+         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &
 
       fi
    done
@@ -60,23 +60,23 @@ if [ $PROC -gt 17 ]; then
 else
    for i in 0 1 2 3 4 5; do
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
-         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.maplog &
-#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &> ${LISTA[$i]}.maplog &
+#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &
+         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &
       fi
    done
    wait
    for i in 6 7 8 9 10 11; do
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
-         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.maplog &
-#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &> ${LISTA[$i]}.maplog &
+#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &
+         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &
 
       fi
    done
    wait
    for i in 12 13 14 15 16; do
       if [ ! -e ${LISTA[$i]}'.bam' ]; then
-         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &> ${LISTA[$i]}.maplog &
-#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &> ${LISTA[$i]}.maplog &
+#        ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} &
+         ./map_and_make_bam.sh $FASTQDIR ${LISTA[$i]} CleanUp &
 
       fi
    done
@@ -88,7 +88,5 @@ if [ ! -e summary_map.txt ]; then
       ls -1 *.maplog > archivos.txt
    fi
    ./summary.py archivos.txt
-    rm archivos.txt 
+    rm archivos.txt
 fi
-rm *.sam
-

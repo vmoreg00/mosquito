@@ -15,14 +15,14 @@
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
-SOURCEDIR='/home/student/Documents/data'
-FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
+#SOURCEDIR='/home/student/Documents/data'
+#FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
 
-#SOURCEDIR='/data/joiglu/mosquito'
-#FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
-#           Cpipiens_S1_L001_R2_001.fastq.gz
-#           Mol1-5_S1_L001_R1_001.fastq.gz
-#           Mol1-5_S1_L001_R2_001.fastq.gz )
+SOURCEDIR='/data/joiglu/mosquito'
+FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
+           Cpipiens_S1_L001_R2_001.fastq.gz
+           Mol1-5_S1_L001_R1_001.fastq.gz
+           Mol1-5_S1_L001_R2_001.fastq.gz )
 
 # ========================================================================
 # Below, there should be no absolute paths, which are computer-dependent.
@@ -110,7 +110,9 @@ if [ ! -d merged ]; then mkdir merged; fi
 
 if [ $PROC -gt 8 ]; then
    for i in `seq 0 16`; do
-      ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
+	if [ ! -e merged/${LIST[$i]}'.assembled.fastq' ]; then
+      	   ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
+   	fi
    done
    wait
 else
@@ -118,14 +120,14 @@ else
    # at the same time
    for j in 0 6; do
       for i in `seq $j $(( j + 5 ))`; do
-         if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
+         if [ ! -e merged/${LIST[$i]}'.assembled.fastq' ]; then
             ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
          fi
       done
       wait
    done
    for i in 12 13 14 15 16; do
-      if [ ! -e merged/${LIST[$i]}'_assembled.fastq' ]; then
+      if [ ! -e merged/${LIST[$i]}'.assembled.fastq' ]; then
          ./run_pear.sh ${LIST[$i]} >& ${LIST[$i]}'_pear.log' &
       fi
    done

@@ -1,22 +1,55 @@
-This is cutadapt 1.9.1 with Python 2.7.9
-Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -o PipFe3_trimmed.fastq ../2016-07-06/merged/PipFe3.assembled.fastq
+This is cutadapt 1.9.1 with Python 2.7.6
+Command line parameters: -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA -o PipFe3_setrimmed.fastq -m 30 ../2016-07-06/merged/PipFe3.assembled.fastq
 Trimming 2 adapters with at most 10.0% errors in single-end mode ...
-Finished in 0.15 s (46 us/read; 1.29 M reads/minute).
+Finished in 3.13 s (83 us/read; 0.72 M reads/minute).
 
 === Summary ===
 
-Total reads processed:                   3,246
-Reads with adapters:                         0 (0.0%)
-Reads written (passing filters):         3,246 (100.0%)
+Total reads processed:                  37,819
+Reads with adapters:                        24 (0.1%)
+Reads that were too short:                   5 (0.0%)
+Reads written (passing filters):        37,814 (100.0%)
 
-Total basepairs processed:       976,033 bp
-Total written (filtered):        976,033 bp (100.0%)
+Total basepairs processed:    11,318,517 bp
+Total written (filtered):     11,316,385 bp (100.0%)
 
 === Adapter 1 ===
 
-Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 0 times.
+Sequence: TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG; Type: regular 3'; Length: 61; Trimmed: 17 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-59 bp: 5; 60-61 bp: 6
+
+Bases preceding removed adapters:
+  A: 35.3%
+  C: 0.0%
+  G: 5.9%
+  T: 58.8%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	3	590.9	0	3
+7	3	2.3	0	3
+25	1	0.0	2	0 0 1
+26	2	0.0	2	0 0 2
+27	1	0.0	2	0 1
+29	1	0.0	2	0 1
+30	1	0.0	3	0 1
+336	1	0.0	6	1
+355	1	0.0	6	1
+371	1	0.0	6	1
+383	1	0.0	6	1
+413	1	0.0	6	1
 
 === Adapter 2 ===
 
-Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 0 times.
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA; Type: regular 5'; Length: 55; Trimmed: 7 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-55 bp: 5
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	7	590.9	0	7
 

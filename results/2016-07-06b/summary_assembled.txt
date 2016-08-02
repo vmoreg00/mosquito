@@ -1,0 +1,72 @@
+Sample
+Total reads
+Reads with adapters
+
+Mol01_assembled.log
+Total reads processed:               2,501,748
+Reads with adapters:                       708 (0.0%)
+
+Mol02_assembled.log
+Total reads processed:               2,151,475
+Reads with adapters:                       716 (0.0%)
+
+Mol03_assembled.log
+Total reads processed:               2,932,632
+Reads with adapters:                       179 (0.0%)
+
+Mol04_assembled.log
+Total reads processed:               2,726,594
+Reads with adapters:                       680 (0.0%)
+
+Mol05_assembled.log
+Total reads processed:               1,947,889
+Reads with adapters:                     1,654 (0.1%)
+
+PipFe1_assembled.log
+Total reads processed:                  55,751
+Reads with adapters:                        32 (0.1%)
+
+PipFe2_assembled.log
+Total reads processed:                  50,629
+Reads with adapters:                         7 (0.0%)
+
+PipFe3_assembled.log
+Total reads processed:                  37,819
+Reads with adapters:                        24 (0.1%)
+
+PipFe4_assembled.log
+Total reads processed:                  37,347
+Reads with adapters:                        24 (0.1%)
+
+PipFe5_assembled.log
+Total reads processed:                     714
+Reads with adapters:                         1 (0.1%)
+
+PipFe6_assembled.log
+Total reads processed:                   9,857
+Reads with adapters:                        12 (0.1%)
+
+PipMa1_assembled.log
+Total reads processed:                  46,073
+Reads with adapters:                         9 (0.0%)
+
+PipMa2_assembled.log
+Total reads processed:                  33,273
+Reads with adapters:                        13 (0.0%)
+
+PipMa3_assembled.log
+Total reads processed:                  88,511
+Reads with adapters:                         9 (0.0%)
+
+PipMa4_assembled.log
+Total reads processed:                  61,664
+Reads with adapters:                        17 (0.0%)
+
+PipMa5_assembled.log
+Total reads processed:                  62,008
+Reads with adapters:                        11 (0.0%)
+
+PipMa6_assembled.log
+Total reads processed:                  69,202
+Reads with adapters:                        18 (0.0%)
+
