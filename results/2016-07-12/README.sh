@@ -19,7 +19,7 @@ if [ ! -e reference.fa.fai ]; then
 	samtools faidx reference.fa
 fi
 # Index and sort the reads.
-for i in 0 1 2 3 4 5; do
+for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
 	if [ ! -e  ${LISTA[$i]}'_sorted' ]; then
 		samtools sort  $DIR/${LISTA[$i]}.bam  ${LISTA[$i]}'_sorted'
 	fi

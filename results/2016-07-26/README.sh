@@ -12,7 +12,7 @@ DIR=../2016-07-06b
 LISTA=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
 for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
 	if [ ! -e  ${LISTA[$i]}'_se.fastq' ]; then
-		sample_seqs -t fastq -o  ${LISTA[$i]}'_se.fastq' $DIR/${LISTA[$i]}'_setrimmed.fastq' 
+		sample_seqs -t fastq -o  ${LISTA[$i]}'_se.fastq' $DIR/${LISTA[$i]}'_setrimmed.fastq' -n 100000  
 	fi
 done
 # Creation of params.txt
