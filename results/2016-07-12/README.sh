@@ -19,7 +19,7 @@ if [ ! -e reference.fa.fai ]; then
 	samtools faidx reference.fa
 fi
 # Index and sort the reads.
-for i in 0 1 2 3 4 5; do
+for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
 	if [ ! -e  ${LISTA[$i]}'_sorted' ]; then
 		samtools sort  $DIR/${LISTA[$i]}.bam  ${LISTA[$i]}'_sorted'
 	fi
@@ -30,6 +30,6 @@ done
 # Finally, we will be able to convert the BAM files obtained at the last step, to VCF.
 # We will obtain a file with the information we called.
 if [ ! -e mosquito.vcf ]; then
-	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.mpileup
-	bcftools view -Acg mosquito.mpileup > mosquito.vcf
+	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.bcf
+	bcftools view -Acg mosquito.bcf > mosquito.vcf
 fi

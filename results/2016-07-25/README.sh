@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 #				2016-07-25
-# ----------
+#                               ----------
+#
 # Another way to analyze the alignment against the reference it is using a programme called Freebayes.
 # It will allow us to do a complete test about the alignment, so we will be able to see SNPs and  variants genotypics.
 # Calling population variants
