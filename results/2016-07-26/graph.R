@@ -1,4 +1,4 @@
-lusters <- read.table('summary_clust.txt', header=TRUE)
+clusters <- read.table('summary_clust.txt', header=TRUE)
 attach(clusters)
 
 png(filename='molestus_clusters.png')
