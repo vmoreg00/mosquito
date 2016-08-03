@@ -32,4 +32,6 @@ done
 if [ ! -e mosquito.vcf ]; then
 	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.bcf
 	bcftools view -Acg mosquito.bcf > mosquito.vcf
-fi
+#Run a test of Hardy-Weinberg equilibrium
+vcftools --vcf mosquito.vcf --out HW --hardy
+
