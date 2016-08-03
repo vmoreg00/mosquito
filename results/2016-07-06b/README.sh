@@ -38,7 +38,8 @@ if [ $PROC -gt 34 ]; then
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
-                  -o ${LIST[$i]}_trimmed.fastq \
+                  -o ${LIST[$i]}_setrimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.assembled.fastq' > ${LIST[$i]}_assembled.log &
       fi
       if [ ! -e ${LIST[$i]}_R1_trimmed.fastq ]; then
@@ -48,6 +49,7 @@ if [ $PROC -gt 34 ]; then
                   -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA \
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
                   $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
@@ -60,7 +62,8 @@ else
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
-                  -o ${LIST[$i]}_trimmed.fastq \
+                  -o ${LIST[$i]}_setrimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.assembled.fastq' > ${LIST[$i]}_assembled.log &
       fi
       if [ ! -e ${LIST[$i]}_R1_trimmed.fastq ]; then
@@ -70,6 +73,7 @@ else
                   -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA \
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
                   $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
@@ -81,7 +85,8 @@ else
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
-                  -o ${LIST[$i]}_trimmed.fastq \
+                  -o ${LIST[$i]}_setrimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.assembled.fastq' > ${LIST[$i]}_assembled.log &
       fi
       if [ ! -e ${LIST[$i]}_R1_trimmed.fastq ]; then
@@ -91,6 +96,7 @@ else
                   -G CAAGCAGAAGACGGCATACGAGATACATAGGTGACTGGAGTTCAGACGTGTGCTCTTCCGA \
                   -o ${LIST[$i]}_R1_trimmed.fastq \
                   -p ${LIST[$i]}_R2_trimmed.fastq \
+                  -m 30 \
                   $MERGED/${LIST[$i]}'.unassembled.forward.fastq' \
                   $MERGED/${LIST[$i]}'.unassembled.reverse.fastq' > ${LIST[$i]}_paired.log &
       fi
