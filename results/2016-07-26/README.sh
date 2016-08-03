@@ -79,7 +79,7 @@ if [ ! -e stats/s3.99.txt ]; then
         mv stats/s3.clusters.txt stats/s3.99.txt
 fi 
 
- After everything is done, we run the summary:
+# After everything is done, we run the summary:
 if [ ! -e summary_clust.txt ]; then
    if [ ! -e archivos.txt ]; then
 	ls -1 stats/s3* > archivos.txt
@@ -87,5 +87,9 @@ if [ ! -e summary_clust.txt ]; then
    ./summary.py archivos.txt
    rm archivos.txt
 fi
+# plots:
+   # And do the plots.
 
-
+if [ ! -e molestus_clusters.png ] || [ ! -e pipiens_clusters.png ]; then
+	R --no-save < graph.R
+fi
