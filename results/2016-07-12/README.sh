@@ -31,7 +31,7 @@ done
 # We will obtain a file with the information we called.
 if [ ! -e mosquito.vcf ]; then
 	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.mpileup
-	bcftools view -Acg mosquito.mpileup > mosquito.vcf
+	bcftools view -Acge mosquito.mpileup > mosquito.vcf
 fi
 #Run a test of Hardy-Weinberg equilibrium 
 vcftools --vcf mosquito.vcf --out HW --hardy
