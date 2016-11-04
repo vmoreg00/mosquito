@@ -59,7 +59,7 @@ sed -i '/## 10. /c\.80                  ## 10. Wclust: clustering threshold as a
 if [ ! -e stats/s3.80.txt ]; then
         pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err
 	 mv stats/s3.clusters.txt stats/s3.80.txt
-fi 
+fi
 # Wclust .85
 sed -i '/## 10. /c\.85                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
 if [ ! -e stats/s3.85.txt ]; then
@@ -77,7 +77,7 @@ sed -i '/## 10. /c\.95                  ## 10. Wclust: clustering threshold as a
 if [ ! -e stats/s3.95.txt ]; then
 	pyrad -p params.txt -s 3 1>> pyrad.log 2>> pyrad.err
         mv stats/s3.clusters.txt stats/s3.95.txt
-fi 
+fi
 # Wclust .99
 sed -i '/## 10. /c\.99                  ## 10. Wclust: clustering threshold as a decimal (s3,s6)' params.txt
 if [ ! -e stats/s3.99.txt ]; then
@@ -97,5 +97,21 @@ fi
 # And do the plots.
 
 if [ ! -e molestus_clusters.png ] || [ ! -e pipiens_clusters.png ]; then
-	R --no-save < graph.R
+	R --save < graph.R
 fi
+
+# CONCLUSIONS
+#
+# The number of clusters is higher in molestus, due to higher coverage. What I
+# did not expect is the effect of the clustering threshold being higher in molestus
+# than in pipiens. That is, the number of clusters increases faster with clustering
+# threshold among the molestus samples. I don't think this is caused by a larger
+# fraction of paralagy. It may be related to the quality of the reads, but I don't
+# plan to find out for the moment.
+#
+# The average depth peaks at 95% similarity threshold in both populations. The
+# fact that the fewer clusters at low similarity thresholds do not have higher
+# depths of coverage is due to the filtering of reads that align to the clusters
+# with too many gaps.
+#
+# The optimum similarity threshold seems to be 95%.
