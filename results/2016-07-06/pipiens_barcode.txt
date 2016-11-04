@@ -1,0 +1,12 @@
+GGTCGTAAATG	PipFe1_R1.fastq	PipFe1_R2.fastq
+CTAGTACCTG	PipFe2_R1.fastq	PipFe2_R2.fastq
+AACTACGGG	PipFe3_R1.fastq	PipFe3_R2.fastq
+TCGACGTT	PipFe6_R1.fastq	PipFe6_R2.fastq
+GTCAGAGTATG	PipMa4_R1.fastq	PipMa4_R2.fastq
+ACTGAGACTG	PipFe4_R1.fastq	PipFe4_R2.fastq
+CAGCTCTAG	PipMa3_R1.fastq	PipMa3_R2.fastq
+TGATCTCG	PipMa1_R1.fastq	PipMa1_R2.fastq
+AGCCATGAATG	PipMa2_R1.fastq	PipMa2_R2.fastq
+CCAATGCTTG	PipMa5_R1.fastq	PipMa5_R2.fastq
+GATTGCAGG	PipMa6_R1.fastq	PipMa6_R2.fastq
+TTGGCATC	PipFe5_R1.fastq	PipFe5_R2.fastq

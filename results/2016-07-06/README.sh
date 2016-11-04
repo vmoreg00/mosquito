@@ -6,19 +6,13 @@
 # Here, we are running first SABRE to demultiplex the original fastq files,
 # and then PEAR to merge the paired reads that may overlap.
 #
-# In order to run this with a reduced dataset, just to test the scripts, I
-# define an alternative path for the data.
-#
 # For some reason, the first run of pear fails to open some of the files
 # created by sabre. Running this script twice seems to solve the problem.
 #
 # ========================================================================
 # CUSTOMIZE PATHS BELOW!
 
-#SOURCEDIR='/home/student/Documents/data'
-#FILENAME=( pipiens_R1.fastq pipiens_R2.fastq molestus_R1.fastq molestus_R2.fastq )
-
-SOURCEDIR='/data/joiglu/mosquito'
+SOURCEDIR='/data/joiglu/mosquito/data'
 FILENAME=( Cpipiens_S1_L001_R1_001.fastq.gz
            Cpipiens_S1_L001_R2_001.fastq.gz
            Mol1-5_S1_L001_R1_001.fastq.gz

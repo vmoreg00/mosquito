@@ -1,0 +1,5 @@
+GGTCGTAAATG	Mol01_R1.fastq	Mol01_R2.fastq
+GTCAGAGTATG	Mol02_R1.fastq	Mol02_R2.fastq
+CTAGTACCTG	Mol03_R1.fastq	Mol03_R2.fastq
+AACTACGGG	Mol04_R1.fastq	Mol04_R2.fastq
+TCGACGTT	Mol05_R1.fastq	Mol05_R2.fastq
