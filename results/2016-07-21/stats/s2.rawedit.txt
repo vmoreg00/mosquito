@@ -1,0 +1,24 @@
+sample 	Nreads	passed	passed.w.trim	passed.total
+Mol01_setrimmed	2501744	2223090	0	2223090
+Mol02_setrimmed	2151427	1972780	0	1972780
+Mol03_setrimmed	2932629	2706389	0	2706389
+Mol04_setrimmed	2726507	2511405	0	2511405
+Mol05_setrimmed	1947753	1815356	0	1815356
+PipFe1_setrimmed	55748	49508	0	49508
+PipFe2_setrimmed	50629	46322	0	46322
+PipFe3_setrimmed	37814	34088	0	34088
+PipFe4_setrimmed	37340	34149	0	34149
+PipFe5_setrimmed	714	674	0	674
+PipFe6_setrimmed	9854	9159	0	9159
+PipMa1_setrimmed	46071	42669	0	42669
+PipMa2_setrimmed	33269	30062	0	30062
+PipMa3_setrimmed	88506	82816	0	82816
+PipMa4_setrimmed	61659	54623	0	54623
+PipMa5_setrimmed	62003	57710	0	57710
+PipMa6_setrimmed	69196	61824	0	61824
+
+    Nreads = total number of reads for a sample
+    passed = retained reads that passed quality filtering at full length
+    passed.w.trim= retained reads that were trimmed due to detection of adapters
+    passed.total  = total kept reads of sufficient length
+    note: you can set the option in params file to include trimmed reads of xx length. 
