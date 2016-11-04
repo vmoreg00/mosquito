@@ -22,7 +22,6 @@ if [ ! -e culex.1.bt2 ]; then
    bowtie2-build reference.fa culex
 fi
 
-# Now we run the processes on a loop to map the reads with Bowtie2.
 # The first time we made the mapping wasn't very successful so in this time we decided to make a local alignment.
 # Also we  processed the unassembled reads like if they were pair-ends but the mapping was not good again, so
 # finally we decided to process the reads, assembled and unassembled, as independent ones. The rationale
@@ -40,9 +39,9 @@ fi
 # does not help, because of the white space. Another option is to substitute spaces by underscores in the
 # names.
 #
-# It is desirable to run in parallele no only the mapping but also the re-writing of the fastq files
+# It is desirable to run in parallele not only the mapping but also the re-writing of the fastq files
 # and the post-mapping creation of the bam file. Thus, it is best to outsource the processing of each
-# sample to a different script, that we can call from here.
+# sample to a different script (it could have been a function), that we can call from here.
 #
 # Note that the execution of the auxiliary script is made conditional on the non-existence of the final
 # bam output, so that intermediate files, such as the created fastq files and the sam files can be deleted.
@@ -90,3 +89,8 @@ if [ ! -e summary_map.txt ]; then
    ./summary.py archivos.txt
     rm archivos.txt
 fi
+
+# Actually, the merged reads are the ones that got mapped. We did not change the names of
+# individual ends, nor map them independently. Overall, the alignment rate seems good, and
+# specially so for the molestus samples, presumably less affected by chimeras. However, the
+# portion of reads mapped unambiguously is still very low.
