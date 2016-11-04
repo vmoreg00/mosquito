@@ -34,7 +34,7 @@ LIST=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipM
 PROC=`grep -P '^processor' /proc/cpuinfo | wc -l`
 if [ $PROC -gt 34 ]; then
    for i in `seq 0 16`; do
-      if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
+      if [ ! -e ${LIST[$i]}_setrimmed.fastq ]; then
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
@@ -58,7 +58,7 @@ if [ $PROC -gt 34 ]; then
 else
    for j in 0 3 6 9 12; do
       for i in `seq $j $(( j + 2 ))`; do
-      if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
+      if [ ! -e ${LIST[$i]}_setrimmed.fastq ]; then
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
@@ -81,7 +81,7 @@ else
       wait
    done
    for i in 15 16; do
-      if [ ! -e ${LIST[$i]}_trimmed.fastq ]; then
+      if [ ! -e ${LIST[$i]}_setrimmed.fastq ]; then
          # We need to revise this:
          cutadapt -a TCGGAAGAGCACACGTCTGAACTCCAGTCACCTATGTATCTCGTATGCCGTCTTCTGCTTG \
                   -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGA \
