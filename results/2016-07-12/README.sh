@@ -20,33 +20,47 @@ if [ ! -e reference.fa.fai ]; then
 fi
 # Index and sort the reads.
 for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
-	if [ ! -e  ${LISTA[$i]}'_sorted' ]; then
+	if [ ! -e  ${LISTA[$i]}'_sorted.bam' ]; then
 		samtools sort  $DIR/${LISTA[$i]}.bam  ${LISTA[$i]}'_sorted'
 	fi
-	if [ ! -e ${LISTA[$i]}'_sorted'.bam.bai ]; then
+	if [ ! -e ${LISTA[$i]}'_sorted.bam.bai' ]; then
 		samtools index   ${LISTA[$i]}'_sorted'.bam
 	fi
 done
 # Finally, we will be able to convert the BAM files obtained at the last step, to VCF.
 # We will obtain a file with the information we called.
-if [ ! -e mosquito.vcf ]; then
-	samtools mpileup -gf reference.fa  *_sorted.bam > mosquito.bcf
+if [ ! -e mosquito.vcf.gz ]; then
+	samtools mpileup -gDf reference.fa  *_sorted.bam > mosquito.bcf
 	bcftools view -Acg mosquito.bcf > mosquito.vcf
-#Run a test of Hardy-Weinberg equilibrium
-if [ ! -e HW.hwe ]; then
-   vcftools --vcf mosquito.vcf --out HW --hardy
+	bgzip -c mosquito.vcf > mosquito.vcf.gz
+	tabix -p vcf mosquito.vcf.gz
+fi
+#Run a test of Hardy-Weinberg equilibrium on each population separately.
+if [ ! -e Pip.hwe ]; then
+   vcftools --gzvcf mosquito.vcf.gz \
+      --remove-indv Mol01 \
+      --remove-indv Mol02 \
+      --remove-indv Mol03 \
+      --remove-indv Mol04 \
+      --remove-indv Mol05 \
+      --out Pip --hardy
 fi
 
-# There are 2498 sites where all samples are homozygous for an alternative
-# SNP, and 1153 sites segregating among the samples. All the sites homozygous
-# for the alternative allele carry the same information, namely:
-#
-# CHR     POS     OBS(HOM1/HET/HOM2)      E(HOM1/HET/HOM2)        ChiSq_HWE       P_HWE   P_HET_DEFICIT   P_HET_EXCESS
-# supercont3.3138 668     0/0/17  0.00/0.00/17.00 -nan    1.000000e+00    1.000000e+00    1.000000e+00
-#
-# Because their position is not a concern right now, I erase the sites completely
-# homozygous for the alternative allele. Not without counting the number of lines
-# to erase. I intentionally make the execution of the following inconditional.
+if [ ! -e Mol.hwe ]; then
+   vcftools --gzvcf mosquito.vcf.gz \
+      --indv Mol01 \
+      --indv Mol02 \
+      --indv Mol03 \
+      --indv Mol04 \
+      --indv Mol05 \
+      --out Mol --hardy
+fi
 
-grep 0/0/17 HW.hwe | wc -l | tee NumSitesFixedAlt.txt
-sed -i '/0\/0\/17/ d' HW.hwe
+if [ ! -e summary_hwe.txt ]; then
+   echo -e "Population\tGenotypes\tP_HWE\tFREQ" > summary_hwe.txt
+   gawk '(NR > 1){F[$3 "\t" $6]++}END{for (f in F) print "pipiens \t" f "\t" F[f]}' Pip.hwe | \
+   sort -nrk 4 >> summary_hwe.txt
+   gawk '(NR > 1){F[$3 "\t" $6]++}END{for (f in F) print "molestus\t" f "\t" F[f]}' Mol.hwe | \
+   sort -nrk 4 >> summary_hwe.txt
+fi
+
