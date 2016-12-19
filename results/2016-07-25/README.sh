@@ -11,7 +11,7 @@ SAMPLE=(Mol01 Mol02 Mol03 Mol04 Mol05 PipFe1 PipFe2 PipFe3 PipFe4 PipFe5 PipFe6 
 
 if [ ! -e fb.vcf.gz ]; then
 
-   if [ ! -e archivos.txt ]; then
+   if [ ! -e bamlist.txt ]; then
       ls -1 $DIR/*.bam > bamlist.txt
    fi
 
@@ -68,4 +68,20 @@ if [ ! -e summary_hwe.txt ]; then
    sort -nrk 4 >> summary_hwe.txt
    gawk '(NR > 1){F[$3 "\t" $6]++}END{for (f in F) print "molestus\t" f "\t" F[f]}' Mol.hwe | \
    sort -nrk 4 >> summary_hwe.txt
+fi
+
+if [ ! -e pipienspool.vcf.gz ]; then
+   if [ ! -e pipiensbams.txt ]; then
+      ls -1 $DIR/Pip*.bam > pipiensbams.txt
+   fi
+   if [ ! -e pipienspool.vcf ]; then
+      freebayes -f $DIR/reference.fa \
+                -L pipiensbams.txt \
+                -p 24 \
+                --pooled-discrete > pipienspool.vcf
+   fi
+   bgzip -c pipienspool.vcf > pipienspool.vcf.gz
+   tabix -p vcf pipienspool.vcf.gz
+   rm pipienspool.vcf
+   rm pipiensbams.txt
 fi
