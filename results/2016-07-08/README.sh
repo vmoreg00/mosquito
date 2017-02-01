@@ -9,16 +9,15 @@
 
 FASTQDIR='../2016-07-06b'
 
-if [ ! -e reference.fa ]; then
-	wget ftp://ftp.ensemblgenomes.org/pub/metazoa/release-31/fasta/culex_quinquefasciatus/dna/Culex_quinquefasciatus.CpipJ2.31.dna.toplevel.fa.gz
-	mv Culex_quinquefasciatus.CpipJ2.31.dna.toplevel.fa.gz reference.fa.gz
-	gunzip reference.fa.gz
-fi
-
 LISTA=(PipFe1 PipFe2 PipFe3 PipFe4 PipFe5 PipFe6 PipMa1 PipMa2 \
        PipMa3 PipMa4 PipMa5 PipMa6 Mol01 Mol02 Mol03 Mol04 Mol05)
 
 if [ ! -e culex.1.bt2 ]; then
+   if [ ! -e reference.fa ]; then
+      wget ftp://ftp.ensemblgenomes.org/pub/metazoa/release-31/fasta/culex_quinquefasciatus/dna/Culex_quinquefasciatus.CpipJ2.31.dna.toplevel.fa.gz
+      mv Culex_quinquefasciatus.CpipJ2.31.dna.toplevel.fa.gz reference.fa.gz
+      gunzip reference.fa.gz
+   fi
    bowtie2-build reference.fa culex
 fi
 
@@ -94,3 +93,17 @@ fi
 # individual ends, nor map them independently. Overall, the alignment rate seems good, and
 # specially so for the molestus samples, presumably less affected by chimeras. However, the
 # portion of reads mapped unambiguously is still very low.
+#
+# Finally, I just want to check the correlation between the sizes of fastq and bam files.
+
+if [ ! -e filesizes.png ]; then
+   if [ ! -e filesizes.txt ]; then
+      echo -e "Sample\tFastq\tBam" > filesizes.txt
+      for i in "${LISTA[@]}"; do
+         FASTQSIZE=`ls -l $FASTQDIR/$i'_setrimmed.fastq' | cut -d " " -f 5`
+         BAMSIZE=`ls -l ./$i.bam | cut -d " " -f 5`
+         echo -e "$i\t$FASTQSIZE\t$BAMSIZE" >> filesizes.txt
+      done
+   fi
+   R --no-save < plot.R
+fi

@@ -1,0 +1,6 @@
+filesize <- read.table('filesizes.txt', header=TRUE)
+attach(filesize)
+png(filename='filesizes.png')
+   plot(Fastq, Bam, xlab='Fastq size (bytes)', ylab='Bam size (bytes)')
+   abline(lm(Bam ~ Fastq), col='red')
+dev.off()

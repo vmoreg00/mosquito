@@ -8,6 +8,16 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2016-12-20
+Given the low coverage in the form pipiens, I pool their reads and repeat the
+freebayes analysis to identify potentially diagnostic markers.
+
+#2016-11-22
+Here I run ipyrad without using the reference genome of Culex quinquefasciatus,
+to compare the results with the alternative approach of mapping the reads to that
+reference. I set it up to run in a cluster, but after a few months in queue, I
+resort to run it locally in avalon.
+
 #2016-07-26
 We subsampled molestus reads and used pyrad to cluster the reads under different
 similarity thresholds. The results suggest that a similarity threshold of 95%
