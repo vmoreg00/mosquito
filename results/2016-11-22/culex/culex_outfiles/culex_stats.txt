@@ -1,0 +1,131 @@
+
+
+## The number of loci caught by each filter.
+## ipyrad API location: [assembly].statsfiles.s7_filters
+
+                            total_filters  applied_order  retained_loci
+total_prefiltered_loci             605297              0         605297
+filtered_by_rm_duplicates           20880          20880         584417
+filtered_by_max_indels               8635           5229         579188
+filtered_by_max_snps                 2192             27         579161
+filtered_by_max_shared_het              0              0         579161
+filtered_by_min_sample             590053         565984          13177
+filtered_by_max_alleles              7329            804          12373
+total_filtered_loci                 12373              0          12373
+
+
+## The number of loci recovered for each Sample.
+## ipyrad API location: [assembly].stats_dfs.s7_samples
+
+        sample_coverage
+Mol01              8726
+Mol02              8214
+Mol03              8488
+Mol04              8823
+Mol05              8497
+PipFe1              158
+PipFe2              149
+PipFe3              104
+PipFe4            11606
+PipFe5                1
+PipFe6               31
+PipMa1               77
+PipMa2               54
+PipMa3              111
+PipMa4              364
+PipMa5               52
+PipMa6               82
+
+
+## The number of loci for which N taxa have data.
+## ipyrad API location: [assembly].stats_dfs.s7_loci
+
+    locus_coverage  sum_coverage
+1                0             0
+2             2234          2234
+3             1616          3850
+4             1547          5397
+5             2073          7470
+6             4731         12201
+7              120         12321
+8               32         12353
+9               16         12369
+10               2         12371
+11               2         12373
+12               0         12373
+13               0         12373
+14               0         12373
+15               0         12373
+16               0         12373
+17               0         12373
+
+
+## The distribution of SNPs (var and pis) across loci.
+## var = all variable sites (pis + autapomorphies)
+## pis = parsimony informative site (minor allele in >1 sample)
+## ipyrad API location: [assembly].stats_dfs.s7_snps
+
+     var  sum_var   pis  sum_pis
+0   2288        0  8779        0
+1   1419     1419  1027     1027
+2   1106     3631   658     2343
+3    986     6589   462     3729
+4    887    10137   355     5149
+5    795    14112   296     6629
+6    782    18804   213     7907
+7    688    23620   161     9034
+8    606    28468   125    10034
+9    537    33301   123    11141
+10   480    38101    76    11901
+11   385    42336    34    12275
+12   338    46392    28    12611
+13   249    49629    17    12832
+14   191    52303    10    12972
+15   151    54568     5    13047
+16   102    56200     2    13079
+17   100    57900     2    13113
+18    73    59214     0    13113
+19    61    60373     0    13113
+20    35    61073     0    13113
+21    24    61577     0    13113
+22    15    61907     0    13113
+23    18    62321     0    13113
+24     5    62441     0    13113
+25    11    62716     0    13113
+26    10    62976     0    13113
+27     6    63138     0    13113
+28     3    63222     0    13113
+29     8    63454     0    13113
+30     4    63574     0    13113
+31     2    63636     0    13113
+32     2    63700     0    13113
+33     1    63733     0    13113
+34     1    63767     0    13113
+35     1    63802     0    13113
+36     0    63802     0    13113
+37     0    63802     0    13113
+38     1    63840     0    13113
+39     0    63840     0    13113
+40     2    63920     0    13113
+
+
+## Final Sample stats summary
+
+        state  reads_raw  reads_passed_filter  clusters_total  clusters_hidepth  hetero_est  error_est  reads_consens  loci_in_assembly
+Mol01       7    2501744              2500315          492513            492513    0.005586   0.002864         488380              8726
+Mol02       7    2151427              2150172          424761            424761    0.004907   0.002594         421473              8214
+Mol03       7    2932629              2930656          498533            498533    0.003985   0.002096         494200              8488
+Mol04       7    2726507              2724669          489197            489197    0.004811   0.002214         484661              8823
+Mol05       7    1947753              1946461          442024            442024    0.005203   0.002243         439061              8497
+PipFe1      7      55748                55745           43729             43729    0.007535   0.008774          43716               158
+PipFe2      7      50629                50621           39337             39337    0.006560   0.008936          39322               149
+PipFe3      7      37814                37807           30172             30172    0.008404   0.008992          30161               104
+PipFe4      7      37340                37337           29257             29257    0.013452   0.009238          29231             11606
+PipFe5      7        714                  714             678               678    0.008784   0.010959            677                 1
+PipFe6      7       9854                 9854            8427              8427    0.006653   0.009428           8423                31
+PipMa1      7      46071                46059           36141             36141    0.007437   0.008092          36131                77
+PipMa2      7      33269                33266           26792             26792    0.006439   0.008965          26781                54
+PipMa3      7      88506                88494           65259             65259    0.008282   0.007434          65223               111
+PipMa4      7      61659                61644           47688             47688    0.007193   0.009309          47675               364
+PipMa5      7      62003                61994           47415             47415    0.008269   0.007654          47393                52
+PipMa6      7      69196                69191           52654             52654    0.007738   0.008767          52631                82

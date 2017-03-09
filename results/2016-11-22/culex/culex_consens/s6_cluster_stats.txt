@@ -1,0 +1,22 @@
+vsearch v2.0.3_linux_x86_64, 31.4GB RAM, 8 cores
+/home/joiglu/miniconda2/lib/python2.7/site-packages/bin/vsearch-linux-x86_64 -cluster_smallmem /home/joiglu/Documents/mosquito/results/2016-11-22/culex/culex_consens/culex_catshuf.tmp -strand both -query_cov 0.6 -minsl 0.5 -id 0.95 -userout /home/joiglu/Documents/mosquito/results/2016-11-22/culex/culex_consens/culex.utemp -notmatched /home/joiglu/Documents/mosquito/results/2016-11-22/culex/culex_consens/culex.htemp -userfields query+target+qstrand -maxaccepts 1 -maxrejects 0 -fasta_width 0 -threads 0 -fulldp -usersort -log /home/joiglu/Documents/mosquito/results/2016-11-22/culex/culex_consens/s6_cluster_stats.txt 
+Started  Fri Feb  3 19:38:51 2017765111579 nt in 2755139 seqs, min 38, max 450, avg 278
+
+
+      Alphabet  nt
+    Word width  8
+     Word ones  8
+        Spaced  No
+        Hashed  No
+         Coded  No
+       Stepped  No
+         Slots  65536 (65.5k)
+       DBAccel  100%
+
+Clusters: 1310817 Size min 1, max 2107, avg 2.1
+Singletons: 705520, 25.6% of seqs, 53.8% of clusters
+
+
+Finished Thu Feb  9 05:42:44 2017
+Elapsed time 7803:53
+Max memory 6.4GB
