@@ -1,9 +1,9 @@
-------- ipyrad params file (v.0.4.1)--------------------------------------------
+------- ipyrad params file (v.0.5.15)-------------------------------------------
 culex                          ## [0] [assembly_name]: Assembly name. Used to name output directories for assembly steps
 culex                          ## [1] [project_dir]: Project dir (made in curdir if not present)
                                ## [2] [raw_fastq_path]: Location of raw non-demultiplexed fastq files
                                ## [3] [barcodes_path]: Location of barcodes file
-../2016-07-06b/*setrimmed.fastq     ## [4] [sorted_fastq_path]: Location of demultiplexed/sorted fastq files
+culex/culex_fastqs/*.fastq     ## [4] [sorted_fastq_path]: Location of demultiplexed/sorted fastq files
 denovo                         ## [5] [assembly_method]: Assembly method (denovo, reference, denovo+reference, denovo-reference)
                                ## [6] [reference_sequence]: Location of reference sequence file
 gbs                            ## [7] [datatype]: Datatype (see docs): rad, gbs, ddrad, etc.
@@ -27,4 +27,4 @@ CATG                           ## [8] [restriction_overhang]: Restriction overha
 0, 0                           ## [25] [edit_cutsites]: Edit cut-sites (R1, R2) (see docs)
 4, 4, 4, 4                     ## [26] [trim_overhang]: Trim overhang (see docs) (R1>, <R1, R2>, <R2)
 *                              ## [27] [output_formats]: Output formats (see docs)
-populations.txt                ## [28] [pop_assign_file]: Path to population assignment file
+./populations.txt              ## [28] [pop_assign_file]: Path to population assignment file

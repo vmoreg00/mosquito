@@ -1,0 +1,50 @@
+ -------------------------------------------------------------
+  ipyrad [v.0.5.15]
+  Interactive assembly and analysis of RAD-seq data
+ -------------------------------------------------------------
+  New Assembly: culex
+  local compute node: [8 cores] on avalon
+
+  Step 1: Loading sorted fastq data to Samples
+  [####################] 100%  loading reads         | 0:00:01  
+  17 fastq files loaded to 17 Samples.
+
+  Step 2: Filtering reads 
+  [####################] 100%  processing reads      | 0:02:09  
+
+  Step 3: Clustering/Mapping reads
+  [####################] 100%  dereplicating         | 0:00:21  
+  [####################] 100%  clustering            | 2 days, 2:59:11  
+  [####################] 100%  building clusters     | 0:02:26  
+  [####################] 100%  chunking              | 0:00:07  
+  [####################] 100%  aligning              | 2:06:37  
+  [####################] 100%  concatenating         | 0:02:01  
+
+  Step 4: Joint estimation of error rate and heterozygosity
+  [####################] 100%  inferring [H, E]      | 0:13:21  
+
+  Step 5: Consensus base calling 
+  Mean error  [0.00697 sd=0.00314]
+  Mean hetero [0.00713 sd=0.00216]
+  [####################] 100%  calculating depths    | 0:00:10  
+  [####################] 100%  chunking clusters     | 0:00:09  
+  [####################] 100%  consens calling       | 1:03:09  
+
+  Step 6: Clustering at 0.95 similarity across 17 samples
+  [####################] 100%  concat/shuffle input  | 0:00:26  
+  [####################] 100%  clustering across     | 5 days, 10:03:52  
+  [####################] 100%  building clusters     | 0:00:22  
+  [####################] 100%  aligning clusters     | 1:08:21  
+  [####################] 100%  database indels       | 0:03:42  
+  [####################] 100%  indexing clusters     | 0:11:09  
+  [####################] 100%  building database     | 0:02:45  
+
+  Step 7: Filter and write output files for 17 Samples
+  [####################] 100%  filtering loci        | 0:01:07  
+  [####################] 100%  building loci/stats   | 0:00:03  
+  [####################] 100%  building vcf file     | 0:00:35  
+  [####################] 100%  writing vcf file      | 0:00:00  
+  [####################] 100%  building arrays       | 0:00:15  
+  [####################] 100%  writing outfiles      | 0:00:55  
+  Outfiles written to: ~/Documents/mosquito/results/2016-11-22/culex/culex_outfiles
+

@@ -17,7 +17,7 @@
 #
 #   qsub -V -b n -pe openmpi 36 ./README.sh
 #
-# But, make sure you set the followint variable to 'cluster' if running in the cluster:
+# But, make sure you set the following variable to 'cluster' if running in the cluster:
 WHEREAMIRUNNING=localhost
 # WHEREAMIRUNNING=cluster
 
@@ -85,9 +85,17 @@ WHEREAMIRUNNING=localhost
 # searches as well.
 #
 
-
-FASTQDIR=../2016-07-06b
+CURDIR=`pwd`
+FASTQDIR=`pwd | sed 's/2016-11-22/2016-07-06b/'`
 SAMPLE=(PipFe1 PipFe2 PipFe3 PipFe6 PipMa4 PipFe4 PipMa3 PipMa1 PipMa2 PipMa5 PipMa6 PipFe5 Mol01 Mol02 Mol03 Mol04 Mol05)
+
+if [ ! -d culex ]; then mkdir culex; fi
+if [ ! -d culex/culex_fastqs ]; then mkdir culex/culex_fastqs; fi
+for i in ${SAMPLE[@]}; do
+   if [ ! -e culex/culex_fastqs/$i.fastq ]; then
+      ln -s $FASTQDIR/$i'_setrimmed.fastq' culex/culex_fastqs/$i.fastq
+   fi
+done
 
 if [ ! -e params-culex.txt ]; then
    ipyrad -n culex
@@ -97,7 +105,7 @@ if [ ! -e params-culex.txt ]; then
    sed -i "/## \[1\]/c culex                          ## [1] [project_dir]: Project dir (made in curdir if not present)"           params-culex.txt
                                                       ## [2] [raw_fastq_path]: Location of raw non-demultiplexed fastq files
                                                       ## [3] [barcodes_path]: Location of barcodes file
-   sed -i "/## \[4\]/c $FASTQDIR/*setrimmed.fastq     ## [4] [sorted_fastq_path]: Location of demultiplexed/sorted fastq files"    params-culex.txt
+   sed -i "/## \[4\]/c culex/culex_fastqs/*.fastq     ## [4] [sorted_fastq_path]: Location of demultiplexed/sorted fastq files"    params-culex.txt
 #                      denovo                         ## [5] [assembly_method]: Assembly method (denovo, reference, denovo+reference, denovo-reference)
                                                       ## [6] [reference_sequence]: Location of reference sequence file
    sed -i "/## \[7\]/c gbs                            ## [7] [datatype]: Datatype (see docs): rad, gbs, ddrad, etc."               params-culex.txt
@@ -121,7 +129,7 @@ if [ ! -e params-culex.txt ]; then
    sed -i "/## \[25\]/c 0, 0                           ## [25] [edit_cutsites]: Edit cut-sites (R1, R2) (see docs)"                params-culex.txt
    sed -i "/## \[26\]/c 4, 4, 4, 4                     ## [26] [trim_overhang]: Trim overhang (see docs) (R1>, <R1, R2>, <R2)"     params-culex.txt
    sed -i "/## \[27\]/c *                              ## [27] [output_formats]: Output formats (see docs)"                        params-culex.txt
-   sed -i "/## \[28\]/c populations.txt                ## [28] [pop_assign_file]: Path to population assignment file"              params-culex.txt
+   sed -i "/## \[28\]/c $CURDIR/populations.txt        ## [28] [pop_assign_file]: Path to population assignment file"              params-culex.txt
 fi
 
 if [ ! -e populations.txt ]; then
@@ -137,7 +145,7 @@ if ! grep -q running checkpoints; then
       ipyrad -p params-culex.txt -c 36 --MPI -s 234567
    fi
    if [ $WHEREAMIRUNNING == 'localhost' ]; then
-      echo "es una prova"
-#      ipyrad -p params-culex.txt -c 36 -s 234567
+#     echo "es una prova"
+      ipyrad -p params-culex.txt -s 1234567
    fi
 fi
