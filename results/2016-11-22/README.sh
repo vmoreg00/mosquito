@@ -121,13 +121,14 @@ if [ ! -e params-culex.txt ]; then
    sed -i "/## \[25\]/c 0, 0                           ## [25] [edit_cutsites]: Edit cut-sites (R1, R2) (see docs)"                params-culex.txt
    sed -i "/## \[26\]/c 4, 4, 4, 4                     ## [26] [trim_overhang]: Trim overhang (see docs) (R1>, <R1, R2>, <R2)"     params-culex.txt
    sed -i "/## \[27\]/c *                              ## [27] [output_formats]: Output formats (see docs)"                        params-culex.txt
-   sed -i "/## \[28\]/c populations.txt                ## [28] [pop_assign_file]: Path to population assignment file"              params-culex.txt
+   sed -i "/## \[28\]/c ./populations.txt              ## [28] [pop_assign_file]: Path to population assignment file"              params-culex.txt
 fi
 
 if [ ! -e populations.txt ]; then
    for i in `seq 0 16`; do
       echo ${SAMPLE[$i]} ${SAMPLE[$i]:0:3} >> populations.txt
    done
+   echo "# Pip:1 Mol:1" >> populations.txt
 fi
 
 touch checkpoints
