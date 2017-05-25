@@ -1,0 +1,113 @@
+
+
+## The number of loci caught by each filter.
+## ipyrad API location: [assembly].statsfiles.s7_filters
+
+                            total_filters  applied_order  retained_loci
+total_prefiltered_loci             605297              0         605297
+filtered_by_rm_duplicates           20880          20880         584417
+filtered_by_max_indels               8635           5229         579188
+filtered_by_max_snps                 2192             27         579161
+filtered_by_max_shared_het              0              0         579161
+filtered_by_min_sample             604938         578867            294
+filtered_by_max_alleles              7329             33            261
+total_filtered_loci                   261              0            261
+
+
+## The number of loci recovered for each Sample.
+## ipyrad API location: [assembly].stats_dfs.s7_samples
+
+        sample_coverage
+Mol01               232
+Mol02               233
+Mol03               212
+Mol04               222
+Mol05               233
+PipFe1               86
+PipFe2               71
+PipFe3               58
+PipFe4              145
+PipFe6               15
+PipMa1               35
+PipMa2               31
+PipMa3               57
+PipMa4               63
+PipMa5               26
+PipMa6               41
+
+
+## The number of loci for which N taxa have data.
+## ipyrad API location: [assembly].stats_dfs.s7_loci
+
+    locus_coverage  sum_coverage
+1                0             0
+2                0             0
+3                0             0
+4               19            19
+5               18            37
+6               52            89
+7              120           209
+8               32           241
+9               16           257
+10               2           259
+11               2           261
+12               0           261
+13               0           261
+14               0           261
+15               0           261
+16               0           261
+17               0           261
+
+
+## The distribution of SNPs (var and pis) across loci.
+## var = all variable sites (pis + autapomorphies)
+## pis = parsimony informative site (minor allele in >1 sample)
+## ipyrad API location: [assembly].stats_dfs.s7_snps
+
+    var  sum_var  pis  sum_pis
+0    18        0   78        0
+1    20       20   26       26
+2    17       54   22       70
+3    22      120   13      109
+4    13      172   12      157
+5    17      257   13      222
+6    19      371   15      312
+7    13      462   11      389
+8    19      614   12      485
+9    22      812   16      629
+10   12      932   13      759
+11   16     1108    9      858
+12   14     1276    7      942
+13    9     1393    6     1020
+14   12     1561    4     1076
+15    2     1591    2     1106
+16    5     1671    2     1138
+17    3     1722    0     1138
+18    1     1740    0     1138
+19    2     1778    0     1138
+20    1     1798    0     1138
+21    2     1840    0     1138
+22    1     1862    0     1138
+23    1     1885    0     1138
+
+
+## Final Sample stats summary
+
+        state  reads_raw  reads_passed_filter  clusters_total  clusters_hidepth  hetero_est  error_est  reads_consens  loci_in_assembly
+Mol01       7    2501744              2500315          492513            492513    0.005586   0.002864         488380             232.0
+Mol02       7    2151427              2150172          424761            424761    0.004907   0.002594         421473             233.0
+Mol03       7    2932629              2930656          498533            498533    0.003985   0.002096         494200             212.0
+Mol04       7    2726507              2724669          489197            489197    0.004811   0.002214         484661             222.0
+Mol05       7    1947753              1946461          442024            442024    0.005203   0.002243         439061             233.0
+PipFe1      7      55748                55745           43729             43729    0.007535   0.008774          43716              86.0
+PipFe2      7      50629                50621           39337             39337    0.006560   0.008936          39322              71.0
+PipFe3      7      37814                37807           30172             30172    0.008404   0.008992          30161              58.0
+PipFe4      7      37340                37337           29257             29257    0.013452   0.009238          29231             145.0
+PipFe5      7        714                  714             678               678    0.008784   0.010959            677               NaN
+PipFe6      7       9854                 9854            8427              8427    0.006653   0.009428           8423              15.0
+PipMa1      7      46071                46059           36141             36141    0.007437   0.008092          36131              35.0
+PipMa2      7      33269                33266           26792             26792    0.006439   0.008965          26781              31.0
+PipMa3      7      88506                88494           65259             65259    0.008282   0.007434          65223              57.0
+PipMa4      7      61659                61644           47688             47688    0.007193   0.009309          47675              63.0
+PipMa5      7      62003                61994           47415             47415    0.008269   0.007654          47393              26.0
+PipMa6      7      69196                69191           52654             52654    0.007738   0.008767          52631              41.0

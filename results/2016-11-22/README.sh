@@ -150,3 +150,28 @@ if ! grep -q running checkpoints; then
       ipyrad -p params-culex.txt -s 1234567
    fi
 fi
+
+# The results show that most loci reported contain only one pipiens sample, with
+# fixed differences between pipiens and molestus. Some loci include two pipiens
+# samples. For the most part, variation within loci is very much linked, and little
+# can be expected from the haplotypes. On top of that, the two chromosomes are not
+# phased in the output files. In any case, I will select loci with at least two
+# pipiens and two molestus samples, which will be later complemented with available
+# data from published genomes to run a multispecies coalescent analysis.
+
+if [ ! -e populations_min2.txt ]; then
+   for i in `seq 0 16`; do
+      echo ${SAMPLE[$i]} ${SAMPLE[$i]:0:3} >> populations_min2.txt
+   done
+   echo "# Pip:2 Mol:2" >> populations_min2.txt
+fi
+
+if [ ! -e params-min2.txt ]; then
+   ipyrad -p params-culex.txt -b min2
+   sed -i "/## \[28\]/c ./populations_min2.txt      ## [28] [pop_assign_file]: Path to population assignment file" params-min2.txt
+fi
+
+if ! grep -q min2 checkpoints; then
+   echo min2 >> checkpoints
+   ipyrad -p params-min2.txt -s 7
+fi
