@@ -26,5 +26,5 @@ CATG, CATG                     ## [8] [restriction_overhang]: Restriction overha
 0.9                            ## [24] [max_shared_Hs_locus]: Max # heterozygous sites per locus (R1, R2)
 0, 0                           ## [25] [edit_cutsites]: Edit cut-sites (R1, R2) (see docs)
 4, 4, 4, 4                     ## [26] [trim_overhang]: Trim overhang (see docs) (R1>, <R1, R2>, <R2)
-a, g, k, m, l, n, p, s, u, t, v ## [27] [output_formats]: Output formats (see docs)
-./populations_min2.txt      ## [28] [pop_assign_file]: Path to population assignment file
+*                              ## [27] [output_formats]: Output formats (see docs)
+./populations_min2.txt         ## [28] [pop_assign_file]: Path to population assignment file

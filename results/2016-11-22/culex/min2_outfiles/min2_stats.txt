@@ -1,7 +1,7 @@
 
 
 ## The number of loci caught by each filter.
-## ipyrad API location: [assembly].statsfiles.s7_filters
+## ipyrad API location: [assembly].stats_dfs.s7_filters
 
                             total_filters  applied_order  retained_loci
 total_prefiltered_loci             605297              0         605297
@@ -59,9 +59,9 @@ PipMa6               41
 17               0           261
 
 
-## The distribution of SNPs (var and pis) across loci.
-## var = all variable sites (pis + autapomorphies)
-## pis = parsimony informative site (minor allele in >1 sample)
+## The distribution of SNPs (var and pis) per locus.
+## var = Number of loci with n variable sites (pis + autapomorphies)
+## pis = Number of loci with n parsimony informative site (minor allele in >1 sample)
 ## ipyrad API location: [assembly].stats_dfs.s7_snps
 
     var  sum_var  pis  sum_pis

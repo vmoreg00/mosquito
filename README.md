@@ -8,6 +8,11 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2017-05-30
+I use the 261 loci assembled by ipyrad on 2016-11-22 to build a reference set
+of loci. Then I download reads from other sequencing projects of Culex pipiens
+and align them to those loci.
+
 #2016-12-20
 Given the low coverage in the form pipiens, I pool their reads and repeat the
 freebayes analysis to identify potentially diagnostic markers.
