@@ -1,0 +1,26 @@
+
+ -------------------------------------------------------------
+  ipyrad [v.0.6.24]
+  Interactive assembly and analysis of RAD-seq data
+ -------------------------------------------------------------
+  Begin run: 2017-05-30 13:08
+  Using args {'preview': False, 'force': False, 'threads': 2, 'results': False, 'quiet': False, 'merge': None, 'ipcluster': False, 'cores': 0, 'params': 'params-min2.txt', 'branch': None, 'steps': '7', 'debug': False, 'new': None, 'MPI': False}
+  Platform info: ('Linux', 'avalon', '3.16.0-4-amd64', '#1 SMP Debian 3.16.43-2 (2017-04-30)', 'x86_64')2017-05-30 13:08:55,002 	pid=3081 	[assembly.py]	ERROR 	IPyradWarningExit:     Output files already created for this Assembly in:
+    /home/joiglu/Documents/mosquito/results/2016-11-22/culex/min2_outfiles
+    To overwrite, rerun using the force argument. 
+    
+
+ -------------------------------------------------------------
+  ipyrad [v.0.6.24]
+  Interactive assembly and analysis of RAD-seq data
+ -------------------------------------------------------------
+  Begin run: 2017-05-30 13:09
+  Using args {'preview': False, 'force': True, 'threads': 2, 'results': False, 'quiet': False, 'merge': None, 'ipcluster': False, 'cores': 0, 'params': 'params-min2.txt', 'branch': None, 'steps': '7', 'debug': False, 'new': None, 'MPI': False}
+  Platform info: ('Linux', 'avalon', '3.16.0-4-amd64', '#1 SMP Debian 3.16.43-2 (2017-04-30)', 'x86_64')
+ -------------------------------------------------------------
+  ipyrad [v.0.6.24]
+  Interactive assembly and analysis of RAD-seq data
+ -------------------------------------------------------------
+  Begin run: 2017-05-30 13:10
+  Using args {'preview': False, 'force': False, 'threads': 2, 'results': True, 'quiet': False, 'merge': None, 'ipcluster': False, 'cores': 0, 'params': 'params-min2.txt', 'branch': None, 'steps': None, 'debug': False, 'new': None, 'MPI': False}
+  Platform info: ('Linux', 'avalon', '3.16.0-4-amd64', '#1 SMP Debian 3.16.43-2 (2017-04-30)', 'x86_64')2017-05-30 13:16:26,233 	pid=3216 	[assembly.py]	ERROR 	KeyError("Unable to open object (Object 'chroms' doesn't exist)")

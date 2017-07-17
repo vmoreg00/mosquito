@@ -1,0 +1,95 @@
+This is cutadapt 1.13 with Python 2.7.13
+Command line parameters: -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT -a GATCGGAAGAGCACACGTCTGAACTCCAGTCAC --max-n=5 --minimum-length=50 -o trimmed/SRR2029633.merged.fastq merged/SRR2029633.assembled.fastq
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 436.87 s (27 us/read; 2.26 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:              16,452,949
+Reads with adapters:                   591,994 (3.6%)
+Reads that were too short:               1,392 (0.0%)
+Reads with too many N:                   6,604 (0.0%)
+Reads written (passing filters):    16,444,953 (100.0%)
+
+Total basepairs processed: 2,401,971,513 bp
+Total written (filtered):  2,398,791,709 bp (99.9%)
+
+=== Adapter 1 ===
+
+Sequence: GATCGGAAGAGCACACGTCTGAACTCCAGTCAC; Type: regular 3'; Length: 33; Trimmed: 300192 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 23.9%
+  C: 26.7%
+  G: 25.8%
+  T: 23.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	237271	257077.3	0	237271
+4	35396	64269.3	0	35396
+5	16613	16067.3	0	16613
+6	2973	4016.8	0	2973
+7	4545	1004.2	0	4545
+8	407	251.1	0	407
+9	1402	62.8	0	946 456
+10	650	15.7	1	15 635
+11	280	3.9	1	11 269
+12	442	1.0	1	344 98
+13	38	0.2	1	0 38
+14	140	0.1	1	129 11
+15	1	0.0	1	0 1
+16	8	0.0	1	4 4
+18	1	0.0	1	0 1
+19	8	0.0	1	2 4 2
+20	1	0.0	2	1
+21	3	0.0	2	3
+22	3	0.0	2	2 1
+24	3	0.0	2	0 1 2
+151	1	0.0	3	0 1
+156	1	0.0	3	1
+164	2	0.0	3	1 1
+168	1	0.0	3	1
+188	1	0.0	3	0 0 0 1
+189	1	0.0	3	1
+
+=== Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT; Type: regular 5'; Length: 58; Trimmed: 291802 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-58 bp: 5
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	209189	257077.3	0	209189
+4	63425	64269.3	0	63425
+5	10832	16067.3	0	10832
+6	3263	4016.8	0	3263
+7	736	1004.2	0	736
+8	1242	251.1	0	1242
+9	663	62.8	0	188 475
+10	1312	15.7	1	754 558
+11	372	3.9	1	35 337
+12	382	1.0	1	275 107
+13	339	0.2	1	321 18
+14	11	0.1	1	6 5
+15	2	0.0	1	2
+16	2	0.0	1	2
+17	1	0.0	1	1
+18	2	0.0	1	1 0 1
+19	1	0.0	1	0 1
+20	16	0.0	2	12 4
+24	1	0.0	2	1
+26	1	0.0	2	1
+27	1	0.0	2	0 1
+30	4	0.0	3	0 4
+31	1	0.0	3	0 0 1
+32	1	0.0	3	0 0 0 1
+163	2	0.0	5	0 2
+164	1	0.0	5	0 0 1
+

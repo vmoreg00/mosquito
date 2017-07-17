@@ -1,0 +1,86 @@
+This is cutadapt 1.13 with Python 2.7.13
+Command line parameters: -g AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT -a GATCGGAAGAGCACACGTCTGAACTCCAGTCAC --max-n=5 --minimum-length=50 -o trimmed/SRR2029634.merged.fastq merged/SRR2029634.assembled.fastq
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 167.83 s (26 us/read; 2.31 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:               6,465,431
+Reads with adapters:                   249,345 (3.9%)
+Reads that were too short:               1,138 (0.0%)
+Reads with too many N:                   2,143 (0.0%)
+Reads written (passing filters):     6,462,150 (99.9%)
+
+Total basepairs processed:   891,894,495 bp
+Total written (filtered):    890,629,728 bp (99.9%)
+
+=== Adapter 1 ===
+
+Sequence: GATCGGAAGAGCACACGTCTGAACTCCAGTCAC; Type: regular 3'; Length: 33; Trimmed: 149439 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-33 bp: 3
+
+Bases preceding removed adapters:
+  A: 24.3%
+  C: 25.7%
+  G: 23.5%
+  T: 26.5%
+  none/other: 0.0%
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	118783	101022.4	0	118783
+4	20074	25255.6	0	20074
+5	7151	6313.9	0	7151
+6	2052	1578.5	0	2052
+7	397	394.6	0	397
+8	81	98.7	0	81
+9	357	24.7	0	237 120
+10	218	6.2	1	4 214
+11	114	1.5	1	1 113
+12	163	0.4	1	78 85
+13	23	0.1	1	0 23
+14	9	0.0	1	8 1
+16	1	0.0	1	1
+19	1	0.0	1	1
+21	4	0.0	2	3 0 1
+22	2	0.0	2	0 2
+26	3	0.0	2	0 3
+27	5	0.0	2	2 3
+32	1	0.0	3	0 1
+
+=== Adapter 2 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT; Type: regular 5'; Length: 58; Trimmed: 99906 times.
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-58 bp: 5
+
+Overview of removed sequences
+length	count	expect	max.err	error counts
+3	61578	101022.4	0	61578
+4	29503	25255.6	0	29503
+5	5547	6313.9	0	5547
+6	1591	1578.5	0	1591
+7	556	394.6	0	556
+8	96	98.7	0	96
+9	281	24.7	0	29 252
+10	332	6.2	1	95 237
+11	158	1.5	1	5 153
+12	49	0.4	1	27 22
+13	35	0.1	1	25 10
+15	7	0.0	1	7
+16	2	0.0	1	1 1
+19	1	0.0	1	1
+26	3	0.0	2	3
+28	16	0.0	2	0 0 11 5
+29	28	0.0	2	0 20 2 6
+30	30	0.0	3	9 11 10
+31	9	0.0	3	0 1 5 3
+32	40	0.0	3	2 20 9 9
+33	10	0.0	3	8 2
+34	16	0.0	3	0 0 12 4
+35	17	0.0	3	0 0 16 1
+36	1	0.0	3	0 0 0 1
+

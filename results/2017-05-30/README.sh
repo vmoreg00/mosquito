@@ -170,14 +170,18 @@ done
 if [ ! -d bam ]; then mkdir bam; fi
 
 for i in `seq 27 34`; do
-   if [ ! -e bam/SRR20296$i.bam ]; then
-      bowtie2 --fast \
-              --no-unal \
-              --rg-id SRR20296$i \
-              --rg SRR20296$i \
-              --threads 4 \
-              -x consensus \
-              -U trimmed/SRR20296$i.forward.fastq,trimmed/SRR20296$i.reverse.fastq,trimmed/SRR20296$i.merged.fastq 2> bam/SRR20296$i.log |
-      samtools view -Sb - > bam/SRR20296$i.bam
+   if [ ! -e bam/SRR20296$i'_sorted.bam' ]; then
+      if [ ! -e bam/SRR20296$i.bam ]; then
+         bowtie2 --fast \
+                 --no-unal \
+                 --rg-id SRR20296$i \
+                 --rg SM:SRR20296$i \
+                 --threads 6 \
+                 -x consensus \
+                 -U trimmed/SRR20296$i.forward.fastq,trimmed/SRR20296$i.reverse.fastq,trimmed/SRR20296$i.merged.fastq 2> bam/SRR20296$i.log |
+         samtools view -Sb - > bam/SRR20296$i.bam
+      fi
+      samtools sort bam/SRR20296$i.bam > bam/SRR20296$i'_sorted.bam'
+      #rm bam/SRR20296$i.bam
    fi
 done
