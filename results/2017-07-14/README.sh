@@ -15,6 +15,10 @@
 # I must provide this link to Harvey's repository in any subsequent publication:
 #
 # https://github.com/mgharvey/misc_python
+#
+# The problem is that the current version of freebayes, v1.1.0-44-gd784cf8,
+# throws a "signal 11" error shortly after starting. An issue (#390) was raised
+# in the github page, but not solved yet.
 
 BAMDIR=../2017-05-30/bam
 REFERENCE=../2017-05-30/consensus.fasta

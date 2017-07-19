@@ -8,6 +8,13 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2017-07-14
+Attempt to get a consensus sequence (or pair of haplotypes) for each mosquito
+sequenced by Asgharian et al. (2015) at loci assembled before with ipyrad. I
+tried to use freebayes, to take advantage of a script made available by Michael
+G. Harvey, and because I trust freebayes' algorithm. However, there is an issue
+(#390) preventing me from using freebayes for the moment.
+
 #2017-05-30
 I use the 261 loci assembled by ipyrad on 2016-11-22 to build a reference set
 of loci. Then I download reads from other sequencing projects of Culex pipiens
