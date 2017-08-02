@@ -141,7 +141,7 @@ done
 
 if [ ! -d trimmed ]; then mkdir trimmed; fi
 for i in `seq 27 34`; do
-   if [ ! -e trimmed/SRR20296$i.foward.log ]; then
+   if [ ! -e trimmed/SRR20296$i.forward.log ]; then
       cutadapt -a GATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
                --max-n=5 \
                --minimum-length=50 \
@@ -169,10 +169,15 @@ done
 
 if [ ! -d bam ]; then mkdir bam; fi
 
+# I realized that I should map the reads in local mode, because many reads
+# are expected to overhang the loci selected as references. Using the default
+# end-to-end alignment in bowtie2 produces many spurious insertions in the
+# edges of the alignments.
+
 for i in `seq 27 34`; do
    if [ ! -e bam/SRR20296$i'_sorted.bam' ]; then
       if [ ! -e bam/SRR20296$i.bam ]; then
-         bowtie2 --fast \
+         bowtie2 --fast-local \
                  --no-unal \
                  --rg-id SRR20296$i \
                  --rg SM:SRR20296$i \
@@ -182,6 +187,9 @@ for i in `seq 27 34`; do
          samtools view -Sb - > bam/SRR20296$i.bam
       fi
       samtools sort bam/SRR20296$i.bam > bam/SRR20296$i'_sorted.bam'
-      #rm bam/SRR20296$i.bam
+      rm bam/SRR20296$i.bam
+      if [ ! -e bam/SRR20296$i'_sorted.bam.bai' ]; then
+         samtools index bam/SRR20296$i'_sorted.bam'
+      fi
    fi
 done

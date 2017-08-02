@@ -1,7 +1,7 @@
 This is cutadapt 1.13 with Python 2.7.13
 Command line parameters: -a GATCGGAAGAGCACACGTCTGAACTCCAGTCAC --max-n=5 --minimum-length=50 -o trimmed/SRR2029628.forward.fastq merged/SRR2029628.unassembled.forward.fastq
 Trimming 1 adapter with at most 10.0% errors in single-end mode ...
-Finished in 128.41 s (10 us/read; 5.92 M reads/minute).
+Finished in 130.79 s (10 us/read; 5.82 M reads/minute).
 
 === Summary ===
 
