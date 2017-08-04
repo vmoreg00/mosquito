@@ -36,11 +36,19 @@ if [ ! -e variants.vcf ] && [ ! -e variants.vcf.gz ]; then
 fi
 
 # From a fast look at a few loci in individual bam files, using samtools tview,
-# I realize that some loci suffer from paralogy problems, but are not difficult to
-# identify because they have a higher coverage and because of the presence of more
-# than two haplotypes per individual. Unfortunately, mpileup does not make any effort
-# to phase the variants. Up to now I've seen one program that can use reads to phase
-# nearby variants, hapCUT2. But first, I need to filter the variants.
+# I suspect that some loci suffer from paralogy problems. The evidences are: an
+# aparent excess of coverage, the presence of more than two haplotypes, and the
+# fragmented nature of the (local, soft-clipped) alignments. The latter means that
+# some reads map to internal portions of the locus, but only along a small portion
+# of their length. This is the case in locus_522546. I think this is evidence of
+# paralogy, because a high number of reads, unlikely to be all chimeric, seem to
+# have been soft-clipped around the same positions, as if the rest of their lengths
+# were mapping somewhere else. To remove those spurious mappings, I should map first
+# the reads to a version of the C. quinquefasciatus genome where the loci of interest
+# had been removed, to discard reads that map somewhere else.
+#
+# I also notice much fewer reads are reported to support variants than originally
+# present in the bam files.
 #
 # A balanced allelic depth in heterozygous is a clear indication of a variant being
 # true. If only homozygous samples are present, then a minimum depth should be required.
@@ -84,5 +92,5 @@ if [ ! -e variants.vcf.gz ]; then
 fi
 
 if [ ! -e filtered.vcf ]; then
-   $BCFTOOLS filter --output filtered.vcf --regions-file loci_dp_below_500.bed  variants.vcf.gz
+   $BCFTOOLS filter --output filtered.vcf --regions-file loci_dp_below_500.bed variants.vcf.gz
 fi
