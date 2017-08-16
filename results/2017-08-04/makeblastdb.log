@@ -1,0 +1,11 @@
+
+
+Building a new DB, current time: 08/16/2017 22:49:43
+New DB name:   Culex.fa
+New DB title:  Culex.fa
+Sequence type: Nucleotide
+Deleted existing BLAST database with identical name.
+Keep Linkouts: T
+Keep MBits: T
+Maximum file size: 1000000000B
+Adding sequences from FASTA; added 3172 sequences in 4.9426 seconds.
