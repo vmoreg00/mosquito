@@ -14,6 +14,7 @@
 # ones that did not map anywhere, just in case.
 
 LOCI=../2017-05-30/consensus.fasta
+READSDIR=../2017-05-30/trimmed
 
 if [ ! -e Culex.fa.nhr ]; then
    if [ ! -e Culex.fa ]; then
@@ -53,14 +54,14 @@ fi
 
 if [ ! -e valid_regions.txt ]; then
    # I need to sort the blast hits first by qseqid, and then by bitscore in reverse order.
-   sort -k 1.7n,1 -k 13gr,13 -k 3n,3 -k 5.13n,5 -k 7n,7 loci.blast | \
+   LC_ALL=C sort -k 1.7n,1 -k 13gr,13 -k 3n,3 -k 5.13n,5 -k 7n,7 loci.blast | \
    gawk '{
       HIT[$1]++
       BITSCORE[$1, HIT[$1]] = $13
       QALIGNED[$1, HIT[$1]] = $4 - $3 + 1
       QLEN[$1] = $2
       SSEQID[$1, HIT[$1]] = $5
-      if ($9 ~ plus) {
+      if ($9 == "plus") {
          SSTART[$1, HIT[$1]] = $7
          SEND[$1, HIT[$1]] = $8
       } else {
@@ -71,13 +72,105 @@ if [ ! -e valid_regions.txt ]; then
       for (QSEQID in HIT) {
          if (HIT[QSEQID] > 1) {
             if ((BITSCORE[QSEQID, 1] / BITSCORE[QSEQID, 2] > 1.5) && (QALIGNED[QSEQID, 1] > 0.8 * QLEN[QSEQID]) && (SSEQID[QSEQID, 1] !~ "Mt")) {
-               print QSEQID "\t" SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200
+               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200 "\t" QSEQID
             }
          } else {
             if ((QALIGNED[QSEQID, 1] > 0.8 * QLEN[QSEQID]) && (SSEQID[QSEQID, 1] !~ "Mt")) {
-               print QSEQID "\t" SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200
+               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200 "\t" QSEQID
             }
          }
       }
-   }' > valid_regions.txt
+   }' | LC_ALL=C sort -k 1.12g,1 -k 2n,2 -k 3n,3 > valid_regions.txt
 fi
+
+# I notice some overlaps of valid regions that should correspond to different loci.
+# locus_555106 locus_367966 map to opposite strands of the same region. When I align
+# the consensus sequences from the two loci with exonerate, I obtain this alignment:
+#
+# C4 Alignment:
+# ------------
+#          Query: locus_367966 [revcomp]
+#         Target: locus_555106
+#          Model: ungapped:dna2dna
+#      Raw score: 561
+#    Query range: 247 -> 3
+#   Target range: 134 -> 378
+#
+#  247 : TGATCTTTCTTTGGCCCAACTCCCCTTCCCTCTCTAATTTCAATTGTCATTGCTCGACTTACTA : 184
+#        ||||| ||||  || |||   || |  ||:|| |  ||:|| || ||||| |  ||    || |
+#  135 : TGATCCTTCTCAGGKCCACAACCGCGACCYTCGCGGATYTCGATRGTCATCGAACGGGACACSA : 198
+#
+#  183 : CATCACGAGAAGCCAAATCTTTTGCCTTTGGCGCATAACGTTCCATAAACTTCTCACCCTGAGA : 120
+#        | ||||| || ||:||||| || ||:   || ||||| || ||||| ||    |||||||||||
+#  199 : CGTCACGGGAGGCYAAATCCTTCGCYACCGGTGCATATCGCTCCATGaaacgttcaccctgaga : 262
+#
+#  119 : ATTAACGAGGTACCCACCTTCACCGCGGCATCCTTCCGTCATCAAGCACCCTGAGCCATATATT :  56
+#         || |  ||||| |||||||| || |||||||| || || ||||  || || |  || || |||
+#  263 : gttgatcaggtagccaccttctcctcggcatccctcggtgatcagacaaccggcaccgtagatt : 326
+#
+#   55 : CCTGTTGGATGAAATTGCACAAAYTCCATATCTTCAAGTGGCAACCCAGCTC :   4
+#        || || || || || ||||||||:|||| ||| ||    ||||  ||||| |
+#  327 : cccgtcgggtggaactgcacaaactccagatcctccgagggcagtccagcac : 378
+#
+# vulgar: locus_367966 247 3 - locus_555106 134 378 + 561 M 244 244
+#
+# Other apparent overlaps are just due to the two loci being adjacent to each other.
+# In principle, in this step I only need to determine to what regions of a reference
+# genome reads should map in order to believe them as evidence of the genotypes at
+# certain loci. I do not need to exclude loci now. Reads that seem to be generated
+# by a valid region may map to both loci, and get discarded then.
+#
+# Now, let's map the available reads to the reference genome and extract the reads
+# that map either to the valid regions or nowhere in the genome. A strict mapping
+# setting is necessary to exclude from further analysis only the reads that we can
+# confidently attribute to loci that are not of interest. End-to-end alignment is
+# in order.
+
+if [ ! -e Culex.1.bt2 ]; then
+   bowtie2-build Culex.fa Culex
+fi
+
+if [ ! -d bam ]; then mkdir bam; fi
+
+# Recall the origin of the reads, published by Asgharian et al. (2015):
+#
+# ---------------------------------------------------------------
+# Run           Organism        Sampling_site           MegaBases
+# ---------------------------------------------------------------
+# SRR2029627    Culex pipiens   Aleksin Urban A1        2516
+# SRR2029628    Culex pipiens   Aleksin Suburban A4     4901
+# SRR2029629    Culex pipiens   Moscow Urban M1         6618
+# SRR2029630    Cx. torrentium  Moscow Suburban M2      6535
+# SRR2029631    Culex pipiens   Sacramento Urban S1     3370
+# SRR2029632    Culex pipiens   Sacramento Suburban S2  6037
+# SRR2029633    Culex pipiens   Sacramento Suburban S3  5520
+# SRR2029634    Cx. torrentium  Moscow Suburban M4      3306
+# ---------------------------------------------------------------
+#
+# Following the analysis in 2017-07-19, I will change the original group names:
+
+ORIGINAL=( SRR2029627 SRR2029628 SRR2029629 SRR2029630
+           SRR2029631 SRR2029632 SRR2029633 SRR2029634 )
+
+NEWNAME=( PipA1 PipA4 PipM1 TorM2 PipS1  PipS2  PipS3 TorM4 )
+
+
+for i in 0 1 2 3 4 5 6 7; do
+   if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam' ]; then
+      if [ ! -e bam/${NEWNAME[$i].bam ]; then
+         bowtie2 --sensitive \
+                 --rg-id ${NEWNAME[$i]} \
+                 --rg SM:${NEWNAME[$i]} \
+                 --threads 6 \
+                 -x Culex \
+                 -U $READSDIR/${ORIGINAL[$i]}.forward.fastq,$READSDIR/${ORIGINAL[$i]}.reverse.fastq,$READSDIR/${ORIGINAL[$i]}.merged.fastq 2> bam/${NEWNAME[$i]}.log |
+         samtools view -Sb - > bam/${NEWNAME[$i]}.bam
+      fi
+      samtools sort bam/${NEWNAME[$i]}.bam > bam/${NEWNAME[$i]}'_sorted.bam'
+      rm bam/${NEWNAME[$i]}.bam
+      if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam.bai' ]; then
+         samtools index bam/${NEWNAME[$i]}'_sorted.bam'
+      fi
+   fi
+done
+
