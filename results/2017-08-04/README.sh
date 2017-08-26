@@ -52,7 +52,7 @@ fi
 # of the first and the second hits. I consider unique a best hit with a score at least 1.5
 # times larger than the second best.
 
-if [ ! -e valid_regions.txt ]; then
+if [ ! -e valid_regions.bed ]; then
    # I need to sort the blast hits first by qseqid, and then by bitscore in reverse order.
    LC_ALL=C sort -k 1.7n,1 -k 13gr,13 -k 3n,3 -k 5.13n,5 -k 7n,7 loci.blast | \
    gawk '{
@@ -72,15 +72,15 @@ if [ ! -e valid_regions.txt ]; then
       for (QSEQID in HIT) {
          if (HIT[QSEQID] > 1) {
             if ((BITSCORE[QSEQID, 1] / BITSCORE[QSEQID, 2] > 1.5) && (QALIGNED[QSEQID, 1] > 0.8 * QLEN[QSEQID]) && (SSEQID[QSEQID, 1] !~ "Mt")) {
-               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200 "\t" QSEQID
+               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 1 "\t" SEND[QSEQID, 1] "\t" QSEQID
             }
          } else {
             if ((QALIGNED[QSEQID, 1] > 0.8 * QLEN[QSEQID]) && (SSEQID[QSEQID, 1] !~ "Mt")) {
-               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 200 "\t" SEND[QSEQID, 1] + 200 "\t" QSEQID
+               print SSEQID[QSEQID, 1] "\t" SSTART[QSEQID, 1] - 1 "\t" SEND[QSEQID, 1] "\t" QSEQID
             }
          }
       }
-   }' | LC_ALL=C sort -k 1.12g,1 -k 2n,2 -k 3n,3 > valid_regions.txt
+   }' | LC_ALL=C sort -k 1.12g,1 -k 2n,2 -k 3n,3 > valid_regions.bed
 fi
 
 # I notice some overlaps of valid regions that should correspond to different loci.
@@ -157,7 +157,7 @@ NEWNAME=( PipA1 PipA4 PipM1 TorM2 PipS1  PipS2  PipS3 TorM4 )
 
 for i in 0 1 2 3 4 5 6 7; do
    if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam' ]; then
-      if [ ! -e bam/${NEWNAME[$i].bam ]; then
+      if [ ! -e bam/${NEWNAME[$i]}.bam ]; then
          bowtie2 --sensitive \
                  --rg-id ${NEWNAME[$i]} \
                  --rg SM:${NEWNAME[$i]} \
@@ -174,3 +174,47 @@ for i in 0 1 2 3 4 5 6 7; do
    fi
 done
 
+if [ ! -e bam/summary.txt ]; then
+   echo -e "Sample\t        Unaligned\t     Aligned_once\tAligned_ambiguous\tAlignment_rate" > bam/summary.txt
+   for i in 4 5 6 0 1 2 3 7; do
+      gawk -v SAMPLE=${NEWNAME[$i]} '(/aligned 0 times/){
+         UNALIGNED = $1 " " $2
+      }(/aligned exactly 1 time/){
+         ONCE = $1 " " $2
+      }(/aligned >1 times/){
+         MULTIPLE = $1 " " $2
+      }(/overall alignment rate/){
+         RATE = $1
+      }END{
+         printf("%s\t% 17s\t% 17s\t% 17s\t%s\n", SAMPLE, UNALIGNED, ONCE, MULTIPLE, RATE)
+      }' bam/${NEWNAME[$i]}.log >> bam/summary.txt
+   done
+fi
+
+# ----------------------------------------------------------------------------------------------------
+# Sample	        Unaligned	     Aligned_once	Aligned_ambiguous	Alignment_rate
+# ----------------------------------------------------------------------------------------------------
+# PipS1 	 8981600 (30.95%)	 8338628 (28.74%)	11696049 (40.31%)	        69.05%
+# PipS2 	11377823 (25.13%)	16065682 (35.48%)	17840750 (39.40%)	        74.87%
+# PipS3 	13288590 (32.36%)	11939942 (29.07%)	15839026 (38.57%)	        67.64%
+# PipA1 	 6552769 (34.45%)	 6503921 (34.20%)	 5962175 (31.35%)	        65.55%
+# PipA4 	13982465 (37.30%)	 7879847 (21.02%)	15619511 (41.67%)	        62.70%
+# PipM1 	18846726 (35.33%)	14952687 (28.03%)	19543652 (36.64%)	        64.67%
+# TorM2 	28411160 (54.67%)	 9463321 (18.21%)	14096170 (27.12%)	        45.33%
+# TorM4 	16202316 (57.99%)	 3722156 (13.32%)	 8015475 (28.69%)	        42.01%
+# ----------------------------------------------------------------------------------------------------
+#
+# Now, I should select the reads that are either unaligned or aligned confidently
+# to the valid loci.
+
+if [ ! -d fastq ]; then mkdir fastq; fi
+
+for i in 0 1 2 3 4 5 6 7; do
+   if [ ! -e fastq/${NEWNAME[$i]}.fastq ]; then
+      samtools view -f 4 bam/${NEWNAME[$i]}'_sorted.bam' | \
+      gawk -v DESCRIPTION="not_placed" -f sam2fastq.awk > fastq/${NEWNAME[$i]}.fastq
+
+      samtools view -q 30 -L valid_regions.bed bam/${NEWNAME[$i]}'_sorted.bam' | \
+      gawk -v DESCRIPTION="from_valid" -f sam2fastq.awk >> fastq/${NEWNAME[$i]}.fastq
+   fi
+done
