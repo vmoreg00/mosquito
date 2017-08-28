@@ -156,20 +156,25 @@ NEWNAME=( PipA1 PipA4 PipM1 TorM2 PipS1  PipS2  PipS3 TorM4 )
 
 
 for i in 0 1 2 3 4 5 6 7; do
-   if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam' ]; then
-      if [ ! -e bam/${NEWNAME[$i]}.bam ]; then
-         bowtie2 --sensitive \
-                 --rg-id ${NEWNAME[$i]} \
-                 --rg SM:${NEWNAME[$i]} \
-                 --threads 6 \
-                 -x Culex \
-                 -U $READSDIR/${ORIGINAL[$i]}.forward.fastq,$READSDIR/${ORIGINAL[$i]}.reverse.fastq,$READSDIR/${ORIGINAL[$i]}.merged.fastq 2> bam/${NEWNAME[$i]}.log |
-         samtools view -Sb - > bam/${NEWNAME[$i]}.bam
-      fi
-      samtools sort bam/${NEWNAME[$i]}.bam > bam/${NEWNAME[$i]}'_sorted.bam'
-      rm bam/${NEWNAME[$i]}.bam
-      if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam.bai' ]; then
-         samtools index bam/${NEWNAME[$i]}'_sorted.bam'
+   # The bam files take a lot of memory and are not necessary. They will be
+   # erased. Thus, I need to generate them only if I do not have the final
+   # result.
+   if [ ! -e fastq/${NEWNAME[$i]}.fastq ]; then
+      if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam' ]; then
+         if [ ! -e bam/${NEWNAME[$i]}.bam ]; then
+            bowtie2 --sensitive \
+                    --rg-id ${NEWNAME[$i]} \
+                    --rg SM:${NEWNAME[$i]} \
+                    --threads 6 \
+                    -x Culex \
+                    -U $READSDIR/${ORIGINAL[$i]}.forward.fastq,$READSDIR/${ORIGINAL[$i]}.reverse.fastq,$READSDIR/${ORIGINAL[$i]}.merged.fastq 2> bam/${NEWNAME[$i]}.log |
+            samtools view -Sb - > bam/${NEWNAME[$i]}.bam
+         fi
+         samtools sort bam/${NEWNAME[$i]}.bam > bam/${NEWNAME[$i]}'_sorted.bam'
+         rm bam/${NEWNAME[$i]}.bam
+         if [ ! -e bam/${NEWNAME[$i]}'_sorted.bam.bai' ]; then
+            samtools index bam/${NEWNAME[$i]}'_sorted.bam'
+         fi
       fi
    fi
 done
@@ -218,3 +223,39 @@ for i in 0 1 2 3 4 5 6 7; do
       gawk -v DESCRIPTION="from_valid" -f sam2fastq.awk >> fastq/${NEWNAME[$i]}.fastq
    fi
 done
+
+if [ ! -e fastq/summary.txt ]; then
+   echo -e "Sample\tNot_placed\tFrom_valid\t   Total\tFraction" > fastq/summary.txt
+   for i in 4 5 6 0 1 2 3 7; do
+      ORIGINAL=`gawk '(/reads; of these:/){print $1}' bam/${NEWNAME[$i]}.log`
+      gawk -v SAMPLE=${NEWNAME[$i]} -v ORIGINAL=$ORIGINAL '(NR % 4 == 1){
+         F[$2]++
+      }END{
+         TOTAL = F["not_placed"] + F["from_valid"]
+         printf("% 6s\t% 10u\t% 10u\t% 8u\t% 8.2f\n", SAMPLE, F["not_placed"], F["from_valid"], TOTAL, TOTAL / ORIGINAL)
+      }' fastq/${NEWNAME[$i]}.fastq >> fastq/summary.txt
+
+   rm bam/${NEWNAME[$i]}'_sorted.bam*'
+   done
+fi
+
+# This are the numbers of reads of each type, which will be used to
+# genotype the loci previously identified.
+#
+# ----------------------------------------------------------------------
+# Sample	Not_placed	From_valid	   Total	Fraction
+# ----------------------------------------------------------------------
+#  PipS1	   8981600	      2345	 8983945	    0.31
+#  PipS2	  11377823	      6769	11384592	    0.25
+#  PipS3	  13288590	      4997	13293587	    0.32
+#  PipA1	   6552769	      3183	 6555952	    0.34
+#  PipA4	  13982465	      2451	13984916	    0.37
+#  PipM1	  18846726	      5939	18852665	    0.35
+#  TorM2	  28411160	      4530	28415690	    0.55
+#  TorM4	  16202316	      1499	16203815	    0.58
+# ----------------------------------------------------------------------
+#
+# So, I have removed more than 60% of the original reads in Culex pipiens
+# samples, but not even 50% from the Culex torrentium samples. In any case,
+# I expect this clean up to improve the mapping of the remaining reads to the
+# consensus sequences of the loci already sequenced in our own samples.
