@@ -8,6 +8,27 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2017-08-29
+Here, I use the reads from Asgharian et al. (2015) selected on 2017-08-04 to
+map them against the consensus sequences of the loci assembled by ipyrad from
+our dataset.
+
+#2017-08-04
+Asgharian et al.'s reads need to be mapped to the consensus sequences of selected
+loci in local mode. That is, allowing for partial alignments, since reads are
+expected to extend beyond the loci often. The problem then is that many spurious
+partial alignments confound the true genotypes of the sequenced individual at
+those loci. In this folder, I use the Culex quinquefasciatus reference genome
+to first locate the selected loci in the genome, and then filter out the reads
+from the Asgharian et al. dataset that map anywhere else in that reference genome.
+I reduce the number of reads from Culex pipiens samples to about 35%, and those
+from C. torrentium to about 58%.
+
+#2017-07-19
+Since freebayes throws an error, and the bug is to be solved, I resorted to use
+bcftools to genotype the samples sequenced by Asgharian et al. at the loci selected
+before.
+
 #2017-07-14
 Attempt to get a consensus sequence (or pair of haplotypes) for each mosquito
 sequenced by Asgharian et al. (2015) at loci assembled before with ipyrad. I
