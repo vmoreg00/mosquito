@@ -1,0 +1,325 @@
+INFO  11:07:38,149 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,152 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.8-1-0-gf15c1c3ef, Compiled 2018/02/19 05:43:50 
+INFO  11:07:38,153 HelpFormatter - Copyright (c) 2010-2016 The Broad Institute 
+INFO  11:07:38,153 HelpFormatter - For support and documentation go to https://software.broadinstitute.org/gatk 
+INFO  11:07:38,154 HelpFormatter - [Mon Nov 12 11:07:38 CET 2018] Executing on Linux 3.16.0-77-generic amd64 
+INFO  11:07:38,154 HelpFormatter - Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03 
+INFO  11:07:38,158 HelpFormatter - Program Args: -T HaplotypeCaller -R /data/victor/mosquito/data/refgenome/CulQui.fna -I bam/3.molM1.subset.bam --output_mode EMIT_ALL_CONFIDENT_SITES --emitRefConfidence GVCF --sample_ploidy 52 --max_alternate_alleles 3 --max_num_PL_values 100000 --variant_index_type LINEAR --variant_index_parameter 128000 --num_cpu_threads_per_data_thread 8 --log_to_file vcf/3.molM1.log -o vcf/3.molM1.g.vcf 
+INFO  11:07:38,164 HelpFormatter - Executing as victor@pascual-RS920-E7-RS8 on Linux 3.16.0-77-generic amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03. 
+INFO  11:07:38,164 HelpFormatter - Date/Time: 2018/11/12 11:07:38 
+INFO  11:07:38,164 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,165 HelpFormatter - ------------------------------------------------------------------------------------ 
+WARN  11:07:38,169 GATKVCFUtils - Naming your output file using the .g.vcf extension will automatically set the appropriate values  for --variant_index_type and --variant_index_parameter 
+INFO  11:07:38,217 GenomeAnalysisEngine - Deflater: IntelDeflater 
+INFO  11:07:38,218 GenomeAnalysisEngine - Inflater: IntelInflater 
+INFO  11:07:38,220 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  11:07:39,746 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 500 
+INFO  11:07:39,757 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  11:07:39,960 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.20 
+INFO  11:07:40,072 HCMappingQualityFilter - Filtering out reads with MAPQ < 20 
+INFO  11:07:40,131 MicroScheduler - Running the GATK in parallel mode with 8 total threads, 8 CPU thread(s) for each of 1 data thread(s), of 64 processors available on this machine 
+INFO  11:07:41,476 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  11:07:42,444 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  11:07:42,446 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  11:07:42,447 ProgressMeter -                 |      processed |    time |         per 1M |           |   total | remaining 
+INFO  11:07:42,447 ProgressMeter -        Location | active regions | elapsed | active regions | completed | runtime |   runtime 
+INFO  11:07:42,448 HaplotypeCaller - Currently, physical phasing is not available when ploidy is different than 2; therefore it won't be performed 
+INFO  11:07:42,449 HaplotypeCaller - Standard Emitting and Calling confidence set to 0.0 for reference-model confidence output 
+INFO  11:07:42,449 HaplotypeCaller - All sites annotated with PLs forced to true for reference-model confidence output 
+WARN  11:07:42,526 InbreedingCoeff - Annotation will not be calculated. InbreedingCoeff requires at least 10 unrelated samples. 
+INFO  11:07:42,859 HaplotypeCaller - Using global mismapping rate of 45 => -4.5 in log10 likelihood units 
+INFO  11:07:42,860 PairHMM - Performance profiling for PairHMM is disabled because the program is being run with multiple threads (-nct>1) option
+Profiling is enabled only when running in single thread mode
+ 
+INFO  11:07:45,109 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:45,157 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:45,109 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:45,809 HaplotypeScore - Annotation will not be calculated, must be called from UnifiedGenotyper, not HaplotypeCaller 
+WARN  11:07:45,836 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:07:45,961 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:07:45,992 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+INFO  11:07:47,158 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:47,409 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CGA] 
+WARN  11:07:47,416 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TTTGG*, T] 
+INFO  11:07:47,625 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:48,777 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:48,801 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+WARN  11:07:48,826 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+INFO  11:07:49,718 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:49,988 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:51,641 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GGTGGTGC] 
+WARN  11:07:52,849 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:07:55,089 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGTT*, G] 
+WARN  11:07:57,122 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CGG*, C] 
+WARN  11:07:57,348 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:07:59,042 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:07:59,794 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CCG*, C] 
+WARN  11:08:00,950 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TCCA] 
+WARN  11:08:01,357 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GCTCCCC*, G] 
+WARN  11:08:01,375 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ACTCTTT] 
+WARN  11:08:04,509 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:08:05,885 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AGT*, GGT] 
+WARN  11:08:07,079 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:08:07,084 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CCA] 
+WARN  11:08:07,914 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GCCCTT] 
+WARN  11:08:08,781 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TCACA*, T] 
+WARN  11:08:10,124 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TG*, GG] 
+WARN  11:08:11,308 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:08:11,344 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CCGT] 
+WARN  11:08:11,514 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TGCTG*, CGCTG] 
+INFO  11:08:12,459 ProgressMeter - NW_001889813.1:11983         660950.0    30.0 s           45.0 s        0.1%     7.2 h       7.2 h 
+WARN  11:08:13,789 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:08:14,924 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TGG*, TGAGG] 
+WARN  11:08:14,940 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGGAA*, G] 
+WARN  11:08:14,945 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GAA*, G] 
+WARN  11:08:14,997 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GTTACAAAAA*, GTACAAAAA] 
+WARN  11:08:15,336 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:08:15,339 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:08:15,347 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:15,557 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+WARN  11:08:15,563 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GT] 
+WARN  11:08:17,416 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TCA*, T] 
+WARN  11:08:17,760 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TAA] 
+WARN  11:08:17,779 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:08:17,974 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ACCCCCCC*, A] 
+WARN  11:08:19,946 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:08:20,566 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GC*, AC] 
+WARN  11:08:21,445 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 5, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ATTGCCGGCG] 
+WARN  11:08:23,627 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:08:24,876 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:08:24,881 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:08:25,171 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+WARN  11:08:26,016 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TC] 
+WARN  11:08:26,165 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:08:26,180 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[CTGT*, CTGTTTATATTGT] 
+WARN  11:08:26,223 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:08:26,465 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TC*, T] 
+WARN  11:08:26,472 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:08:26,889 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:08:26,908 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:28,462 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:29,488 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TAC*, GAC] 
+WARN  11:08:29,645 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CAAATTA*, C] 
+WARN  11:08:29,906 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CAA*, C] 
+WARN  11:08:34,831 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+INFO  11:08:42,555 ProgressMeter - NW_001889776.1:12056        1210748.0    60.0 s           49.0 s        0.2%     7.9 h       7.9 h 
+WARN  11:08:44,057 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CTTATA] 
+WARN  11:08:44,235 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:08:52,425 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:52,433 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:52,561 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+WARN  11:08:52,605 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:08:52,636 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CTT*, C] 
+WARN  11:08:52,665 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ATT*, A] 
+WARN  11:08:52,676 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:08:52,893 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GATATTATTTGAAA] 
+WARN  11:08:53,301 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TA*, T] 
+WARN  11:08:53,328 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CAAAA*, CAA] 
+WARN  11:08:53,359 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GAA*, GA] 
+WARN  11:08:54,030 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:08:54,465 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GAAA*, G] 
+WARN  11:08:54,886 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TAA] 
+WARN  11:08:54,915 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+WARN  11:08:55,038 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GA*, G] 
+WARN  11:08:56,526 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ACCGTCG] 
+WARN  11:08:58,850 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AGTTT*, AGTTTGTTT] 
+WARN  11:08:59,174 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:08:59,838 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CA] 
+WARN  11:09:01,294 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ACC*, AC] 
+WARN  11:09:02,847 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CAA] 
+WARN  11:09:02,852 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:09:02,876 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TC] 
+WARN  11:09:04,981 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:09:06,580 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:09:06,854 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:09:07,237 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGTT*, G] 
+WARN  11:09:08,052 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:09,305 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TA*, AA] 
+WARN  11:09:09,507 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GTTTT] 
+WARN  11:09:09,922 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:09:11,607 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[GA*, GAA] 
+WARN  11:09:12,308 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GT*, CT] 
+INFO  11:09:12,557 ProgressMeter - NW_001889748.1:13406        1648308.0    90.0 s           54.0 s        0.3%     8.7 h       8.7 h 
+WARN  11:09:13,287 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:09:14,186 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AACCTTG] 
+WARN  11:09:15,821 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:09:17,026 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:09:17,614 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CCA] 
+WARN  11:09:18,566 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:09:18,989 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GCA*, G] 
+WARN  11:09:22,585 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:09:22,892 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AG] 
+WARN  11:09:22,894 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ATGCTCATG] 
+WARN  11:09:23,578 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:09:24,317 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:09:24,788 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GATTT] 
+WARN  11:09:24,982 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AT*, ATT] 
+WARN  11:09:27,087 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:27,099 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:09:27,985 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GCC] 
+WARN  11:09:28,874 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AGCAGCAG*, ACAG] 
+WARN  11:09:28,959 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TCTGCTG*, T] 
+WARN  11:09:29,466 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GT] 
+WARN  11:09:30,288 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:09:30,735 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:09:31,192 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AAAAG] 
+WARN  11:09:32,862 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CTTTTTTT*, C] 
+WARN  11:09:32,872 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TAC] 
+WARN  11:09:32,887 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:09:34,843 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, T] 
+WARN  11:09:36,837 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:09:37,784 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CT*, C] 
+WARN  11:09:38,290 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CGGGCCACCACCGCG] 
+WARN  11:09:38,310 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GA] 
+WARN  11:09:38,498 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:09:39,890 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TGCTTCTG] 
+WARN  11:09:39,907 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ATGGTG] 
+WARN  11:09:39,909 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:09:39,916 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TGG] 
+WARN  11:09:40,785 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:41,480 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+INFO  11:09:42,559 ProgressMeter - NW_001889685.1:14386        2701982.0   120.0 s           44.0 s        0.5%     7.1 h       7.1 h 
+WARN  11:09:43,506 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GTT*, G] 
+WARN  11:09:44,870 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:09:47,590 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:09:47,608 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:09:48,252 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGA*, AGA] 
+WARN  11:09:48,452 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TA] 
+WARN  11:09:49,967 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:09:49,969 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:50,006 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:09:50,646 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TAA*, AAA] 
+WARN  11:09:51,475 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AC] 
+WARN  11:09:51,479 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:51,600 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TTTGGAA] 
+WARN  11:09:51,707 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ACGTTGGAATGTTTGGCGGAAGTGGTTAT] 
+WARN  11:09:53,320 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:09:53,349 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGGCGGTC*, GGGTC] 
+WARN  11:09:53,356 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:09:53,672 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:09:54,830 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TTCCCCAGG] 
+WARN  11:09:56,104 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CGGG*, C] 
+WARN  11:09:56,136 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CA] 
+WARN  11:09:56,190 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ATGTGTG*, AACTGTGTG] 
+WARN  11:09:56,349 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ACAGCGAAGCACATC] 
+WARN  11:09:57,196 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:09:58,763 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:09:59,050 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CCCGCCACACA] 
+WARN  11:10:00,227 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:00,337 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:10:00,753 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GGAA*, GA] 
+WARN  11:10:03,682 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:05,053 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:06,252 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[ATCTCTCTC*, A] 
+WARN  11:10:07,162 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ATTT] 
+WARN  11:10:08,335 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:10:08,464 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AG] 
+WARN  11:10:08,590 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AT*, A] 
+WARN  11:10:08,651 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:09,763 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+INFO  11:10:12,562 ProgressMeter - NW_001889647.1:20286        3321843.0     2.5 m           45.0 s        0.6%     7.2 h       7.2 h 
+WARN  11:10:14,026 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:17,912 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:18,004 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:18,551 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:10:18,873 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:19,733 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:20,547 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:21,459 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:21,710 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TCGATTTTG] 
+WARN  11:10:22,238 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, CGTAAAA] 
+WARN  11:10:22,661 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TA] 
+WARN  11:10:22,662 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:10:26,463 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:10:26,508 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:27,101 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:27,631 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[GAGGCAGA*, G] 
+WARN  11:10:27,651 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:10:27,847 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AGC*, A] 
+WARN  11:10:28,230 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:28,795 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:28,884 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GCTGCCGTA] 
+WARN  11:10:29,112 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, ATT] 
+WARN  11:10:29,119 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GT] 
+WARN  11:10:29,850 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:10:30,561 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:30,590 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:30,695 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:30,739 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, AGCGCGCGCGG] 
+WARN  11:10:33,044 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ACTTTTTCCCGGCCG*, A] 
+WARN  11:10:34,667 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:35,169 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, TTTTTC] 
+WARN  11:10:36,391 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:10:36,409 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[CT*, AT] 
+WARN  11:10:36,831 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, C] 
+WARN  11:10:37,308 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:37,643 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+WARN  11:10:37,729 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:37,748 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:37,910 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, A] 
+WARN  11:10:38,659 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, G] 
+INFO  11:10:42,564 ProgressMeter - NW_001889604.1:10289        3866250.0     3.0 m           46.0 s        0.7%     7.5 h       7.4 h 
+WARN  11:10:43,268 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:43,922 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, C] 
+WARN  11:10:44,087 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:10:44,101 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:44,304 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:44,982 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[ATTT*, A] 
+WARN  11:10:45,049 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:10:46,230 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:46,233 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:10:46,248 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TGG*, CGG] 
+WARN  11:10:46,253 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, A] 
+WARN  11:10:46,264 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:10:46,266 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, T] 
+WARN  11:10:46,272 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[A*, G] 
+WARN  11:10:46,274 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 6, whereas after trimming the allele count becomes 2. Alleles kept are:[ATATC*, TTATC] 
+WARN  11:10:46,278 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, T] 
+WARN  11:10:46,282 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[T*, C] 
+WARN  11:10:46,628 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, A] 
+WARN  11:10:47,542 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TGGTGG*, TG] 
+WARN  11:10:47,547 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[TGG*, T] 
+WARN  11:10:48,596 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[AGGC*, CGGC] 
+WARN  11:10:48,607 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 3, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:10:48,610 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[C*, G] 
+WARN  11:10:48,612 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 52 and original allele count is 4, whereas after trimming the allele count becomes 2. Alleles kept are:[G*, GGTGT] 
+INFO  11:11:12,566 ProgressMeter - NW_001888659.1:36754      2.3272985E7     3.5 m            9.0 s        4.0%    86.9 m      83.4 m 
+INFO  11:11:42,579 ProgressMeter - NW_001888104.1:72423      5.3647918E7     4.0 m            4.0 s        9.3%    43.1 m      39.1 m 
+INFO  11:12:12,582 ProgressMeter - NW_001887820.1:85799      8.2787424E7     4.5 m            3.0 s       14.3%    31.4 m      26.9 m 
+INFO  11:12:42,584 ProgressMeter - NW_001887645.1:45868     1.08115639E8     5.0 m            2.0 s       18.7%    26.8 m      21.8 m 
+INFO  11:13:12,587 ProgressMeter - NW_001887534.1:2501     1.27965615E8     5.5 m            2.0 s       22.1%    24.9 m      19.4 m 
+INFO  11:13:42,590 ProgressMeter - NW_001887436.1:28307     1.48612096E8     6.0 m            2.0 s       25.7%    23.4 m      17.4 m 
+INFO  11:14:12,593 ProgressMeter - NW_001887349.1:252456     1.69846216E8     6.5 m            2.0 s       29.4%    22.1 m      15.6 m 
+INFO  11:14:42,596 ProgressMeter - NW_001887273.1:1900     1.90762917E8     7.0 m            2.0 s       32.9%    21.2 m      14.2 m 
+INFO  11:15:12,600 ProgressMeter - NW_001887207.1:127690      2.1179763E8     7.5 m            2.0 s       36.6%    20.5 m      13.0 m 
+INFO  11:15:42,603 ProgressMeter - NW_001887148.1:383544     2.32910806E8     8.0 m            2.0 s       40.3%    19.9 m      11.9 m 
+INFO  11:16:12,606 ProgressMeter - NW_001887096.1:291509     2.53478361E8     8.5 m            2.0 s       43.8%    19.4 m      10.9 m 
+INFO  11:16:42,609 ProgressMeter - NW_001887049.1:151901     2.74013112E8     9.0 m            1.0 s       47.3%    19.0 m      10.0 m 
+INFO  11:17:12,613 ProgressMeter - NW_001887007.1:119200     2.93848844E8     9.5 m            1.0 s       50.8%    18.7 m       9.2 m 
+INFO  11:17:42,617 ProgressMeter - NW_001886966.1:121168     3.15493702E8    10.0 m            1.0 s       54.5%    18.3 m       8.3 m 
+INFO  11:18:13,210 ProgressMeter - NW_001886931.1:565300      3.3544337E8    10.5 m            1.0 s       58.0%    18.1 m       7.6 m 
+INFO  11:18:43,213 ProgressMeter - NW_001886898.1:672410     3.56472066E8    11.0 m            1.0 s       61.7%    17.8 m       6.8 m 
+INFO  11:19:13,216 ProgressMeter - NW_001886870.1:152579     3.77024625E8    11.5 m            1.0 s       65.1%    17.7 m       6.2 m 
+INFO  11:19:43,220 ProgressMeter - NW_001886846.1:607001     3.95789905E8    12.0 m            1.0 s       68.5%    17.5 m       5.5 m 
+INFO  11:20:13,223 ProgressMeter - NW_001886822.1:833183     4.15909385E8    12.5 m            1.0 s       72.0%    17.4 m       4.9 m 
+INFO  11:20:43,228 ProgressMeter - NW_001886800.1:939276     4.36289196E8    13.0 m            1.0 s       75.5%    17.2 m       4.2 m 
+INFO  11:21:13,232 ProgressMeter - NW_001886780.1:944616      4.5619894E8    13.5 m            1.0 s       78.9%    17.1 m       3.6 m 
+INFO  11:21:43,235 ProgressMeter - NW_001886762.1:1160297     4.75711352E8    14.0 m            1.0 s       82.4%    17.0 m       3.0 m 
+INFO  11:22:13,239 ProgressMeter - NW_001886746.1:1187825     4.96058182E8    14.5 m            1.0 s       85.9%    16.9 m       2.4 m 
+INFO  11:22:43,243 ProgressMeter - NW_001886732.1:571629     5.16509756E8    15.0 m            1.0 s       89.3%    16.8 m     107.0 s 
+INFO  11:23:13,247 ProgressMeter - NW_001886719.1:482942     5.37731876E8    15.5 m            1.0 s       92.9%    16.7 m      70.0 s 
+INFO  11:23:43,249 ProgressMeter - NW_001886701.1:2006201     5.75169078E8    16.0 m            1.0 s       99.7%    16.1 m       3.0 s 
+INFO  11:23:44,782 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:23:44,784 HaplotypeCaller - Ran local assembly on 1933426 active regions 
+INFO  11:23:44,818 ProgressMeter -            done     5.79042118E8    16.0 m            1.0 s      100.0%    16.0 m       0.0 s 
+INFO  11:23:44,818 ProgressMeter - Total runtime 962.37 secs, 16.04 min, 0.27 hours 
+INFO  11:23:44,819 MicroScheduler - 971828 reads were filtered out during the traversal out of approximately 1000000 total reads (97.18%) 
+INFO  11:23:44,819 MicroScheduler -   -> 0 reads (0.00% of total) failing BadCigarFilter 
+INFO  11:23:44,819 MicroScheduler -   -> 2718 reads (0.27% of total) failing DuplicateReadFilter 
+INFO  11:23:44,819 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  11:23:44,819 MicroScheduler -   -> 969110 reads (96.91% of total) failing HCMappingQualityFilter 
+INFO  11:23:44,820 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  11:23:44,820 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  11:23:44,820 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  11:23:44,820 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 

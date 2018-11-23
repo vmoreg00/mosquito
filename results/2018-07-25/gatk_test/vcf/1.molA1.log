@@ -1,0 +1,170 @@
+INFO  11:07:38,055 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,059 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.8-1-0-gf15c1c3ef, Compiled 2018/02/19 05:43:50 
+INFO  11:07:38,059 HelpFormatter - Copyright (c) 2010-2016 The Broad Institute 
+INFO  11:07:38,059 HelpFormatter - For support and documentation go to https://software.broadinstitute.org/gatk 
+INFO  11:07:38,060 HelpFormatter - [Mon Nov 12 11:07:38 CET 2018] Executing on Linux 3.16.0-77-generic amd64 
+INFO  11:07:38,060 HelpFormatter - Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03 
+INFO  11:07:38,064 HelpFormatter - Program Args: -T HaplotypeCaller -R /data/victor/mosquito/data/refgenome/CulQui.fna -I bam/1.molA1.subset.bam --output_mode EMIT_ALL_CONFIDENT_SITES --emitRefConfidence GVCF --sample_ploidy 41 --max_alternate_alleles 3 --max_num_PL_values 100000 --variant_index_type LINEAR --variant_index_parameter 128000 --num_cpu_threads_per_data_thread 8 --log_to_file vcf/1.molA1.log -o vcf/1.molA1.g.vcf 
+INFO  11:07:38,069 HelpFormatter - Executing as victor@pascual-RS920-E7-RS8 on Linux 3.16.0-77-generic amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03. 
+INFO  11:07:38,070 HelpFormatter - Date/Time: 2018/11/12 11:07:38 
+INFO  11:07:38,070 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,070 HelpFormatter - ------------------------------------------------------------------------------------ 
+WARN  11:07:38,075 GATKVCFUtils - Naming your output file using the .g.vcf extension will automatically set the appropriate values  for --variant_index_type and --variant_index_parameter 
+INFO  11:07:38,122 GenomeAnalysisEngine - Deflater: IntelDeflater 
+INFO  11:07:38,123 GenomeAnalysisEngine - Inflater: IntelInflater 
+INFO  11:07:38,124 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  11:07:39,561 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 500 
+INFO  11:07:39,569 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  11:07:39,719 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.15 
+INFO  11:07:39,797 HCMappingQualityFilter - Filtering out reads with MAPQ < 20 
+INFO  11:07:39,847 MicroScheduler - Running the GATK in parallel mode with 8 total threads, 8 CPU thread(s) for each of 1 data thread(s), of 64 processors available on this machine 
+INFO  11:07:40,935 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  11:07:41,902 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  11:07:41,903 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  11:07:41,904 ProgressMeter -                 |      processed |    time |         per 1M |           |   total | remaining 
+INFO  11:07:41,904 ProgressMeter -        Location | active regions | elapsed | active regions | completed | runtime |   runtime 
+INFO  11:07:41,905 HaplotypeCaller - Currently, physical phasing is not available when ploidy is different than 2; therefore it won't be performed 
+INFO  11:07:41,905 HaplotypeCaller - Standard Emitting and Calling confidence set to 0.0 for reference-model confidence output 
+INFO  11:07:41,906 HaplotypeCaller - All sites annotated with PLs forced to true for reference-model confidence output 
+WARN  11:07:41,974 InbreedingCoeff - Annotation will not be calculated. InbreedingCoeff requires at least 10 unrelated samples. 
+INFO  11:07:42,271 HaplotypeCaller - Using global mismapping rate of 45 => -4.5 in log10 likelihood units 
+INFO  11:07:42,272 PairHMM - Performance profiling for PairHMM is disabled because the program is being run with multiple threads (-nct>1) option
+Profiling is enabled only when running in single thread mode
+ 
+INFO  11:07:43,086 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:43,155 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:43,511 HaplotypeScore - Annotation will not be calculated, must be called from UnifiedGenotyper, not HaplotypeCaller 
+INFO  11:07:43,534 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:43,857 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+WARN  11:07:43,861 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+INFO  11:07:45,017 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:45,341 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:46,091 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:46,574 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:51,260 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:08:11,910 ProgressMeter - NW_001889765.1:8972        1383210.0    30.0 s           21.0 s        0.2%     3.5 h       3.5 h 
+WARN  11:08:12,176 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AAT, T] 
+WARN  11:08:13,728 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CAAAAA*, CA, C] 
+INFO  11:08:41,914 ProgressMeter - NW_001889690.1:22033        2603070.0    60.0 s           23.0 s        0.5%     3.7 h       3.7 h 
+WARN  11:08:44,311 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[GGA*, G, AGA] 
+WARN  11:08:52,676 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, C, AAAAAG] 
+WARN  11:08:52,915 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[TAA*, T, TTCGAA] 
+WARN  11:08:55,675 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GA, A] 
+WARN  11:09:09,583 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, G, ACTGCTGCTG] 
+INFO  11:09:11,916 ProgressMeter - NW_001889602.1:11531        3886846.0    90.0 s           23.0 s        0.7%     3.7 h       3.7 h 
+WARN  11:09:12,303 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CGGTG*, TGGTG, GGGTG] 
+WARN  11:09:16,759 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[GC*, G, GCC] 
+WARN  11:09:19,738 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, C, AGGT] 
+WARN  11:09:27,670 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, G, ATCGGCGTCG] 
+WARN  11:09:29,481 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GGA, GA] 
+WARN  11:09:32,900 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, T, GTT] 
+WARN  11:09:38,536 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, T, AATAT] 
+INFO  11:09:41,918 ProgressMeter - NW_001889498.1:20022        5331934.0   120.0 s           22.0 s        0.9%     3.6 h       3.6 h 
+WARN  11:09:42,514 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[AAT*, A, AAAACAT] 
+WARN  11:09:54,008 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GAA, GAAA] 
+WARN  11:09:54,588 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, G, ACAGTGT] 
+WARN  11:10:02,233 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GAGCCGC, GAGCGCC] 
+INFO  11:10:11,922 ProgressMeter - NW_001889411.1:13043        6618079.0     2.5 m           22.0 s        1.1%     3.6 h       3.6 h 
+WARN  11:10:15,620 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AGCCAGCCAGG, AGCCAGCCGGG] 
+WARN  11:10:25,490 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TCAC, TTCAC] 
+WARN  11:10:32,197 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CTTT*, CT, CTT] 
+INFO  11:10:41,925 ProgressMeter - NW_001889341.1:15922        7711458.0     3.0 m           23.0 s        1.3%     3.7 h       3.7 h 
+WARN  11:10:46,308 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[AATAT*, A, AATATAT] 
+WARN  11:10:48,081 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, C, T] 
+WARN  11:10:48,853 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CAA, CAAGAGA] 
+WARN  11:10:50,721 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[GCTGC*, G, ACTGC] 
+WARN  11:10:50,741 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, ACT, AGTAGGCCACACTGCGCT] 
+WARN  11:10:52,199 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CCCTT*, CCTCCTT, CCTACTCCTCCTCCTT] 
+WARN  11:10:52,212 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 5, whereas after trimming the allele count becomes 3. Alleles kept are:[CCT*, CTCT, C] 
+WARN  11:10:52,225 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CTT*, CATT, CACTCCTCCTCATT] 
+WARN  11:10:52,240 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, C, TCCAC] 
+WARN  11:10:58,987 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TC, TCTC] 
+WARN  11:11:03,075 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CTCTTTTT*, C, CTT] 
+WARN  11:11:09,533 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TTTTG, TTTGTTTTGTTTTG] 
+INFO  11:11:11,928 ProgressMeter - NW_001889284.1:13265        8651892.0     3.5 m           24.0 s        1.5%     3.9 h       3.8 h 
+WARN  11:11:18,194 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[AAACCGGAC*, CAACCGGAC, A] 
+INFO  11:11:41,930 ProgressMeter - NW_001889241.1:16686        9493502.0     4.0 m           25.0 s        1.6%     4.1 h       4.0 h 
+WARN  11:11:54,531 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CTGT*, C, CTGTTGT] 
+WARN  11:11:57,232 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CA, CAA] 
+WARN  11:12:05,118 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, G, TTCTTTTTTG] 
+INFO  11:12:11,933 ProgressMeter - NW_001889191.1:16429      1.0365333E7     4.5 m           26.0 s        1.8%     4.2 h       4.1 h 
+WARN  11:12:15,140 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 7, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CACACATACAT, CACACACACACAT] 
+WARN  11:12:16,514 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GTCT, A] 
+WARN  11:12:21,978 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[TC*, T, CC] 
+WARN  11:12:37,377 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 6, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AAACGAAC, AACGAACAC] 
+INFO  11:12:41,935 ProgressMeter - NW_001889146.1:16156      1.1193208E7     5.0 m           26.0 s        1.9%     4.3 h       4.2 h 
+WARN  11:13:06,574 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GCGTGCGGT, GTGCGTGGT] 
+INFO  11:13:11,957 ProgressMeter - NW_001889108.1:9590      1.1951744E7     5.5 m           27.0 s        2.1%     4.4 h       4.3 h 
+WARN  11:13:13,982 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CAGAG, G] 
+WARN  11:13:19,582 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GGTCCTGCT, GGATCCTGCT] 
+WARN  11:13:32,425 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, G, AT] 
+INFO  11:13:41,960 ProgressMeter - NW_001889076.1:17993      1.2556731E7     6.0 m           28.0 s        2.2%     4.6 h       4.5 h 
+WARN  11:13:44,116 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 5, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CTT, CATTCT] 
+WARN  11:13:51,035 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 5, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AGG, ATTTGG] 
+WARN  11:13:59,996 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[AGGGGGGT*, AGGGGT, AGGGGGT] 
+WARN  11:14:06,717 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CGG*, C, CTGG] 
+WARN  11:14:11,917 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, T, C] 
+INFO  11:14:11,962 ProgressMeter - NW_001889047.1:18396      1.3117029E7     6.5 m           29.0 s        2.3%     4.8 h       4.7 h 
+WARN  11:14:17,033 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CT*, TT, C] 
+WARN  11:14:25,183 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 6, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, T, G] 
+WARN  11:14:32,190 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CG*, C, CAG] 
+WARN  11:14:36,852 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, C, TC] 
+WARN  11:14:37,396 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[ATT*, A, AT] 
+INFO  11:14:41,964 ProgressMeter - NW_001889014.1:23605      1.3777978E7     7.0 m           30.0 s        2.4%     4.9 h       4.8 h 
+WARN  11:14:45,907 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TC, TTCCCCCCTCC] 
+WARN  11:14:49,202 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CCCT, CCCACCCT] 
+INFO  11:15:11,970 ProgressMeter - NW_001888974.1:22034      1.4677333E7     7.5 m           30.0 s        2.5%     4.9 h       4.8 h 
+WARN  11:15:23,814 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[GTTTT*, G, GTTT] 
+WARN  11:15:25,782 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, ACAACAACGGCAG, ACAACAACAACGGCGG] 
+WARN  11:15:36,491 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, GTTTA, GTT] 
+WARN  11:15:40,927 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TC, TTC] 
+WARN  11:15:40,950 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CAA, CACA] 
+INFO  11:15:41,973 ProgressMeter - NW_001888946.1:18318      1.5334011E7     8.0 m           31.0 s        2.7%     5.0 h       4.9 h 
+WARN  11:16:00,230 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TGC, C] 
+WARN  11:16:00,306 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[TAC*, T, TTCCCAC] 
+WARN  11:16:01,823 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, ACCGG, G] 
+WARN  11:16:08,191 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CCG, CGG] 
+INFO  11:16:11,976 ProgressMeter - NW_001888910.1:28190      1.6168026E7     8.5 m           31.0 s        2.8%     5.1 h       4.9 h 
+WARN  11:16:12,111 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[ATG*, GTG, AG] 
+WARN  11:16:18,590 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, TCGGCGGCGG, TCGGCGGCGGCGG] 
+WARN  11:16:22,838 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, A, GTCCATCGC] 
+WARN  11:16:27,769 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 5, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, ACC, T] 
+INFO  11:16:41,978 ProgressMeter - NW_001888883.1:10514      1.6792013E7     9.0 m           32.0 s        2.9%     5.2 h       5.0 h 
+WARN  11:16:53,219 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, C, TGCAGCTCTGTC] 
+WARN  11:16:53,423 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CCG, CG] 
+WARN  11:16:57,380 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, G, C] 
+WARN  11:16:58,190 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AGGCGGTC, AGGCTGTC] 
+WARN  11:17:02,156 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, G, TTG] 
+INFO  11:17:11,981 ProgressMeter - NW_001888662.1:35299      2.3165942E7     9.5 m           24.0 s        4.0%     4.0 h       3.8 h 
+INFO  11:17:41,984 ProgressMeter - NW_001888227.1:17501      4.4570502E7    10.0 m           13.0 s        7.7%     2.2 h     119.9 m 
+INFO  11:18:11,988 ProgressMeter - NW_001887975.1:85301      6.5334188E7    10.5 m            9.0 s       11.3%    92.9 m      82.4 m 
+INFO  11:18:41,991 ProgressMeter - NW_001887789.1:135381      8.6778591E7    11.0 m            7.0 s       15.0%    73.3 m      62.3 m 
+INFO  11:19:11,994 ProgressMeter - NW_001887647.1:22946      1.0780276E8    11.5 m            6.0 s       18.6%    61.8 m      50.3 m 
+INFO  11:19:41,997 ProgressMeter - NW_001887526.1:186290     1.29544337E8    12.0 m            5.0 s       22.4%    53.6 m      41.6 m 
+INFO  11:20:12,000 ProgressMeter - NW_001887416.1:153339      1.5322065E8    12.5 m            4.0 s       26.5%    47.2 m      34.7 m 
+INFO  11:20:42,002 ProgressMeter - NW_001887334.1:101674     1.73779558E8    13.0 m            4.0 s       30.0%    43.3 m      30.3 m 
+INFO  11:21:12,005 ProgressMeter - NW_001887258.1:180021      1.9520805E8    13.5 m            4.0 s       33.7%    40.0 m      26.5 m 
+INFO  11:21:42,009 ProgressMeter - NW_001887194.1:46001     2.16299375E8    14.0 m            3.0 s       37.4%    37.5 m      23.5 m 
+INFO  11:22:12,012 ProgressMeter - NW_001887128.1:378694     2.40660471E8    14.5 m            3.0 s       41.6%    34.8 m      20.3 m 
+INFO  11:22:42,015 ProgressMeter - NW_001887075.1:431102     2.62601492E8    15.0 m            3.0 s       45.4%    33.0 m      18.0 m 
+INFO  11:23:12,018 ProgressMeter - NW_001887010.1:29036     2.92397972E8    15.5 m            3.0 s       50.5%    30.7 m      15.2 m 
+INFO  11:23:42,020 ProgressMeter - NW_001886926.1:543404     3.38482537E8    16.0 m            2.0 s       58.5%    27.3 m      11.3 m 
+INFO  11:24:12,023 ProgressMeter - NW_001886866.1:355636     3.79975138E8    16.5 m            2.0 s       65.7%    25.1 m       8.6 m 
+INFO  11:24:42,025 ProgressMeter - NW_001886818.1:654470     4.19449778E8    17.0 m            2.0 s       72.6%    23.4 m       6.4 m 
+INFO  11:25:12,027 ProgressMeter - NW_001886776.1:857201     4.60351958E8    17.5 m            2.0 s       79.7%    22.0 m       4.5 m 
+INFO  11:25:42,030 ProgressMeter - NW_001886748.1:532565     4.93284554E8    18.0 m            2.0 s       85.3%    21.1 m       3.1 m 
+INFO  11:26:12,032 ProgressMeter - NW_001886726.1:707827     5.26110644E8    18.5 m            2.0 s       91.0%    20.3 m     110.0 s 
+INFO  11:26:42,035 ProgressMeter - NW_001886710.1:1631992      5.5392004E8    19.0 m            2.0 s       95.9%    19.8 m      48.0 s 
+INFO  11:27:06,490 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:27:06,491 HaplotypeCaller - Ran local assembly on 1938325 active regions 
+INFO  11:27:06,523 ProgressMeter -            done     5.79042118E8    19.4 m            2.0 s      100.0%    19.4 m       0.0 s 
+INFO  11:27:06,523 ProgressMeter - Total runtime 1164.62 secs, 19.41 min, 0.32 hours 
+INFO  11:27:06,524 MicroScheduler - 934882 reads were filtered out during the traversal out of approximately 1000000 total reads (93.49%) 
+INFO  11:27:06,524 MicroScheduler -   -> 0 reads (0.00% of total) failing BadCigarFilter 
+INFO  11:27:06,524 MicroScheduler -   -> 27862 reads (2.79% of total) failing DuplicateReadFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 907020 reads (90.70% of total) failing HCMappingQualityFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  11:27:06,525 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
