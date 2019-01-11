@@ -8,6 +8,27 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2019-01-07
+CRISP variant calling quality has been analysed. The quality seems good enough.
+There have been detected 15,985,630 SNVs (13,885,349 SNPs and 2,100,281 indels)
+with a mean quality of ~100 (min=20; max=4,025). There are 527,499 multiallelic
+SNPs and the ts/tv ratio is 1.23.
+
+#2018-07-25
+*In progress*
+
+#2018-06-01
+Asgharian et al.'s reads have been mapped against the Culex quinquefasciatus
+reference genome downloaded from the NCBI. Two programs have been used (BWA
+and Bowtie2). Finnaly, the best mapping quality have been returned by bwa mem
+algorithm, so this is the one selected in the ongoing analysis.
+
+#2018-04-20
+As a TFM proyect, Culex sequence data is being re-analysed, following this
+proyect. This day, the Asgharian et al.'s data have been downloaded, its
+quality has been checked and the reads have been filtered and trimmed by
+quality. The final fastQC report is good enough to continue with the analysis
+
 #2017-08-29
 Here, I use the reads from Asgharian et al. (2015) selected on 2017-08-04 to
 map them against the consensus sequences of the loci assembled by ipyrad from
