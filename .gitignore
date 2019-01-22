@@ -1,0 +1,10 @@
+data/
+*.bam
+*.bai
+*.vcf
+*.bcf
+results/2018-07-25/correlation_gatk_fb/*.csv
+results/2018-07-25/crisp_test/*.log
+results/2018-07-25/crisp_test/*.list
+results/2018-07-25/gatk_test/vcf/*.idx
+results/2018-07-25/gatk_test/vcf/*.log

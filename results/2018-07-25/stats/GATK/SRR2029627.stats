@@ -1,0 +1,178 @@
+# This file was produced by bcftools stats (1.5-19-g3e6433f+htslib-1.5-10-gcc55632) and can be plotted using plot-vcfstats.
+# The command line was:	bcftools stats  -F /data/victor/mosquito/data/refgenome/CulQui.fna /data/victor/mosquito/data/asgharian/vcf/GATK/SRR2029627.vcf
+#
+# Definition of sets:
+# ID	[2]id	[3]tab-separated file names
+ID	0	/data/victor/mosquito/data/asgharian/vcf/GATK/SRR2029627.vcf
+# SN, Summary numbers:
+# SN	[2]id	[3]key	[4]value
+SN	0	number of samples:	1
+SN	0	number of records:	4509
+SN	0	number of no-ALTs:	0
+SN	0	number of SNPs:	130
+SN	0	number of MNPs:	0
+SN	0	number of indels:	37
+SN	0	number of others:	4509
+SN	0	number of multiallelic sites:	166
+SN	0	number of multiallelic SNP sites:	0
+# TSTV, transitions/transversions:
+# TSTV	[2]id	[3]ts	[4]tv	[5]ts/tv	[6]ts (1st ALT)	[7]tv (1st ALT)	[8]ts/tv (1st ALT)
+TSTV	0	71	61	1.16	69	60	1.15
+# ICS, Indel context summary:
+# ICS	[2]id	[3]repeat-consistent	[4]repeat-inconsistent	[5]not applicable	[6]c/(c+i) ratio
+ICS	0	9	2	27	0.8182
+# ICL, Indel context by length:
+# ICL	[2]id	[3]length of repeat element	[4]repeat-consistent deletions)	[5]repeat-inconsistent deletions	[6]consistent insertions	[7]inconsistent insertions	[8]c/(c+i) ratio
+ICL	0	2	0	0	2	1	0.6667
+ICL	0	3	3	1	3	0	0.8571
+ICL	0	4	0	0	0	0	0.0000
+ICL	0	5	1	0	0	0	1.0000
+ICL	0	6	0	0	0	0	0.0000
+ICL	0	7	0	0	0	0	0.0000
+ICL	0	8	0	0	0	0	0.0000
+ICL	0	9	0	0	0	0	0.0000
+ICL	0	10	0	0	0	0	0.0000
+# SiS, Singleton stats:
+# SiS	[2]id	[3]allele count	[4]number of SNPs	[5]number of transitions	[6]number of transversions	[7]number of indels	[8]repeat-consistent	[9]repeat-inconsistent	[10]not applicable
+SiS	0	1	132	71	61	38	9	2	27
+# AF, Stats by non-reference allele frequency:
+# AF	[2]id	[3]allele frequency	[4]number of SNPs	[5]number of transitions	[6]number of transversions	[7]number of indels	[8]repeat-consistent	[9]repeat-inconsistent	[10]not applicable
+AF	0	0.000000	132	71	61	38	9	2	27
+# QUAL, Stats by quality:
+# QUAL	[2]id	[3]Quality	[4]number of SNPs	[5]number of transitions (1st ALT)	[6]number of transversions (1st ALT)	[7]number of indels
+QUAL	0	0	6	4	2	1
+QUAL	0	3	1	1	0	0
+QUAL	0	5	1	0	1	0
+QUAL	0	11	1	1	0	3
+QUAL	0	18	1	0	1	0
+QUAL	0	20	2	0	2	0
+QUAL	0	21	1	0	1	0
+QUAL	0	24	1	0	1	0
+QUAL	0	28	2	1	1	0
+QUAL	0	31	1	1	0	0
+QUAL	0	33	1	1	0	0
+QUAL	0	34	1	0	1	0
+QUAL	0	37	0	0	0	1
+QUAL	0	40	1	1	0	2
+QUAL	0	43	1	1	0	1
+QUAL	0	44	2	2	0	0
+QUAL	0	46	5	2	3	0
+QUAL	0	49	3	2	1	0
+QUAL	0	50	2	1	1	0
+QUAL	0	51	1	0	1	1
+QUAL	0	52	3	3	0	0
+QUAL	0	53	1	1	0	0
+QUAL	0	54	1	1	0	3
+QUAL	0	57	1	0	1	0
+QUAL	0	63	12	4	8	0
+QUAL	0	65	1	1	0	0
+QUAL	0	74	1	1	0	0
+QUAL	0	91	3	3	0	0
+QUAL	0	94	2	0	2	0
+QUAL	0	95	1	1	0	0
+QUAL	0	99	0	0	0	4
+QUAL	0	100	0	0	0	1
+QUAL	0	102	0	0	0	2
+QUAL	0	103	1	1	0	2
+QUAL	0	104	1	0	0	1
+QUAL	0	108	16	7	9	0
+QUAL	0	118	0	0	0	1
+QUAL	0	124	0	0	0	1
+QUAL	0	127	1	1	0	0
+QUAL	0	128	1	0	1	0
+QUAL	0	130	1	1	0	0
+QUAL	0	133	2	1	1	0
+QUAL	0	137	1	0	1	0
+QUAL	0	138	1	1	0	0
+QUAL	0	142	1	1	0	0
+QUAL	0	143	0	0	0	2
+QUAL	0	147	1	1	0	0
+QUAL	0	149	1	1	0	0
+QUAL	0	151	1	1	0	0
+QUAL	0	152	3	2	1	0
+QUAL	0	169	1	0	1	0
+QUAL	0	171	1	1	0	0
+QUAL	0	175	1	1	0	0
+QUAL	0	177	1	1	0	0
+QUAL	0	180	1	1	0	0
+QUAL	0	187	0	0	0	1
+QUAL	0	188	0	0	0	1
+QUAL	0	191	1	0	1	0
+QUAL	0	196	2	2	0	0
+QUAL	0	200	1	0	1	0
+QUAL	0	216	1	0	1	0
+QUAL	0	222	0	0	0	1
+QUAL	0	223	1	0	1	0
+QUAL	0	226	0	0	0	1
+QUAL	0	277	0	0	0	4
+QUAL	0	286	7	2	5	0
+QUAL	0	301	1	1	0	0
+QUAL	0	310	1	0	1	0
+QUAL	0	322	0	0	0	1
+QUAL	0	331	1	0	1	0
+QUAL	0	337	3	3	0	0
+QUAL	0	346	1	0	1	0
+QUAL	0	355	1	0	1	0
+QUAL	0	368	1	1	0	0
+QUAL	0	469	3	1	2	0
+QUAL	0	499	1	1	0	0
+QUAL	0	594	1	1	0	0
+QUAL	0	622	1	1	0	0
+QUAL	0	633	1	0	1	0
+QUAL	0	634	0	0	0	1
+QUAL	0	643	0	0	0	1
+QUAL	0	646	1	1	0	0
+QUAL	0	691	1	0	1	0
+QUAL	0	736	1	0	1	0
+QUAL	0	781	1	0	1	0
+# IDD, InDel distribution:
+# IDD	[2]id	[3]length (deletions negative)	[4]count
+IDD	0	-18	1
+IDD	0	-7	3
+IDD	0	-6	2
+IDD	0	-5	1
+IDD	0	-3	2
+IDD	0	-2	3
+IDD	0	-1	7
+IDD	0	1	6
+IDD	0	2	3
+IDD	0	3	5
+IDD	0	5	1
+IDD	0	6	1
+IDD	0	7	1
+IDD	0	8	2
+# ST, Substitution types:
+# ST	[2]id	[3]type	[4]count
+ST	0	A>C	4
+ST	0	A>G	17
+ST	0	A>T	7
+ST	0	C>A	11
+ST	0	C>G	3
+ST	0	C>T	26
+ST	0	G>A	12
+ST	0	G>C	6
+ST	0	G>T	8
+ST	0	T>A	12
+ST	0	T>C	16
+ST	0	T>G	10
+# DP, Depth distribution
+# DP	[2]id	[3]bin	[4]number of genotypes	[5]fraction of genotypes (%)	[6]number of sites	[7]fraction of sites (%)
+DP	0	0	0	0.000000	4	2.409639
+DP	0	1	0	0.000000	5	3.012048
+DP	0	2	0	0.000000	28	16.867470
+DP	0	3	0	0.000000	25	15.060241
+DP	0	4	0	0.000000	24	14.457831
+DP	0	5	0	0.000000	18	10.843373
+DP	0	6	0	0.000000	7	4.216867
+DP	0	7	0	0.000000	13	7.831325
+DP	0	8	0	0.000000	9	5.421687
+DP	0	10	0	0.000000	2	1.204819
+DP	0	11	0	0.000000	3	1.807229
+DP	0	12	0	0.000000	2	1.204819
+DP	0	13	0	0.000000	8	4.819277
+DP	0	14	0	0.000000	5	3.012048
+DP	0	15	0	0.000000	7	4.216867
+DP	0	16	0	0.000000	1	0.602410
+DP	0	17	0	0.000000	3	1.807229
+DP	0	18	0	0.000000	1	0.602410
+DP	0	19	0	0.000000	1	0.602410

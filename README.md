@@ -8,6 +8,9 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2019-01-11
+FreeBayes variant calling quality check. *Waiting to freebayes (2018-07-25)*
+
 #2019-01-07
 CRISP variant calling quality has been analysed. The quality seems good enough.
 There have been detected 15,985,630 SNVs (13,885,349 SNPs and 2,100,281 indels)
@@ -15,7 +18,7 @@ with a mean quality of ~100 (min=20; max=4,025). There are 527,499 multiallelic
 SNPs and the ts/tv ratio is 1.23.
 
 #2018-07-25
-*In progress*
+FreeBayes, GATK and CRISP variant calling. *In progress*
 
 #2018-06-01
 Asgharian et al.'s reads have been mapped against the Culex quinquefasciatus

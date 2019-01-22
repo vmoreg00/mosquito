@@ -1,0 +1,8 @@
+1.molA1 41
+2.pipA4 41
+3.molM1 52
+4.torM2 56
+5.molS1 30
+6.mixS2 26
+7.mixS3 41
+8.torM4 41
