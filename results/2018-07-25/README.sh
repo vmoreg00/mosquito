@@ -232,7 +232,7 @@ fi;
 # Variant calling using freebayes-parallel
 if [ ! -e $VCF/FB/culex_cohort.vcf ]; then
 	$FB <(src/fasta_generate_regions.py $REFGENOME/CulQui.fna.fai 5000000) \
-		10 -f $REFGENOME/CulQui.fna \
+		60 -f $REFGENOME/CulQui.fna \
 		--cnv-map $BAM/ploidies.txt \
 		--pooled-discrete \
 		--use-best-n-alleles 3 \
@@ -241,6 +241,35 @@ if [ ! -e $VCF/FB/culex_cohort.vcf ]; then
 fi;
 
 #==================================== CRISP ===================================
+if [ ! -d $VCF/crisp ]; then
+        mkdir $VCF/crisp;
+fi;
+
+# Generate the BAM list
+if [ ! -e bam.list ]; then
+        for i in `seq 0 7`; do
+                echo "$BAM/${sample[$i]}.sort.RG.markdup.bam PS=${ploidy[$i]}" \
+                     >> bam.list
+        done;
+fi;
+
+# Variant calling:
+# Constraints (minc, mbq, mmq, filterreads) have been modifyied to detect
+# some more variants. With the default parameters, the number of SNVs were too
+# low.
+if [ ! -e $VCF/crisp/culex_cohort.vcf ]; then
+        crisp --bams bam.list \
+              --ref $REFGENOME/CulQui.fna \
+              --VCF $VCF/crisp/culex_cohort.vcf \
+              --minc 1 \
+              --mbq 5 \
+              --mmq 10 \
+              --perms 30000 \
+              --filterreads 0 \
+              --qvoffset 33 \
+              --EM 1 \
+              --verbose 1 > $VCF/crisp/culex_cohort.log
+fi;
 
 
 
