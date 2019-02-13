@@ -22,15 +22,13 @@ PYSTATS=/data/victor/mosquito/results/2019-01-07/src/snp_qual_dist.py
 
 # 1 - Remove non-variant sites
 if [ ! -e $VCF/culex_cohort_NoInvSites.vcf ]; then
-	bcftools view $VCF/culex_cohort.vcf \
-                 -o $VCF/culex_cohort_NoInvSites.vcf -O v \
-                 --min-ac 1 --threads 1;
-fi;
-
-# 2 - Compress original VCF file
-if [ -e $VCF/culex_cohort.vcf ]; then
-	bcftools view $VCF/culex_cohort.vcf -o $VCF/culex_cohort.bcf -O b;
-	rm $VCF/culex_cohort.vcf;
+	# Bcftools requires a .gz file compresed with bgzip and indexed
+	bgzip -@ 50 $VCF/culex_cohort_concat.vcf;
+	bcftools index --threads 30 $VCF/culex_cohort_concat.vcf.gz;
+	# Remove invariants
+	bcftools view -o $VCF/culex_cohort_NoInvSites.vcf -O v \
+                      --min-ac 1 --threads 50 \
+		      $VCF/culex_cohort_concat.vcf.gz;
 fi;
 
 #=============================== Quality check ===============================
@@ -41,7 +39,7 @@ fi;
 # 1 - BCFTOOLS statistics
 if [ ! -e $OUTDIR/freebayes_summary.pdf ]; then
         bcftools stats -F $REFGENOME/CulQui.fna \
-                 $VCF > $OUTDIR/freebayes.stats;
+                 $VCF/culex_cohort_NoInvSites.vcf > $OUTDIR/freebayes.stats;
         plot-vcfstats --prefix $OUTDIR/tmp/ \
                       --title freebayes \
                       --main-title "Freebayes Variant Calling" \
@@ -52,6 +50,20 @@ fi;
 
 # 2 - Quality distribution
 if [ ! -e freebayes_quality_distribution.png ]; then
-        python $PYSTATS $VCF $OUTDIR/freebayes_quality_distribution;
+        python $PYSTATS $VCF/culex_cohort_NoInvSites.vcf \
+	       $OUTDIR/freebayes_quality_distribution;
 fi;
 
+#================================ CONCLUSION ================================#
+# There are 19,426,285 SNPs and 2,100,281 indels (21,526,566 SNVs in total).
+# Among SNPs there are 6,329,629 multiallelic SNPs.
+# The ts/tv ratio is 1.07 and the highest substitution rates are in the
+# transitions C>T, G>A, A>G and T>C.
+#
+# Qualities reported by FreeBayes are high enough, althoug there are lots of
+# SNVs with QUAL==0.
+#
+# The quality of the freebayes output is good and seems to report more
+# multiallelic sites than CRISP. This should be a good reason to perform the
+# ongoing analysis on the basis of freebayes' VCF, filtering it according
+# to those sites that are in both VCF files.
