@@ -8,6 +8,11 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2019-01-23
+Historical relations of the populations has been infered using treemix. It
+is shown that the considered populations are more related by their location
+and not by their ecotype.
+
 #2019-01-11
 FreeBayes variant calling quality check. This program has detected more
 multiallelic sites (6,329,629) than CRISP (527,499). There are 21,526,566 SNVs

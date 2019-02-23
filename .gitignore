@@ -8,3 +8,7 @@ results/2018-07-25/crisp_test/*.log
 results/2018-07-25/crisp_test/*.list
 results/2018-07-25/gatk_test/vcf/*.idx
 results/2018-07-25/gatk_test/vcf/*.log
+results/2019-01-23/culex_FB-crisp_common-possitions.pos
+results/2019-01-23/culex_genotypes.tsv
+results/2019-01-23/treemix_input.tsv.gz
+results/2019-01-23/chr_in_crisp.txt
