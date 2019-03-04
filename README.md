@@ -8,6 +8,9 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2019-02-23
+ABBA-BABA test
+
 #2019-01-23
 Historical relations of the populations has been infered using treemix. It
 is shown that the considered populations are more related by their location
