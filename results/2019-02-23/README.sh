@@ -15,6 +15,6 @@ if [ ! -e culex_alt_freqs.tsv ]; then
                                         culex_chr_lengths.tsv;
 fi;
 
-if [ ! -e abba_baba.txt ]; then
+if [ ! -e abba_baba_1e+06.txt ]; then
 	Rscript src/ABBA_BABA.R;
 fi;
