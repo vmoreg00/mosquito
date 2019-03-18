@@ -52,6 +52,11 @@ freqs_filtered <- freqs[keep, ]
 cat(sum(keep == FALSE), "sites have been removed\n")
 cat(nrow(freqs_filtered), "sites remain after filtering\n")
 
+# Save
+write.table(freqs_filtered,
+            file = gsub(".tsv", "_filtered.tsv", alt_freqs),
+            quote = F, sep = "\t")
+
 ########################### Chromosome lengths table #########################
 # Chrom table:
 chrom_table <- read.table(chr_lengths, col.names = c("chr", "len"))

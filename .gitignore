@@ -13,4 +13,5 @@ results/2019-01-23/culex_genotypes.tsv
 results/2019-01-23/treemix_input.tsv.gz
 results/2019-01-23/chr_in_crisp.txt
 results/2019-02-23/culex_alt_freqs.tsv
+results/2019-02-23/culex_alt_freqs_filtered.tsv
 results/2019-02-23/culex_chr_lengths.tsv

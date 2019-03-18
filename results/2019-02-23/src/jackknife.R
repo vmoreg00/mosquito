@@ -14,7 +14,7 @@ get_genome_blocks <- function(block_size, chrom_lengths){
                               end = unlist(block_starts) + block_size - 1,
                               chrom = rep(names(block_starts),
                                       sapply(block_starts, length)))
-  genome_blocks <- genome_blocks[genome_blocks$end - genome_blocks$start == block_size - 1,]
+  genome_blocks <- genome_blocks[genome_blocks$end <= chrom_lengths[as.character(genome_blocks$chrom)],]
   genome_blocks
 }
 
