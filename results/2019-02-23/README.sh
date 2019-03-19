@@ -18,3 +18,7 @@ fi;
 if [ ! -e abba_baba_1e+06.txt ]; then
 	Rscript src/ABBA_BABA.R;
 fi;
+
+if [ ! -e abba_baba_slidingWindows.png ]; then
+	Rscript src/ABBA_BABA_SlidingWindows.R;
+fi;
