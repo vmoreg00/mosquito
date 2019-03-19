@@ -31,7 +31,7 @@ chrom_table$cumm.length <- cumsum(chrom_table[, 2])
 # Sliding window analysis (concurrent)
 cl <- makeCluster(cores)
 clusterExport(cl = cl, varlist = c("window_size", "overlap", "min_data", "step",
-                                   "chrom_table", "freqs",
+                                   "chrom_table", "freqs", "f.stat",
                                    "abba.baba.test", "D.stat", "abba", "baba"))
 D.sliding <- t(parallel::parSapply(
   cl = cl,
@@ -90,9 +90,9 @@ D.sliding <- t(parallel::parSapply(
       D_case1 <- c(x, abba.baba.test(freqs[freq_begin:freq_end,],
                                      "mixS2.S3", "molM1", "pipA4",
                                      sliding = TRUE))
-      D_case2 <- c(x, abba.baba.test(freqs[freq_begin:freq_end,],
-                                     "mixS2.S3", "molM1", "molA1",
-                                     sliding = TRUE))
+      D_case2 <- abba.baba.test(freqs[freq_begin:freq_end,],
+                                "mixS2.S3", "molM1", "molA1",
+                                sliding = TRUE)
     } else {
       D_case1 <- c(x, 0, 0, 0, 0)
       D_case2 <- c(0, 0, 0, 0) # pos is ommited as it is the same as in case 1
@@ -104,7 +104,8 @@ stopCluster(cl)
 
 # Format the table and save it
 D.sliding <- as.data.frame(D.sliding)
-names(D.sliding) <- c("pos", "D_1", "ABBA_1", "BABA_1", "D_2", "ABBA_2", "BABA_2")
+names(D.sliding) <- c("pos", "D_1", "f_1", "ABBA_1", "BABA_1", 
+                      "D_2", "f_2", "ABBA_2", "BABA_2")
 write.table(D.sliding, file = "abba_baba_slidingWindows.tsv", sep = "\t", 
             quote = F)
 
@@ -113,10 +114,14 @@ facets <- 5
 D.sliding$facet <- cut(D.sliding$pos, facets, seq(1, facets))
 
 g <- ggplot(data = D.sliding, aes(x = pos)) +
-  geom_line(aes(y = D_1, colour = "D_1")) +
-  geom_line(aes(y = D_2, colour = "D_2")) +
-  facet_wrap(vars(facet), ncol = 1, scales = "free") +
-  scale_x_continuous(labels = function(x) format(x, scientific = TRUE)) +
-  theme_bw()
+  geom_line(aes(y = D_1, colour = "p3 = pipiens from Aleksin")) +
+  geom_line(aes(y = D_2, colour = "p3 = molestus from Aleksin")) +
+  facet_wrap(vars(facet), ncol = 1, scales = "free_x",
+             strip.position = "right") +
+  scale_x_continuous(labels = function(x) format(x, scientific = TRUE),
+                     name = "Genome position") +
+  scale_y_continuous(name = "D statistic", limits = c(-1, 1)) +
+  theme_bw() +
+  theme(legend.position = "top", legend.title = element_blank())
 ggsave(filename = "abba_baba_slidingWindows.png", plot = g, device = "png",
-       width = 200, height = 200, units = "mm", dpi = 333)
+       width = 250, height = 175, units = "mm", dpi = 333)

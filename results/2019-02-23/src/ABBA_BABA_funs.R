@@ -45,7 +45,7 @@ f.stat <- function(freqs, p1, p2, p3){
 #' @description Carries out the ABBA BABA test, computes de D statistics,
 #' its deviation and signification based on the Jacknife procedure
 abba.baba.test <- function(freqs, p1, p2, p3, 
-                           block.size = 1e6, chr.lengths == NULL,
+                           block.size = 1e6, chr.lengths = NULL,
                            sliding = FALSE){
   # D statistic
   ABBA_BABA <- data.frame(ABBA = abba(freqs[, p1], freqs[, p2], freqs[, p3]),
