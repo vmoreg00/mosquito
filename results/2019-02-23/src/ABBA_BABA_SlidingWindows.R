@@ -103,7 +103,7 @@ write.table(D.sliding1, file = "abba_baba_slidingWindows.tsv", sep = "\t",
 
 # Plot the results
 facets <- 5
-D.sliding1$facet <- cut(D.sliding1$pos, facets, seq(1, facets))
+D.sliding1$facet <- cut(D.sliding1$pos_genomic, facets, seq(1, facets))
 
 g <- ggplot(data = D.sliding1, aes(x = pos_genomic)) +
   geom_line(aes(y = diff_f)) +
@@ -111,7 +111,7 @@ g <- ggplot(data = D.sliding1, aes(x = pos_genomic)) +
              strip.position = "right") +
   scale_x_continuous(labels = function(x) format(x, scientific = TRUE),
                      name = "Genome position") +
-  scale_y_continuous(name = "$f_1 - f_2$", limits = c(-1, 1)) +
+  scale_y_continuous(name = bquote(~f[1] - ~f[2]), limits = c(-1, 1)) +
   theme_bw() +
   theme(legend.position = "top", legend.title = element_blank())
 ggsave(filename = "abba_baba_slidingWindows.png", plot = g, device = "png",
