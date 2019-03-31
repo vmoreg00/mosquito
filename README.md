@@ -9,7 +9,14 @@ to be frequent.
 The goal is to compare the two ecotypes.
 
 #2019-02-23
-ABBA-BABA test
+To explore the degree of introgression between Culex pipiens populations, a
+D and f statistics (ABBA-BABA test) has been estimated in both ways, genome-
+wide and sliding-windows. The genome-wide analysis revealed that the
+admixture proportion were higher when the donor population (p3) was the
+form molestus. In a similar way, the sliding-windows analysis was congruent
+with that result as the mean of f is pretty similar to that obtained in the
+genome-wide analysis. It seems that the windows that have f-values different
+than 0 are widespread through the genome.
 
 #2019-01-23
 Historical relations of the populations has been infered using treemix. It
