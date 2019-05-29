@@ -39,6 +39,9 @@ f.stat <- function(freqs, p1, p2, p3){
 
   # Estimation of f statistic
   f <- obs.S / exp.S
+  if(f < 0){
+    f <- 0
+  }
   return(f)
 }
 

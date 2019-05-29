@@ -40,7 +40,12 @@ fi;
 # When looking to this differences in the sliding-windows analysis, the
 # differences among cases 1 and 2 seems to be widespread distributed along
 # the contigs, although in overall, the case 2 has higher f values than
-# the case 1.
+# the case 1. The statistics based on the average of f statistics along
+# the windows showed that:
+#   f_1 = 0.27 +- 0.15
+#   f_2 = 0.3 +- 0.17
+#   f_1 - f_2 = -0.03 +- 0.07
+#   t.test: t = -6.5771; df = 5227.1; p-value = 5.264e-11(***)
 #
 # The differences in the f-statistic between the cases, should be due to
 # a preference in the mating by form.

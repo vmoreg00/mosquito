@@ -20,6 +20,7 @@ step <- window_size - overlap
 cores <- 50
 
 # Load the alternate allele frequencies table
+cat("Reading input file...\n")
 freqs <- read.table(input_tsv, sep = "\t", header = T, as.is = T)
 
 # Load chrom table
@@ -29,6 +30,7 @@ names(chrom_lengths) <- chrom_table[,1]
 chrom_table$cumm.length <- cumsum(chrom_table[, 2])
 
 # Sliding window analysis (concurrent)
+cat("Computing the D and f statistics on sliding windows...\n")
 cl <- makeCluster(cores)
 clusterExport(cl = cl, varlist = c("window_size", "overlap", "min_data", "step",
                                    "chrom_table", "chrom_lengths", "freqs", "f.stat",
@@ -100,6 +102,20 @@ D.sliding1$pos_genomic <- seq(from = 1, by = 100000,
 ## Save
 write.table(D.sliding1, file = "abba_baba_slidingWindows.tsv", sep = "\t",
             quote = F)
+## Some statistics on the differences of f1 - f2
+f1.mean = mean(D.sliding1$f_1)
+f1.sd = sd(D.sliding1$f_1)
+f2.mean = mean(D.sliding1$f_2)
+f2.sd = sd(D.sliding1$f_2)
+diff.mean = mean(D.sliding1$diff_f)
+diff.sd = sd(D.sliding1$diff_f)
+
+cat(paste("On average, f_1 =", round(f1.mean, 2), "+-", round(f1.sd, 2), "\n"))
+cat(paste("On average, f_2 =", round(f2.mean, 2), "+-", round(f2.sd, 2), "\n"))
+cat(paste("On average, f_1 - f_2 =", round(diff.mean, 2), "+-", round(diff.sd, 2), "\n"))
+
+diff.t <- t.test(x = D.sliding1$f_1, y = D.sliding1$f_2)
+print(diff.t)
 
 # Plot the results
 facets <- 5
