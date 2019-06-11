@@ -1,0 +1,13 @@
+Using input	culex.sync
+Using output	culex.fst
+Using min-count	2
+Using min-coverage	2
+Using max-coverage	500
+Using min-covered-fraction	0
+Using pool-size	41:41:52:56:30:26:41:41
+Using window-size	10000
+Using step-size	10000
+Using asympt-unbiased	0
+Using suppress na	0
+Using test	0
+Using help	0
