@@ -106,23 +106,3 @@ fi;
 
 # After checking the *.stats files, I have decided to select the BWA mapping as
 # the number of mapped reads and the coverage is greater in it.
-
-################################# SNP calling #################################
-# The sequenciation of Culex made by Asgharian et al. was pooled without
-# marking the individuals. Thus, it is impossible to demultiples the reads nor
-# make a normal variant callind. To do so, I am using EM-SNP which is an R
-# package that implements an algorithm to detect SNPs on pooled sequencing data
-# and ditingish from the read errors using an EM-algorithm (Details of the
-# package and the algorithm are in:
-# Quan Chen and Fengzhu Sun (2013) A unified approach for allele frequency
-# estimation, SNP detection and association studies on pooled sequencing data
-# using EM algorithms. BMC Genomics (APBC2013).
-# http://www.biomedcentral.com/1471-2164/14/S1/S1
-
-# Downloading the scripts
-if [ ! -d $EM ]; then
-	wget http://www-rcf.usc.edu/~fsun/Programs/EM-SNP/EM-SNP.zip \
-		-O $EM.zip;
-	unzip $EM.zip -d /data/victor/src/;
-	rm $EM.zip;
-fi;
