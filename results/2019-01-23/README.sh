@@ -8,8 +8,8 @@
 # quality of 15 in FreeBayes' VCF.                                            #
 #                                                                             #
 # After the filtering, the TreeMix's input file is made from the filtered VCF #
-# file. I will try to include Cx. quinquefasciatus population with one        #
-# individual as the outgroup.                                                 #
+# file. Cx. torrentium populations will be treated as outgroup in the ML      #
+# graph.                                                                      #
 #                                                                             #
 # Author: Victor Moreno-Gonzalez                                              #
 # Date: 2018-01-23                                                            #
@@ -61,6 +61,7 @@ if [ ! -e treemix_input.tsv.gz ]; then
 		culex_genotypes.tsv \
 		treemix_input.tsv;
 	gzip treemix_input.tsv;
+        gzip culex_genotypes.tsv;
 fi;
 
 #============================= TreeMix execution =============================#
@@ -70,14 +71,19 @@ fi;
 # Maximum Likelihood tree
 if [ ! -e culex_treemix_out/culex_stem.treeout.gz ]; then
 	treemix -i treemix_input.tsv.gz \
-	        -root 0.quin \
 	        -o culex_treemix_out/culex_stem;
 fi;
 
 # Visualization
 if [ ! -e culex_treemix_out/culex_tree.pdf ]; then
+        # poporder file
+        pops=(1.molA1 2.pipA4 3.molM1 5.molS1 6.mixS2 7.mixS3 4.torM2 8.torM4)
+        for i in `seq 0 7`; do
+                echo ${pops[i]} >> poporder;
+        done;
+        # plot phylogeny and residues
 	Rscript src/treemix_plot.R;
-	mv Rplots.pdf culex_treemix_out/culex_tree.pdf;
+        rm poporder;
 fi;
 
 # Bootstrap support
@@ -88,7 +94,6 @@ if [ ! -e culex_treemix_bootstrap/culex_bootstrap_support.pdf ]; then
 	# Bootstrap
 	for i in {1..100}; do
 	        treemix -i treemix_input.tsv.gz \
-	                -root 0.quin \
 			-bootstrap -k 500 \
 	                -o culex_treemix_bootstrap/culex_stem;
 		mv culex_treemix_bootstrap/culex_stem.treeout.gz \
@@ -96,7 +101,12 @@ if [ ! -e culex_treemix_bootstrap/culex_bootstrap_support.pdf ]; then
 	done;
 	rm culex_treemix_bootstrap/culex_stem.*;
 	# Plot
+        pops=(1.molA1 2.pipA4 3.molM1 5.molS1 6.mixS2 7.mixS3 4.torM2 8.torM4)
+        for i in `seq 0 7`; do
+                cat ${pops[i]} >> poporder;
+        done;
         Rscript src/treemix_plot_bootstrap.R;
+        rm poporder;
 fi;
 
 #================================= Conclusion ================================#

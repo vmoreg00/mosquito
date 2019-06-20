@@ -10,12 +10,14 @@ outdir <- "culex_treemix_bootstrap"
 
 # Read the maximum likelihood tree
 culex.tree <- read.tree(file = gzfile(ml.tree, "rt"))
+culex.tree <- root(culex.tree, outgroup = c("4.torM2", "8.torM4"))
 
 # Read the bootstrapped trees
 boot.trees <- list()
 for(i in list.files(bootstrap.dir, pattern = ".gz$", full.names = TRUE)){
   gz <- gzfile(i, "rt")
-  boot.trees[[i]] <- read.tree(file = gz)
+  boot.trees[[i]] <- root(read.tree(file = gz),
+                     outgroup = c("4.torM2", "8.torM4"))
   close(gz)
 }; rm(i)
 

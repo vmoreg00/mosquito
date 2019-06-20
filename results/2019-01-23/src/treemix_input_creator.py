@@ -21,7 +21,7 @@ if len(sys.argv) != 3:
 # Global variables
 in_file = sys.argv[1]
 out_file = sys.argv[2]
-header = "0.quin 1.molA1 2.pipA4 3.molM1 4.torM2 5.molS1 6.mixS2 7.mixS3 8.torM4"
+header = "1.molA1 2.pipA4 3.molM1 4.torM2 5.molS1 6.mixS2 7.mixS3 8.torM4"
 
 # Open the files
 in_opened = open(in_file, "r")
@@ -31,7 +31,7 @@ out_opened = open(out_file, "w+")
 out_opened.write(header + "\n")
 for line in in_opened:
     info = line.strip().split()
-    SNP_freqs = ["2,0", ]
+    SNP_freqs = []
     for field in info:
         if field == ".": # Empty field
             SNP_freqs.append("0,0")
