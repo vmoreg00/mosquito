@@ -120,8 +120,26 @@ print(diff.t)
 # Plot the results
 facets <- 5
 D.sliding1$facet <- cut(D.sliding1$pos_genomic, facets, seq(1, facets))
+D.sliding1$bar <- NA
+grey = F
+for(i in 1:nrow(D.sliding1)){
+  if(D.sliding1$pos[i] == 1){
+    grey <- !grey
+  }
+  if(grey == T){
+    D.sliding1$bar[i] <- 1
+  } else {
+    D.sliding1$bar[i] <- 0
+  }
+}
 
 g <- ggplot(data = D.sliding1, aes(x = pos_genomic)) +
+  geom_bar(stat = "identity", aes(y = bar), 
+           fill = "grey90", color = "grey90",
+           position = position_dodge(width = 1)) +
+  geom_bar(stat = "identity", aes(y = -bar), 
+           fill = "grey90", color = "grey90",
+           position = position_dodge(width = 1)) +
   geom_line(aes(y = diff_f)) +
   facet_wrap(vars(facet), ncol = 1, scales = "free_x",
              strip.position = "right") +
@@ -129,6 +147,11 @@ g <- ggplot(data = D.sliding1, aes(x = pos_genomic)) +
                      name = "Genome position") +
   scale_y_continuous(name = bquote(~f[1] - ~f[2]), limits = c(-1, 1)) +
   theme_bw() +
-  theme(legend.position = "top", legend.title = element_blank())
+  theme(legend.position = "top", legend.title = element_blank(),
+        panel.grid.major.x = element_blank(), 
+        panel.grid.minor.x = element_blank(),
+        strip.background = element_blank(),
+        strip.text.y = element_blank())
 ggsave(filename = "abba_baba_slidingWindows.png", plot = g, device = "png",
        width = 250, height = 175, units = "mm", dpi = 333)
+
