@@ -1,0 +1,16 @@
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029627.sorted.bam
+185760728 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029628.sorted.bam
+304570715 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029629.sorted.bam
+338263379 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029630.sorted.bam
+260916791 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029631.sorted.bam
+353076394 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029632.sorted.bam
+349511109 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029633.sorted.bam
+381255983 579042118
+/data/victor/mosquito/data/asgharian/bam/bt2/SRR2029634.sorted.bam
+207118982 579042118

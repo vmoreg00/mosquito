@@ -1,0 +1,16 @@
+/data/victor/mosquito/data/asgharian/bam/bwa/1.molA1.sort.bam
+156237982 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/2.pipA4.sort.bam
+253855072 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/3.molM1.sort.bam
+279166211 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/4.torM2.sort.bam
+209129471 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/5.molS1.sort.bam
+311739150 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/6.mixS2.sort.bam
+308038309 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/7.mixS3.sort.bam
+336809940 579042118
+/data/victor/mosquito/data/asgharian/bam/bwa/8.torM4.sort.bam
+163393272 579042118

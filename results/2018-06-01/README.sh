@@ -17,7 +17,7 @@ DATA=/data/victor/mosquito/data/asgharian/trimmed
 REFGENOME=/data/victor/mosquito/data/refgenome
 BAM=/data/victor/mosquito/data/asgharian/bam
 
-EM=/data/victor/src/EM-SNP
+bedtools=/data/joiglu/bin/bedtools2/bin/bedtools
 
 #################  Downloading the C. quinquefasciatus genome #################
 # C. quiquefasciatus genome has 579,042,118 nucleotides and 3,171 scaffolds.
@@ -106,3 +106,51 @@ fi;
 
 # After checking the *.stats files, I have decided to select the BWA mapping as
 # the number of mapped reads and the coverage is greater in it.
+
+
+# Determine the genome coverage per sample
+for a in bt2; do
+	for i in `ls -1 $BAM/$a/*sorted.bam`; do
+		$bedtools genomecov -ibam $i \
+		          -g $REFGENOME/CulQui.fna -bga > tmp.bed;
+                echo $i >> $a/genome_coverage.txt;
+		awk 'BEGIN{
+                       count=0;
+                       cov=0;
+                     };
+                     {
+                       if($4>0) {
+                         cov+=($3-$2);
+                         count+=($3-$2);
+                       } else {
+                         count+=($3-$2);
+                       };
+                     }
+                    END{
+                      print cov, count;
+                    }' tmp.bed >> $a/genome_coverage.txt;
+	done;
+done;
+for a in bwa; do
+        for i in `ls -1 $BAM/$a/*sort.bam`; do
+                $bedtools genomecov -ibam $i \
+                          -g $REFGENOME/CulQui.fna -bga > tmp.bed;
+                echo $i >> $a/genome_coverage.txt;
+                awk 'BEGIN{
+                       count=0;
+                       cov=0;
+                     };
+                     {
+                       if($4>0) {
+                         cov+=($3-$2);
+                         count+=($3-$2);
+                       } else {
+                         count+=($3-$2);
+                       };
+                     }
+                    END{
+                      print cov, count;
+                    }' tmp.bed >> $a/genome_coverage.txt;
+        done;
+done;
+
