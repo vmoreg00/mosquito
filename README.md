@@ -8,6 +8,15 @@ to be frequent.
 
 The goal is to compare the two ecotypes.
 
+#2019-06-09
+Phylogenetic analysis based on Fst index to check TreeMmix results with a
+different algorithm. Results showed an incongruence which may represent
+the intense genetic flux between the russian populations.
+
+#2019-03-28
+Functional analysis of the windows were the genetic flux were greater
+between different ecotypes (p95) and between the same ecotype (p05).
+
 #2019-02-23
 To explore the degree of introgression between Culex pipiens populations, a
 D and f statistics (ABBA-BABA test) has been estimated in both ways, genome-
