@@ -17,8 +17,7 @@ REFGENOME=/data/victor/mosquito/data/refgenome
 BAM=/data/victor/mosquito/data/asgharian/bam/bwa
 VCF=/data/victor/mosquito/data/asgharian/vcf
 
-FB=/data/victor/src/freebayes-parallel/freebayes-parallel
-GATK=/data/victor/src/GenomeAnalysisTK.jar  # version 3.8
+GATK=/usr/local/bin/GenomeAnalysisTK.jar
 PICARD=/usr/local/bin/picard.jar
 
 sample=(1.molA1 2.pipA4 3.molM1 4.torM2 5.molS1 6.mixS2 7.mixS3 8.torM4) # Names
@@ -70,15 +69,6 @@ for i in `seq 0 7`; do
 done;
 wait
 
-# 3 - Index bam
-for i in `seq 0 7`; do
-        if [ ! -e $BAM/${sample[i]}.sort.RG.markdup.bam.bai ]; then
-                samtools index -b $BAM/${sample[i]}.sort.RG.markdup.bam &
-        fi;
-done;
-wait
-
-
 # 3 - Base quality score recalibration
 # For analysis in which a known SNP databese does not exists, GATK suggest to
 # create one provisional database by calling SNPs and taking only those with
@@ -105,7 +95,8 @@ wait
 ############################## Variant Calling ################################
 # For some reason, samtools generates empty .vcf files (only header). I will
 # use GATK HaplotypeCaller and FreeBayes to detect SNPs as the coincident
-# in both algorithms. Both programs consider pooled sequencing.
+# in both algorithms. FreeBayes has the advantage that can consider pooled
+# sequencing.
 
 # Dictionary creation
 if [ ! -e $REFGENOME/CulQui.dict ]; then
@@ -127,18 +118,18 @@ fi;
 # Detection of possible haplotypes
 for i in `seq 0 7`; do
 	if [ ! -e $VCF/GATK/${sample[i]}.g.vcf ]; then
-		java -jar $GATK HaplotypeCaller \
+		samtools index -b $BAM/${sample[i]}.sort.RG.markdup.bam
+		java -jar $GATK -T HaplotypeCaller \
 			-R $REFGENOME/CulQui.fna \
 			-I $BAM/${sample[i]}.sort.RG.markdup.bam \
-			--output_mode EMIT_ALL_CONFIDENT_SITES \
+			--output_mode EMIT_ALL_SITES \ # ?? CONFIDENT or not?
 			--emitRefConfidence GVCF \
-			--sample_ploidy ${ploidy[i]} \
+			--sample_ploidy ${ploidy[i]} \ # ??Consider different ploidies per sample?
 			--max_alternate_alleles 3 \
-			--max_num_PL_values 100000 \
+			--max_num_PL_values 100000 \ # CHECK THIS PARAMETER
 			--variant_index_type LINEAR \
 			--variant_index_parameter 128000 \
-			--num_cpu_threads_per_data_thread 8 \
-			--log_to_file vcf/${sample[i]}.log \
+			--num_threads 8
 			-o $VCF/GATK/${sample[i]}.g.vcf &
 	fi;
 done;
@@ -146,8 +137,8 @@ wait
 
 # Merge VCF files and recalibrate the qualities of the final VCF file
 # (The Variant Recalibration cannot be done as SNPs are unknown in this species)
-if [ ! -e $VCF/GATK/culex_cohort.vcf ]; then
-	java -Djava.io.tmpdir=tmp -Xmx60g -jar $GATK -T GenotypeGVCFs \
+if [ -e $VCF/GATK/culex_cohort.vcf ]; then
+	java -jar $GATK -T GenotypeGVCFs \
 		-R $REFGENOME/CulQui.fna \
 		--variant $VCF/GATK/1.molA1.g.vcf \
 		--variant $VCF/GATK/2.pipA4.g.vcf \
@@ -157,21 +148,10 @@ if [ ! -e $VCF/GATK/culex_cohort.vcf ]; then
 		--variant $VCF/GATK/6.mixS2.g.vcf \
 		--variant $VCF/GATK/7.mixS3.g.vcf \
 		--variant $VCF/GATK/8.torM4.g.vcf \
-		--useNewAFCalculator \
-		--num_threads 10 \
-		--max_alternate_alleles 3 \
-		--annotateNDA \
-		--log_to_file $VCF/GATK/culex_cohort.log \
+		--sample_ploidy 41 \
+		--includeNonVariantSites true \
 		-o $VCF/GATK/culex_cohort.vcf;
 fi;
-
-# NOTE: Is impossible to carry out the variant calling with GATK because the
-#       the large ploidies. When using ploidy=52 and the number of possible
-#       alleles is 9, the number of possible genotypes is 2558620845; java
-#       cannot deal with such a large number of operations and I do not want
-#       to reduce the ploidy more.
-#       In conclusion, I will use other program (CRISP) that allow to include
-#       pooled sequencing, polyploidies and mix of ploidies.
 
 
 #================================== FreeBayes =================================
@@ -216,60 +196,20 @@ if [ ! -d $VCF/FB ]; then
 	mkdir $VCF/FB;
 fi;
 
-# Merge BAMs to make a simultaneous variant calling
-if [ ! -e $BAM/culex_merged.bam ]; then
-	samtools merge $BAM/culex_merged.bam $BAM/*markdup.bam;
-	samtools index $BAM/culex_merged.bam $BAM/culex_merged.bam.bai -@ 10;
-fi;
-
-# Creates the cnv-map file (samples-ploidies file)
-if [ ! -e $BAM/ploidies.txt ]; then
-	for i in `seq 0 7`; do
-		echo ${sample[$i]} ${ploidy[$i]} >> $BAM/ploidies.txt;
-	done;
-fi;
-
-# Variant calling using freebayes-parallel
-if [ ! -e $VCF/FB/culex_cohort.vcf ]; then
-	$FB <(src/fasta_generate_regions.py $REFGENOME/CulQui.fna.fai 5000000) \
-		60 -f $REFGENOME/CulQui.fna \
-		--cnv-map $BAM/ploidies.txt \
-		--pooled-discrete \
-		--use-best-n-alleles 3 \
-		--report-monomorphic \
-		$BAM/culex_merged.bam > $VCF/FB/culex_cohort.vcf;
-fi;
-
-#==================================== CRISP ===================================
-if [ ! -d $VCF/crisp ]; then
-        mkdir $VCF/crisp;
-fi;
-
-# Generate the BAM list
-if [ ! -e bam.list ]; then
-        for i in `seq 0 7`; do
-                echo "$BAM/${sample[$i]}.sort.RG.markdup.bam PS=${ploidy[$i]}" \
-                     >> bam.list
-        done;
-fi;
-
-# Variant calling:
-# Constraints (minc, mbq, mmq, filterreads) have been modifyied to detect
-# some more variants. With the default parameters, the number of SNVs were too
-# low.
-if [ ! -e $VCF/crisp/culex_cohort.vcf ]; then
-        crisp --bams bam.list \
-              --ref $REFGENOME/CulQui.fna \
-              --VCF $VCF/crisp/culex_cohort.vcf \
-              --minc 1 \
-              --mbq 5 \
-              --mmq 10 \
-              --perms 30000 \
-              --filterreads 0 \
-              --qvoffset 33 \
-              --EM 1 \
-              --verbose 1 > $VCF/crisp/culex_cohort.log
-fi;
+# Culex is diploid, so in each sample it is expected the double of genome copies
+ind=(41 41 52 56 30 26 41 41);      # Genome copies in each sample
+j=0;                                # counter
+for i in `seq 27 34`; do
+	if [ ! -e $VCF/FB/SRR20296$i.vcf ]; then
+		echo SRR20296$i
+		freebayes -f $REFGENOME/CulQui.fna -p ${ind[$j]} \
+			--pooled-discrete --use-best-n-alleles 3 \
+			--report-monomorphic \
+			$BAM/SRR20296$i\_RG.bam > $VCF/FB/SRR20296$i.vcf &
+	fi;
+	j=$((j+1));
+done;
+wait
 
 ############################## Quality control ################################
 # With special atention in SNPs

@@ -107,7 +107,6 @@ fi;
 # After checking the *.stats files, I have decided to select the BWA mapping as
 # the number of mapped reads and the coverage is greater in it.
 
-
 # Determine the genome coverage per sample
 for a in bt2; do
 	for i in `ls -1 $BAM/$a/*sorted.bam`; do
@@ -153,4 +152,3 @@ for a in bwa; do
                     }' tmp.bed >> $a/genome_coverage.txt;
         done;
 done;
-

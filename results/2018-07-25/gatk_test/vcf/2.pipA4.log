@@ -1,0 +1,99 @@
+INFO  11:07:38,093 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,097 HelpFormatter - The Genome Analysis Toolkit (GATK) v3.8-1-0-gf15c1c3ef, Compiled 2018/02/19 05:43:50 
+INFO  11:07:38,097 HelpFormatter - Copyright (c) 2010-2016 The Broad Institute 
+INFO  11:07:38,097 HelpFormatter - For support and documentation go to https://software.broadinstitute.org/gatk 
+INFO  11:07:38,098 HelpFormatter - [Mon Nov 12 11:07:38 CET 2018] Executing on Linux 3.16.0-77-generic amd64 
+INFO  11:07:38,098 HelpFormatter - Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03 
+INFO  11:07:38,103 HelpFormatter - Program Args: -T HaplotypeCaller -R /data/victor/mosquito/data/refgenome/CulQui.fna -I bam/2.pipA4.subset.bam --output_mode EMIT_ALL_CONFIDENT_SITES --emitRefConfidence GVCF --sample_ploidy 41 --max_alternate_alleles 3 --max_num_PL_values 100000 --variant_index_type LINEAR --variant_index_parameter 128000 --num_cpu_threads_per_data_thread 8 --log_to_file vcf/2.pipA4.log -o vcf/2.pipA4.g.vcf 
+INFO  11:07:38,109 HelpFormatter - Executing as victor@pascual-RS920-E7-RS8 on Linux 3.16.0-77-generic amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_77-b03. 
+INFO  11:07:38,110 HelpFormatter - Date/Time: 2018/11/12 11:07:38 
+INFO  11:07:38,110 HelpFormatter - ------------------------------------------------------------------------------------ 
+INFO  11:07:38,110 HelpFormatter - ------------------------------------------------------------------------------------ 
+WARN  11:07:38,117 GATKVCFUtils - Naming your output file using the .g.vcf extension will automatically set the appropriate values  for --variant_index_type and --variant_index_parameter 
+INFO  11:07:38,164 GenomeAnalysisEngine - Deflater: IntelDeflater 
+INFO  11:07:38,164 GenomeAnalysisEngine - Inflater: IntelInflater 
+INFO  11:07:38,166 GenomeAnalysisEngine - Strictness is SILENT 
+INFO  11:07:39,644 GenomeAnalysisEngine - Downsampling Settings: Method: BY_SAMPLE, Target Coverage: 500 
+INFO  11:07:39,654 SAMDataSource$SAMReaders - Initializing SAMRecords in serial 
+INFO  11:07:39,809 SAMDataSource$SAMReaders - Done initializing BAM readers: total time 0.15 
+INFO  11:07:39,893 HCMappingQualityFilter - Filtering out reads with MAPQ < 20 
+INFO  11:07:39,955 MicroScheduler - Running the GATK in parallel mode with 8 total threads, 8 CPU thread(s) for each of 1 data thread(s), of 64 processors available on this machine 
+INFO  11:07:41,313 GenomeAnalysisEngine - Preparing for traversal over 1 BAM files 
+INFO  11:07:42,215 GenomeAnalysisEngine - Done preparing for traversal 
+INFO  11:07:42,216 ProgressMeter - [INITIALIZATION COMPLETE; STARTING PROCESSING] 
+INFO  11:07:42,216 ProgressMeter -                 |      processed |    time |         per 1M |           |   total | remaining 
+INFO  11:07:42,217 ProgressMeter -        Location | active regions | elapsed | active regions | completed | runtime |   runtime 
+INFO  11:07:42,217 HaplotypeCaller - Currently, physical phasing is not available when ploidy is different than 2; therefore it won't be performed 
+INFO  11:07:42,218 HaplotypeCaller - Standard Emitting and Calling confidence set to 0.0 for reference-model confidence output 
+INFO  11:07:42,219 HaplotypeCaller - All sites annotated with PLs forced to true for reference-model confidence output 
+WARN  11:07:42,280 InbreedingCoeff - Annotation will not be calculated. InbreedingCoeff requires at least 10 unrelated samples. 
+INFO  11:07:42,567 HaplotypeCaller - Using global mismapping rate of 45 => -4.5 in log10 likelihood units 
+INFO  11:07:42,568 PairHMM - Performance profiling for PairHMM is disabled because the program is being run with multiple threads (-nct>1) option
+Profiling is enabled only when running in single thread mode
+ 
+INFO  11:07:43,966 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:44,011 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:44,253 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:44,613 HaplotypeScore - Annotation will not be calculated, must be called from UnifiedGenotyper, not HaplotypeCaller 
+INFO  11:07:45,676 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:46,798 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:46,892 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+WARN  11:07:46,897 AnnotationUtils - Annotation will not be calculated, genotype is not called 
+INFO  11:07:48,147 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:48,797 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:07:50,844 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+WARN  11:07:58,937 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[G*, C, GCCCCCACCCCTTT] 
+WARN  11:08:04,350 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CCCT, A] 
+WARN  11:08:04,368 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, A, TC] 
+WARN  11:08:08,444 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[CTTGTT*, CTCGTTGTT, CCGTTGTTGTT] 
+WARN  11:08:09,115 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[TGGG*, TAAGGG, TG] 
+INFO  11:08:12,226 ProgressMeter - NW_001889803.1:10479         798130.0    30.0 s           37.0 s        0.1%     6.0 h       6.0 h 
+WARN  11:08:32,915 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AT, ATT] 
+INFO  11:08:42,308 ProgressMeter - NW_001889768.1:18684        1332251.0    60.0 s           45.0 s        0.2%     7.1 h       7.1 h 
+WARN  11:09:05,211 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, A, TCAAC] 
+WARN  11:09:11,501 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[ACTT*, A, ATT] 
+INFO  11:09:12,310 ProgressMeter - NW_001889746.1:18186        1678350.0    90.0 s           53.0 s        0.3%     8.5 h       8.5 h 
+WARN  11:09:15,069 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CA, CGAA] 
+WARN  11:09:34,701 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[AG*, A, ACCG] 
+WARN  11:09:34,717 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CTTT, CAGCTTT] 
+WARN  11:09:37,535 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[T*, G, TG] 
+WARN  11:09:40,550 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[A*, AGT, T] 
+INFO  11:09:42,313 ProgressMeter - NW_001889678.1:13004        2817662.0   120.0 s           42.0 s        0.5%     6.8 h       6.8 h 
+WARN  11:10:08,486 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[ACTCGTT*, TCTCGTT, ACCCTCGTT] 
+INFO  11:10:12,315 ProgressMeter - NW_001889633.1:15427        3492011.0     2.5 m           42.0 s        0.6%     6.9 h       6.8 h 
+WARN  11:10:33,175 HaplotypeCallerGenotypingEngine - Removed alt alleles where ploidy is 41 and original allele count is 4, whereas after trimming the allele count becomes 3. Alleles kept are:[C*, CT, CTT] 
+INFO  11:10:42,317 ProgressMeter - NW_001889570.1:14985        4299488.0     3.0 m           41.0 s        0.7%     6.7 h       6.7 h 
+INFO  11:11:12,319 ProgressMeter - NW_001888774.1:5306      1.9559621E7     3.5 m           10.0 s        3.4%   103.6 m     100.1 m 
+INFO  11:11:42,322 ProgressMeter - NW_001888102.1:2240      5.3801486E7     4.0 m            4.0 s        9.3%    43.0 m      39.0 m 
+INFO  11:12:12,324 ProgressMeter - NW_001887777.1:70356      8.8336774E7     4.5 m            3.0 s       15.3%    29.5 m      25.0 m 
+INFO  11:12:42,327 ProgressMeter - NW_001887583.1:104894     1.18724153E8     5.0 m            2.0 s       20.5%    24.4 m      19.4 m 
+INFO  11:13:12,329 ProgressMeter - NW_001887476.1:90401     1.39911964E8     5.5 m            2.0 s       24.2%    22.7 m      17.2 m 
+INFO  11:13:42,332 ProgressMeter - NW_001887363.1:64601      1.6621113E8     6.0 m            2.0 s       28.7%    20.9 m      14.9 m 
+INFO  11:14:12,335 ProgressMeter - NW_001887268.1:70312     1.92244779E8     6.5 m            2.0 s       33.2%    19.6 m      13.1 m 
+INFO  11:14:42,338 ProgressMeter - NW_001887189.1:128200     2.17994046E8     7.0 m            1.0 s       37.7%    18.6 m      11.6 m 
+INFO  11:15:12,341 ProgressMeter - NW_001887123.1:382901     2.42592864E8     7.5 m            1.0 s       42.0%    17.9 m      10.4 m 
+INFO  11:15:42,345 ProgressMeter - NW_001887059.1:86910     2.69581861E8     8.0 m            1.0 s       46.6%    17.2 m       9.2 m 
+INFO  11:16:12,349 ProgressMeter - NW_001887007.1:231100     2.93848844E8     8.5 m            1.0 s       50.8%    16.7 m       8.2 m 
+INFO  11:16:42,352 ProgressMeter - NW_001886961.1:229687     3.18230084E8     9.0 m            1.0 s       55.0%    16.4 m       7.4 m 
+INFO  11:17:12,355 ProgressMeter - NW_001886919.1:197201     3.42731496E8     9.5 m            1.0 s       59.2%    16.0 m       6.5 m 
+INFO  11:17:42,545 ProgressMeter - NW_001886881.1:729101     3.68810108E8    10.0 m            1.0 s       63.8%    15.7 m       5.7 m 
+INFO  11:18:12,550 ProgressMeter - NW_001886848.1:127100     3.94220231E8    10.5 m            1.0 s       68.1%    15.4 m       4.9 m 
+INFO  11:18:42,554 ProgressMeter - NW_001886818.1:908653     4.19449778E8    11.0 m            1.0 s       72.6%    15.2 m       4.2 m 
+INFO  11:19:12,557 ProgressMeter - NW_001886791.1:66329     4.45006255E8    11.5 m            1.0 s       76.9%    15.0 m       3.5 m 
+INFO  11:19:42,634 ProgressMeter - NW_001886762.1:900462     4.75711352E8    12.0 m            1.0 s       82.3%    14.6 m       2.6 m 
+INFO  11:20:12,637 ProgressMeter - NW_001886738.1:1025987     5.07543211E8    12.5 m            1.0 s       87.8%    14.2 m     103.0 s 
+INFO  11:20:42,640 ProgressMeter - NW_001886718.1:192100     5.39404401E8    13.0 m            1.0 s       93.2%    14.0 m      57.0 s 
+INFO  11:21:12,643 ProgressMeter - NW_001886703.1:1370760     5.69666528E8    13.5 m            1.0 s       98.6%    13.7 m      11.0 s 
+INFO  11:21:20,332 VectorLoglessPairHMM - Using OpenMP multi-threaded AVX-accelerated native PairHMM implementation 
+INFO  11:21:20,335 HaplotypeCaller - Ran local assembly on 1933493 active regions 
+INFO  11:21:20,616 ProgressMeter -            done     5.79042118E8    13.6 m            1.0 s      100.0%    13.6 m       0.0 s 
+INFO  11:21:20,616 ProgressMeter - Total runtime 818.40 secs, 13.64 min, 0.23 hours 
+INFO  11:21:20,617 MicroScheduler - 981906 reads were filtered out during the traversal out of approximately 1000000 total reads (98.19%) 
+INFO  11:21:20,617 MicroScheduler -   -> 0 reads (0.00% of total) failing BadCigarFilter 
+INFO  11:21:20,617 MicroScheduler -   -> 6242 reads (0.62% of total) failing DuplicateReadFilter 
+INFO  11:21:20,618 MicroScheduler -   -> 0 reads (0.00% of total) failing FailsVendorQualityCheckFilter 
+INFO  11:21:20,618 MicroScheduler -   -> 975664 reads (97.57% of total) failing HCMappingQualityFilter 
+INFO  11:21:20,618 MicroScheduler -   -> 0 reads (0.00% of total) failing MalformedReadFilter 
+INFO  11:21:20,618 MicroScheduler -   -> 0 reads (0.00% of total) failing MappingQualityUnavailableFilter 
+INFO  11:21:20,619 MicroScheduler -   -> 0 reads (0.00% of total) failing NotPrimaryAlignmentFilter 
+INFO  11:21:20,619 MicroScheduler -   -> 0 reads (0.00% of total) failing UnmappedReadFilter 
